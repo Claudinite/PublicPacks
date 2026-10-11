@@ -23,5 +23,14 @@ func TestPack(t *testing.T) {
 			"advisory preferences-store-codeowners .github/CODEOWNERS",
 			"advisory preferences-provenance preferences/octocat/RULES.md:1",
 		}},
+		{Name: "a personal pack's tasks and env are refused", Config: store, Member: map[string]string{
+			"preferences/octocat/RULES.md":          "x\n",
+			"preferences/octocat/pack.json":         `{"env": {"node": "npm ci"}}`,
+			"preferences/octocat/tasks/t/task.json": "{}\n",
+		}, Expect: []string{
+			"advisory preferences-store-codeowners .github/CODEOWNERS",
+			"finding preferences-nothing-to-run preferences/octocat/pack.json",
+			"finding preferences-nothing-to-run preferences/octocat/tasks",
+		}},
 	})
 }

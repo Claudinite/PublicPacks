@@ -6,7 +6,7 @@ import { decodeB64, DOMAINS, parsePrivateKey, signMessage } from '../sign/sign.m
 import { addVersion, newIndex, serialize, signIndex } from './index.mjs';
 import {
   applyUpload, branchObjects, deriveCredentials, planUpload, R2Error, runUpload, s3Bucket, setup, signV4, verifyCdn,
-} from './r2.mjs';
+} from './upload.mjs';
 
 const VECTORS = JSON.parse(readFileSync(new URL('./sigv4.test-vectors.json', import.meta.url), 'utf8'));
 const SIGN = JSON.parse(readFileSync(new URL('../sign/testdata/vectors.json', import.meta.url), 'utf8'));
@@ -500,8 +500,8 @@ test('the upload retries verify-cdn only in the run whose setup attached the dom
   assert.deepEqual(present.waits, []);
 });
 
-test('r2.mjs, which runs beside the Cloudflare token, imports only node: modules, ../sign/sign.mjs and ./index.mjs', () => {
-  const src = readFileSync(new URL('./r2.mjs', import.meta.url), 'utf8');
+test('upload.mjs, which runs beside the Cloudflare token, imports only node: modules, ../sign/sign.mjs and ./index.mjs', () => {
+  const src = readFileSync(new URL('./upload.mjs', import.meta.url), 'utf8');
   const imports = [...src.matchAll(/^\s*import\b[^'"]*['"]([^'"]+)['"]/gm), ...src.matchAll(/\bimport\(\s*['"]([^'"]+)['"]/g)].map((m) => m[1]);
   assert.ok(imports.length >= 3);
   assert.deepEqual(imports.filter((s) => !s.startsWith('node:') && s !== '../sign/sign.mjs' && s !== './index.mjs'), []);

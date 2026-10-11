@@ -1,16 +1,16 @@
 name: promote-packs
 
 # Rewrites pack index entries, and the catalog with them, on the `vendored` branch and then on R2:
-# hourly, promotes the canary versions every configured canary workflow passed
-# (tools/release/canaries.json); on dispatch with a pack and version, promotes or revokes that one
+# daily, promotes the canary versions out for 72 hours that no release-blocker issue names
+# (tools/release/blockers.json); on dispatch with a pack and version, promotes or revokes that one
 # entry. docs/release.md.
 on:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '17 5 * * *'
   workflow_dispatch:
     inputs:
       action:
-        description: promote or revoke the version below; with no pack, read the canary evidence
+        description: promote or revoke the version below; with no pack, run the daily promotion
         type: choice
         options: [promote, revoke]
         default: promote
@@ -45,11 +45,18 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version-file: .node-version
-      - name: Promote or revoke
+      - name: Soak
+        if: ${{ !inputs.pack }}
+        run: node tools/release/release.mjs soak --out "$RUNNER_TEMP/soaked.json" --summary "$GITHUB_STEP_SUMMARY"
+      - name: No blocker
+        if: ${{ !inputs.pack }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/release/release.mjs no-blocker --candidates "$RUNNER_TEMP/soaked.json" --out "$RUNNER_TEMP/unblocked.json" --summary "$GITHUB_STEP_SUMMARY"
+      - name: Promote
         env:
           PACKS_KEY: ${{ secrets.CN_PACKS_KEY }}
           PACKS_CERT: ${{ secrets.CN_PACKS_CERT }}
-          GITHUB_TOKEN: ${{ github.token }}
           ACTION: ${{ inputs.action }}
           PACK: ${{ inputs.pack }}
           VERSION: ${{ inputs.version }}
@@ -66,8 +73,7 @@ jobs:
           if [ -n "$PACK" ]; then
             node tools/release/release.mjs "$ACTION" --pack "$PACK" --version "$VERSION" --by "$ACTOR" --roots keys/roots --summary "$GITHUB_STEP_SUMMARY" "${signing[@]}"
           else
-            node tools/release/release.mjs evidence --out "$RUNNER_TEMP/evidence.json" --summary "$GITHUB_STEP_SUMMARY"
-            node tools/release/release.mjs promote --evidence "$RUNNER_TEMP/evidence.json" --roots keys/roots --summary "$GITHUB_STEP_SUMMARY" "${signing[@]}"
+            node tools/release/release.mjs promote --candidates "$RUNNER_TEMP/unblocked.json" --roots keys/roots --summary "$GITHUB_STEP_SUMMARY" "${signing[@]}"
           fi
 
   upload:

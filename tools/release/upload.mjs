@@ -1,5 +1,5 @@
-// The R2 half of a pack release: the Cloudflare API setup, an S3 client signed with SigV4, the
-// upload of every object the `vendored` branch holds, and the read-back through the CDN.
+// The upload stage of a pack release, to R2: the Cloudflare API setup, an S3 client signed with
+// SigV4, the upload of every object the `vendored` branch holds, and the read-back through the CDN.
 //
 // Sources this follows (read 2026-10-01):
 // - Credentials: developers.cloudflare.com/r2/api/tokens/ ("Get S3 API credentials from an API

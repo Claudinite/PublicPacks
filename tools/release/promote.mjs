@@ -1,8 +1,8 @@
-// Promotion and revocation of published pack versions: the canary evidence read from GitHub, the
-// rule that turns it into promotions, and the rewrite of `<id>/index.json` on the `vendored`
-// branch, one commit per changed entry, re-signed and self-checked before a push without force.
-// A promotion changes only the index, never the vendored set. release.mjs carries the commands;
-// docs/release.md describes the evidence rule and the dispatch path.
+// Promotion and revocation of published pack versions: the soak and blocker gates that pick the
+// versions to promote, and the rewrite of `<id>/index.json` on the `vendored` branch, one commit
+// per changed entry, re-signed and self-checked before a push without force. A promotion changes
+// only the index, never the vendored set. release.mjs carries the commands; docs/release.md
+// describes the gates and the dispatch path.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { BRANCH, openBranch, ReleaseError } from './branch.mjs';
@@ -10,7 +10,7 @@ import { CATALOG, CATALOG_SIG, writeCatalog } from './catalog.mjs';
 import { assertSerialAdvances, readIndex, serialize, setChannel, setRevoked, signIndex, verifyIndex } from './index.mjs';
 import { trustOf } from './trust.mjs';
 
-export const NO_WORKFLOW_VERDICT = 'no canary workflow is configured; promotion needs a dispatch';
+export const SOAK_HOURS = 72;
 const TRUSTED_AUTHORS = new Set(['OWNER', 'MEMBER', 'COLLABORATOR']);
 const API = 'https://api.github.com';
 
@@ -33,7 +33,6 @@ export function githubReader({ token, fetch = globalThis.fetch }) {
     if (!res.ok) throw new ReleaseError(`GET ${url.slice(API.length)}: ${res.status} ${res.statusText} ${(await res.text()).slice(0, 500)}`.trim());
     return res;
   };
-  const get = async (path) => (await request(`${API}${path}`)).json();
   const getAll = async (path) => {
     const items = [];
     for (let url = `${API}${path}`; url;) {
@@ -45,71 +44,40 @@ export function githubReader({ token, fetch = globalThis.fetch }) {
     return items;
   };
   return {
-    async defaultBranch(repo) { return (await get(`/repos/${repo}`)).default_branch; },
-    async workflowRuns(repo, file, branch) {
-      return (await get(`/repos/${repo}/actions/workflows/${encodeURIComponent(file)}/runs?branch=${encodeURIComponent(branch)}&status=completed&per_page=10`)).workflow_runs;
-    },
     async openIssues(repo, label) {
       return (await getAll(`/repos/${repo}/issues?labels=${encodeURIComponent(label)}&state=open&per_page=100`)).filter((i) => !i.pull_request);
     },
   };
 }
 
-// indexes: [{pack, index}]. Per candidate (canary, not revoked): per canary and listed workflow
-// the latest completed run on the default branch started after publishedAt, and the open
-// blocker issues by a trusted author naming it.
-export async function readEvidence({ indexes, config, reader }) {
-  const issues = (await reader.openIssues(config.blockers.repo, config.blockers.label)).filter((i) => TRUSTED_AUTHORS.has(i.author_association));
-  const runs = new Map();
-  for (const c of config.canaries) {
-    if (!c.workflows.length) continue;
-    const branch = await reader.defaultBranch(c.repo);
-    for (const file of c.workflows) runs.set(`${c.repo} ${file}`, await reader.workflowRuns(c.repo, file, branch));
-  }
+// Soak. indexes: [{pack, index}]. Every canary entry not revoked, as a candidate when it was
+// published at least `hours` before now, else declined until then.
+export function soak({ indexes, now, hours = SOAK_HOURS }) {
   const candidates = [];
+  const declined = [];
   for (const { pack, index } of indexes) {
     for (const e of index.versions.filter((x) => x.channel === 'canary' && x.revoked === false)) {
-      const after = Date.parse(e.publishedAt);
-      candidates.push({
-        pack,
-        version: e.version,
-        publishedAt: e.publishedAt,
-        canaries: config.canaries.map((c) => ({
-          repo: c.repo,
-          workflows: c.workflows.map((file) => {
-            const run = (runs.get(`${c.repo} ${file}`) ?? []).filter((r) => Date.parse(r.run_started_at) > after)
-              .sort((a, b) => Date.parse(b.run_started_at) - Date.parse(a.run_started_at))[0];
-            return { file, run: run ? { id: run.id, conclusion: run.conclusion, runStartedAt: run.run_started_at, url: run.html_url } : null };
-          }),
-        })),
-        blockers: issues.filter((i) => namesVersion(i.title, pack, e.version) || namesVersion(i.body, pack, e.version))
-          .map((i) => ({ number: i.number, title: i.title, url: i.html_url })),
-      });
+      const ready = Date.parse(e.publishedAt) + hours * 3600e3;
+      if (Number.isNaN(ready)) throw new ReleaseError(`${pack} ${e.version}: publishedAt "${e.publishedAt}" is not a date`);
+      if (ready <= now.getTime()) candidates.push({ pack, version: e.version, publishedAt: e.publishedAt });
+      else declined.push({ pack, version: e.version, reason: `soaking until ${new Date(ready).toISOString()}` });
     }
   }
-  return { readAt: new Date().toISOString(), blockersRepo: config.blockers.repo, candidates };
+  return { candidates, declined };
 }
 
-// The candidates every listed workflow of every listed canary passed with no blocker; with no
-// workflow listed anywhere, none, and a verdict saying so.
-export function choosePromotions(evidence, config) {
-  if (!config.canaries.some((c) => c.workflows.length)) return { verdict: NO_WORKFLOW_VERDICT, promote: [], declined: [] };
-  const promote = [];
+// No blocker. The candidates no open blocker issue by a trusted author names in its title or
+// body; the others declined with the issues that block them. config: {repo, label}.
+export async function withoutBlockers({ candidates, config, reader }) {
+  const issues = (await reader.openIssues(config.repo, config.label)).filter((i) => TRUSTED_AUTHORS.has(i.author_association));
+  const clear = [];
   const declined = [];
-  for (const cand of evidence.candidates) {
-    const reasons = [];
-    for (const c of config.canaries) {
-      for (const file of c.workflows) {
-        const run = cand.canaries.find((x) => x.repo === c.repo)?.workflows.find((x) => x.file === file)?.run;
-        if (!run) reasons.push(`${c.repo} ${file}: no completed run since ${cand.publishedAt}`);
-        else if (run.conclusion !== 'success') reasons.push(`${c.repo} ${file}: ${run.conclusion}`);
-      }
-    }
-    for (const b of cand.blockers) reasons.push(`blocked by ${config.blockers.repo}#${b.number}`);
-    if (reasons.length) declined.push({ pack: cand.pack, version: cand.version, reason: reasons.join('; ') });
-    else promote.push({ pack: cand.pack, version: cand.version });
+  for (const c of candidates) {
+    const blockers = issues.filter((i) => namesVersion(i.title, c.pack, c.version) || namesVersion(i.body, c.pack, c.version));
+    if (blockers.length) declined.push({ pack: c.pack, version: c.version, reason: `blocked by ${blockers.map((b) => `${config.repo}#${b.number}`).join(', ')}` });
+    else clear.push(c);
   }
-  return { promote, declined };
+  return { candidates: clear, declined };
 }
 
 const VERB = { promote: 'Promote', revoke: 'Revoke' };
@@ -125,7 +93,7 @@ function refusal(change, entry) {
 
 // Applies changes [{pack, version, action, by?}] as one commit each and pushes once. A refused
 // change fails the run before anything is pushed, unless skipStale, where it is reported and
-// skipped (evidence read before the branch moved). beforePush exists for tests.
+// skipped (candidates read before the branch moved). beforePush exists for tests.
 export function rewriteBranch({ repo, remote, roots, key, certificate, changes, now, skipStale = false, beforePush, log = () => {} }) {
   const branch = openBranch(repo, remote);
   try {

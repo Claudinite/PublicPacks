@@ -189,16 +189,36 @@ test('upload runs after publish in the release environment, reads only, and gets
   assert.doesNotMatch(runs(publish), /release\.mjs upload/);
 });
 
-test('promote-packs runs hourly off the hour and on dispatch with action, pack and version, in the release concurrency group', () => {
+test('promote-packs runs daily off the hour and on dispatch with action, pack and version, in the release concurrency group', () => {
   const w = workflow('promote-packs.yml');
   assert.deepEqual(Object.keys(w.on).sort(), ['schedule', 'workflow_dispatch']);
-  const [minute, hour] = w.on.schedule[0].cron.split(' ');
+  assert.equal(w.on.schedule.length, 1);
+  const [minute, hour, ...rest] = w.on.schedule[0].cron.split(' ');
   assert.notEqual(minute, '0', 'GitHub drops on-the-hour crons under load');
-  assert.equal(hour, '*');
+  assert.match(minute, /^\d+$/);
+  assert.match(hour, /^\d+$/, 'one run a day');
+  assert.deepEqual(rest, ['*', '*', '*']);
   assert.deepEqual(Object.keys(w.on.workflow_dispatch.inputs).sort(), ['action', 'pack', 'version']);
   assert.deepEqual(w.on.workflow_dispatch.inputs.action.options, ['promote', 'revoke']);
   assert.equal(w.concurrency.group, workflow('release-packs.yml').concurrency.group);
   assert.equal(w.concurrency['cancel-in-progress'], false);
+});
+
+test('promote-packs: the promote job runs the stages Soak, No blocker and Promote in order, and only Promote holds the key', () => {
+  const { promote } = workflow('promote-packs.yml').jobs;
+  const named = promote.steps.filter((s) => s.name);
+  assert.deepEqual(named.map((s) => s.name), ['Soak', 'No blocker', 'Promote']);
+  const [soakStep, noBlocker, promoteStep] = named;
+  assert.match(soakStep.run, /^node tools\/release\/release\.mjs soak --out "\$RUNNER_TEMP\/soaked\.json" /);
+  assert.match(noBlocker.run, /^node tools\/release\/release\.mjs no-blocker --candidates "\$RUNNER_TEMP\/soaked\.json" --out "\$RUNNER_TEMP\/unblocked\.json" /);
+  assert.match(promoteStep.run, /node tools\/release\/release\.mjs promote --candidates "\$RUNNER_TEMP\/unblocked\.json" --roots keys\/roots/);
+  for (const s of [soakStep, noBlocker]) assert.equal(s.if, '${{ !inputs.pack }}', `${s.name} runs only without a dispatched pack`);
+  assert.equal(promoteStep.if, undefined);
+  assert.deepEqual(noBlocker.env, { GITHUB_TOKEN: '${{ github.token }}' });
+  assert.equal(soakStep.env, undefined);
+  const holdsSecret = promote.steps.filter((s) => JSON.stringify(s).includes('secrets.')).map((s) => s.name);
+  assert.deepEqual(holdsSecret, ['Promote']);
+  assert.doesNotMatch(JSON.stringify(promote), /evidence|canar/i, 'promotion reads no canary workflow');
 });
 
 test('promote-packs: the promote job writes in the release environment; upload follows with only the Cloudflare secrets', () => {
@@ -210,8 +230,6 @@ test('promote-packs: the promote job writes in the release environment; upload f
   assert.deepEqual(upload.permissions, { contents: 'read' });
   const runs = (job) => job.steps.map((s) => s.run ?? '').join('\n');
   const r = runs(promote);
-  assert.match(r, /node tools\/release\/release\.mjs evidence --out /);
-  assert.match(r, /node tools\/release\/release\.mjs promote --evidence /);
   assert.match(r, /node tools\/release\/release\.mjs "\$ACTION" --pack "\$PACK" --version "\$VERSION" --by "\$ACTOR"/);
   assert.doesNotMatch(r, /\$\{\{/, 'inputs reach the script through env, never interpolated into it');
   assert.doesNotMatch(r, /node --test|release\.mjs (build|publish)|vendor\.mjs/);

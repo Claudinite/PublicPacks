@@ -191,31 +191,34 @@ then runs the same `upload` job so the CDN follows the branch in the same run. A
 only the index and the catalog, never the vendored set. A push rejected because the branch moved
 fails the run; the next run re-derives from the new tip.
 
-- **Hourly** (minute 17) it runs `release.mjs evidence` and `release.mjs promote --evidence`. The
-  candidates are every entry with `channel: canary` and `revoked: false`. For each,
-  `tools/release/canaries.json` lists the canary repositories and the workflow files whose
-  conclusions count; the evidence is the latest completed run of each on the canary's default
-  branch started after the entry's `publishedAt`, plus the open `release-blocker` issues in the
-  `blockers` repository (missingbulb/ClaudiniteEngine) by an owner, member or collaborator whose
-  title or body names `<id> <version>` as a whole token. A candidate is promoted when every listed
-  workflow of every listed canary concluded `success` and no blocker names it; a canary with no
-  such run counts as not passed. Each promotion is a commit `Promote <id> <version>`. While no
-  canary lists a workflow, the run declines with `no canary workflow is configured; promotion
-  needs a dispatch` and exits 0. The blockers read fails on a non-2xx answer, so a repository the
-  token cannot read is an error, never "no blockers". GitHub disables a `schedule:` trigger after
-  60 days without activity in the repository, which stops the hourly run until someone re-enables
-  the workflow; a dispatch still works meanwhile.
-- **On dispatch** with `pack` and `version`, `action: promote` promotes that entry regardless of
-  evidence, refusing a version not in the index, already `stable` or revoked, and
-  `action: revoke` sets `revoked: true`, refusing one already revoked; the commit is
-  `Promote <id> <version> (dispatched by <login>)` or `Revoke … (dispatched by <login>)`. Nothing
-  revokes automatically. A dispatch without a pack takes the hourly path.
+- **Daily** the job runs one step per gate, each reading the one before it:
+  - **Soak** (`release.mjs soak`) takes every entry with `channel: canary` and `revoked: false`
+    on the branch and keeps those whose `publishedAt` is at least 72 hours old. Our repos read the
+    canary channel, so they run every new pack version through those 72 hours first; a younger
+    one is declined with the instant it will have soaked.
+  - **No blocker** (`release.mjs no-blocker`) drops every candidate an open issue labelled
+    `release-blocker` names, in the repository `tools/release/blockers.json` names
+    (missingbulb/ClaudiniteEngine), when its title or body names `<id> <version>` as a whole token
+    and its author is the repository's owner, a member or a collaborator; an issue by anyone else
+    is ignored. The read fails on a non-2xx answer, so a repository the token cannot read is an
+    error, never "no blockers".
+  - **Promote** (`release.mjs promote --candidates`) promotes what is left, one commit
+    `Promote <id> <version>` each, skipping an entry a dispatch promoted or revoked since the
+    branch was read.
 
-The job summary records the evidence read and every promotion or revocation.
+  GitHub disables a `schedule:` trigger after 60 days without activity in the repository, which
+  stops the daily run until someone re-enables the workflow; a dispatch still works meanwhile.
+- **On dispatch** with `pack` and `version`, only the Promote step runs: `action: promote`
+  promotes that entry with no soak or blocker read, refusing a version not in the index, already
+  `stable` or revoked, and `action: revoke` sets `revoked: true`, refusing one already revoked;
+  the commit is `Promote <id> <version> (dispatched by <login>)` or
+  `Revoke … (dispatched by <login>)`. Nothing revokes automatically. A dispatch without a pack
+  takes the daily path.
 
-Until ClaudiniteEngine#21 gives the canaries workflows the evidence can read, promotion is the
-dispatch, by a person, after ClaudiniteEngine's live-packs rehearsal (ClaudiniteEngine#68 T6) has
-passed over the real shelf.
+Anyone who sees a pack version misbehave on our repos opens a `release-blocker` issue naming it
+there before its soak ends; closing the issue lets the next daily run promote it. A version found
+bad after promotion is revoked by dispatch. The job summary records each gate's candidates and
+declines, and every promotion or revocation.
 
 ## What a canon task may write
 
@@ -330,6 +333,6 @@ node tools/sign/sign.mjs verify-catalog --roots "$WORK/roots" "$WORK/vendored/ca
 `--key` and `--cert` sign in place of the files `CN_PACKS_KEY` and `CN_PACKS_CERT` name; `--repo`
 names the checkout whose git directory holds the work, by default the current one.
 `upload --r2 dry-run` lists every object as `would PUT`; `--r2 claudinite-packs` with the two
-Cloudflare variables set uploads for real. `evidence --out <file>` reads the canary evidence with
+Cloudflare variables set uploads for real. `no-blocker` reads the blocker issues with
 `GITHUB_TOKEN` when set. Check a certificate with
 `node tools/sign/sign.mjs verify-cert --roots keys/roots <cert.json>`.

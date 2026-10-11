@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { ENTRY_KEYS, INDEX_KEYS, readIndex, serialize } from './index.mjs';
+import { SOAK_HOURS } from './promote.mjs';
 
 const DOC = new URL('../../docs/release.md', import.meta.url);
 
@@ -30,6 +31,12 @@ test('docs/release.md says the token is a user token, what max-age=300 governs, 
   assert.ok(sameParagraph(doc, /user\s+token/, /tokens\/verify/), 'user token beside tokens/verify');
   assert.ok(sameParagraph(doc, /\bedge\b|Cache\s+Everything/, /max-age=300/), 'the edge cache beside max-age=300');
   assert.ok(sameParagraph(doc, /60\s+days/, /schedule/), '60 days beside schedule');
+});
+
+test('docs/release.md gives the soak promote.mjs applies, and no other', () => {
+  const stated = [...readFileSync(DOC, 'utf8').matchAll(/(\d+)\s+hours/g)].map((m) => Number(m[1]));
+  assert.ok(stated.length > 0, 'the soak is stated');
+  assert.deepEqual([...new Set(stated)], [SOAK_HOURS]);
 });
 
 const WIDTH = 100;

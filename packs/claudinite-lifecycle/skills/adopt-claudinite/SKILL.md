@@ -42,7 +42,7 @@ blocks it prints: QUESTIONS, HANDOVER and NEXT. Never re-create by hand what it 
    work checks.
 
 5. **File the HANDOVER block as one issue**, a checkbox per row, written per
-   [writing-handover-issues](../../../basics/skills/writing-handover-issues/SKILL.md), and link it
+   `basics`' `writing-handover-issues` skill, and link it
    from the pull request. Every row is a setting, an install or a secret no token the session
    holds can write.
 

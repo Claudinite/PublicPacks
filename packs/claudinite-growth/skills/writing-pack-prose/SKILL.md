@@ -18,7 +18,7 @@ Whether a candidate *qualifies* as a rule at all, and which mechanism carries it
 [extracting-lessons.md](../../extracting-lessons.md)'s call — settle it there before writing.
 
 **Start from the foundation:** read the "Write each rule" section of
-[authoring-agent-docs](../../../basics/skills/authoring-agent-docs/SKILL.md) first — its
+`basics`' `authoring-agent-docs` skill first — its
 principles (concrete enough to verify, motivation stated, what to do rather than what not to,
 the right altitude, emphasis reserved) bind pack prose too. This skill is the pack-specific
 layer on top of them, and doesn't restate them.

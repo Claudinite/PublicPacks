@@ -90,7 +90,7 @@ A pack may declare `adoptionHandover` — steps only a human can perform (a repo
 console setting, a permission, a secret). `cn adopt` prints them as its HANDOVER block; they are
 not optional and they are not PR-body notes. **Open one tracking issue per adopting repo**,
 a checkbox per step, written per
-[writing-handover-issues](../../../basics/skills/writing-handover-issues/SKILL.md) — so
+`basics`' `writing-handover-issues` skill — so
 each step's `breaks` (what is broken while it is off) and `done` (its closing condition)
 travel in the section below the checklist, never between the boxes. Per-repo manual work reliably does not happen,
 so an unfiled step is a capability that dies silently in that member.

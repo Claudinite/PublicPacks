@@ -7,3 +7,10 @@
 - **Mechanism:** `tasks/implement-request/task.json`, the engine's declaration unchanged but for its
   description, and the worker text that was `claudinite-tasks/public/implement-request.md`, now
   saying to deliver the pull request as the routine instructions say, instead of linking `deliver-pr.md`.
+
+## 2026-10-11 · policy-changed · only the issue's own author can make a request eligible
+- **Reason:** the engine dropped the `/claude go` approval (ClaudiniteEngine#189): an approved
+  issue's author could still edit what was approved.
+- **Actor:** @missingbulb (owner), from the security review.
+- **Model:** Claude Opus 5.5 (1M context)
+- **Mechanism:** the worker text, which named `/claude go` as the one comment carrying authority.

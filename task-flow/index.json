@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "task-flow",
-  "serial": 3,
+  "serial": 4,
   "versions": [
     {
       "version": "1.61008.1",
@@ -42,6 +42,19 @@
       "revoked": false,
       "publishedAt": "2026-10-09T21:42:15Z",
       "sourceCommit": "8f8b7f07ec441da21c4e18db5ca3604dbb29cdb1"
+    },
+    {
+      "version": "1.61011.1",
+      "sha256": "06de18ba6c69b77f39b0edc1f0de1c8eb3adb096f663967bb31ac624292dec76",
+      "size": 28686,
+      "minEngineVersion": "1.61008.2",
+      "requires": [
+        "basics"
+      ],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-11T22:02:02Z",
+      "sourceCommit": "dd42415cf0c35d8be4b46f1cd794e918e7376845"
     }
   ]
 }

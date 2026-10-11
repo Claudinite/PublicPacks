@@ -75,6 +75,8 @@ function parseArgs(args, known) {
   return opts;
 }
 
+const RESERVED_ID = 'fleet';
+
 // Every pack directory under packsDir with its pack.json fields, validated before anything is built.
 function readPacks(packsDir) {
   const ids = readdirSync(packsDir).filter((n) => lstatSync(join(packsDir, n)).isDirectory()).sort();
@@ -82,6 +84,7 @@ function readPacks(packsDir) {
   const errors = [];
   for (const id of ids) {
     try {
+      if (id === RESERVED_ID) throw new ReleaseError(`${id}: the id \`${RESERVED_ID}\` is reserved for the engine's embedded fleet pack; a fleet's own packs live in its manager, never on the shelf`);
       const file = join(packsDir, id, 'pack.json');
       if (!existsSync(file)) throw new ReleaseError(`${id}: no pack.json`);
       let json;

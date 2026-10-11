@@ -68,3 +68,11 @@ test('the real shelf: every offered pack has its row at its manifest version', (
     else assert.match(doc, row, `${p.id} ${p.version}`);
   }
 });
+
+// `fleet` is the engine's embedded fleet pack: the shelf is not a fleet manager and offers no
+// pack by that id, so a fleet manager's closure check against this catalog never meets it.
+test('the real shelf offers no pack with the reserved id fleet', () => {
+  assert.ok(!readShelf(join(REPO_ROOT, 'packs')).some((p) => p.id === 'fleet'));
+  const doc = readFileSync(join(REPO_ROOT, 'packs/directory.GENERATED.md'), 'utf8');
+  assert.doesNotMatch(doc, /^\| `fleet` \|/m);
+});

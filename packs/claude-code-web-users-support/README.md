@@ -97,9 +97,9 @@ they work in, and two people on one project can want different things.
 
 ## Checks
 
-All four are advisory: a personal pack is a nice-to-have, and nothing here may block a session.
+The first four are advisory: a personal pack is a nice-to-have, and nothing here may block a session.
 A directory missing its CODEOWNERS line falls to the admin's `/<path>/` line, so that drift fails
-safe.
+safe. `preferences-nothing-to-run` blocks a personal pack's `tasks/` directory and a manifest's `env` key: nothing runs either from a personal pack, so they only read as work that happens.
 
 | Check | Severity | Reason | Enforcement |
 |---|---|---|---|
@@ -107,3 +107,4 @@ safe.
 | `preferences-store-file-names` | high | correctness | check: advisory |
 | `preferences-store-codeowners` | high | correctness | check: advisory |
 | `preferences-provenance` | low | complexity | check: advisory |
+| `preferences-nothing-to-run` | medium | correctness | check: blocking |

@@ -179,3 +179,25 @@ console.log(JSON.stringify({
 		t.Errorf("block\n%s\nthe writer writes\n%s", got, want.Block)
 	}
 }
+
+func TestPreferencesNothingToRun(t *testing.T) {
+	cfg := configured(`{"repo": "acme/prefs"}`)
+	files := map[string]string{
+		"preferences/octocat/RULES.md":            "# x\n",
+		"preferences/octocat/skills/s/SKILL.md":   "s\n",
+		"preferences/octocat/tasks/t/task.json":   "{}\n",
+		"preferences/octocat/tasks/t/task.md":     "do\n",
+		"preferences/b-c/tasks/u/worker.mjs":      "run()\n",
+		"preferences/b-c/notes/tasks/t/task.json": "{}\n",
+		"tasks/t/task.json":                       "{}\n",
+		"preferences/d/pack.json":                 `{"env": {"node": "npm ci"}}`,
+		"preferences/e/pack.json":                 `{"pitch": "env"}`,
+		"preferences/f/pack.yaml":                 "pitch: x\nenv:\n  node: npm ci\n",
+	}
+	fs := run(t, preferencesNothingToRun, files, cfg)
+	expect(t, "tasks in two packs, env in two manifests", fs, "preferences/b-c/tasks preferences/d/pack.json preferences/f/pack.yaml preferences/octocat/tasks")
+	if !strings.Contains(said(fs), "nothing runs") || !strings.Contains(said(fs), "env") {
+		t.Errorf("said %q", said(fs))
+	}
+	expect(t, "no store", run(t, preferencesNothingToRun, files, &checksdk.Fake{}), "")
+}

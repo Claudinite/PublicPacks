@@ -262,7 +262,7 @@ packs/catalog.json             application/json   public, max-age=300           
 packs/catalog.sig.json         application/json   public, max-age=300                   rewritten
 ```
 
-`release.mjs upload` (`tools/release/r2.mjs`):
+`release.mjs upload` (`tools/release/upload.mjs`):
 
 1. Fails with an `::error::` before any request unless `CLOUDFLARE_API_TOKEN` and
    `CLOUDFLARE_ACCOUNT_ID` are set.
@@ -302,7 +302,7 @@ the CDN does not answer (engine design record row 158).
 The S3 credentials derive from the one token: the access key id is the token's id and the secret
 the SHA-256 of its value. The token is a user token, whose id `GET /user/tokens/verify` returns;
 an account-owned token would need `GET /accounts/{id}/tokens/verify` instead. Requests are signed
-with SigV4 (`r2.mjs`, proven by AWS's published examples in `sigv4.test-vectors.json`).
+with SigV4 (`upload.mjs`, proven by AWS's published examples in `sigv4.test-vectors.json`).
 
 ## Running it locally
 

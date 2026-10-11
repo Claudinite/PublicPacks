@@ -32,7 +32,7 @@
 // after a change of roots), is re-signed, bytes unchanged, in one more commit; one nothing vouches
 // for fails the run before any commit. The signing key is --key/--cert, else the files
 // CN_PACKS_KEY/CN_PACKS_CERT name; there is no other. `upload` makes the
-// R2 bucket hold every object on the branch and reads them back through the CDN (r2.mjs);
+// R2 bucket hold every object on the branch and reads them back through the CDN (upload.mjs);
 // `dry-run` lists them. `evidence`, `promote` and `revoke` read canary evidence and rewrite index
 // entries (promote.mjs), signing as publish does. docs/release.md has the layout and formats.
 import { execFileSync } from 'node:child_process';
@@ -46,7 +46,7 @@ import { BRANCH, fetchVendored, git, openBranch, packIds, ReleaseError, showFile
 import { CATALOG, CATALOG_SIG, CatalogError, signCatalog, validateDetector, verifyCatalog, writeCatalog } from './catalog.mjs';
 import { addVersion, assertSerialAdvances, IndexError, newIndex, packFields, readIndex, serialize, signIndex, verifyIndex } from './index.mjs';
 import { choosePromotions, githubReader, readEvidence, rewriteBranch } from './promote.mjs';
-import { branchObjects, missingCredentials, R2Error, runUpload } from './r2.mjs';
+import { branchObjects, missingCredentials, R2Error, runUpload } from './upload.mjs';
 import { trustOf } from './trust.mjs';
 
 const REPO_ROOT = fileURLToPath(new URL('../../', import.meta.url));

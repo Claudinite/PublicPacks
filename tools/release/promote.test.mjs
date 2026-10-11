@@ -6,7 +6,7 @@ import { readRoots, parsePrivateKey } from '../sign/sign.mjs';
 import { verifyCatalog } from './catalog.mjs';
 import { readIndex, verifyIndex } from './index.mjs';
 import { choosePromotions, githubReader, readEvidence, rewriteBranch } from './promote.mjs';
-import { branchObjects, planUpload } from './r2.mjs';
+import { branchObjects, planUpload } from './upload.mjs';
 import { build, commitAll, editVendored, git, packJson, publish, put, run, scratch, show, testChain, vendoredLog, world } from './test-fixture.mjs';
 
 // acme-pack with 1.60101.1 and 1.60101.2 on vendored, acme-pack-two with 1.60101.1, all canary.

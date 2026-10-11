@@ -43,6 +43,11 @@ the vendored set drops (`test/`, `docs/`,
 `provenance/` at the pack root, and `checks/*_test.go`) needs no bump. The publish job's own
 refusal is the backstop after the merge.
 
+No pack on the shelf may be named `fleet`: that id is the engine's embedded fleet pack, and this
+shelf is not a fleet manager, so a fleet's own packs live in its manager's `packs/` folder. `plan`,
+`build` and `publish` all refuse a `packs/fleet/` directory with
+``fleet: the id `fleet` is reserved``.
+
 The same job runs `tools/directory/render.mjs --check --remote origin`, which fails when
 `packs/directory.GENERATED.md` differs from a fresh render of the pack manifests and the
 catalog's stable versions; run `node tools/directory/render.mjs` and commit the result. A

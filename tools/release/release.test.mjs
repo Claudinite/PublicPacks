@@ -136,6 +136,16 @@ test('a pack.json without minEngineVersion fails the build naming the pack', () 
   assert.equal(spawnSync('git', ['rev-parse', '--verify', '-q', 'vendored'], { cwd: w.remote }).status, 1);
 });
 
+test('a pack directory named fleet fails the build: the id is the engine\'s embedded fleet pack', () => {
+  const w = world();
+  put(w.src, 'packs/fleet/pack.json', packJson('1.60101.1'));
+  commitAll(w.src, 'add fleet');
+  const b = build(w);
+  assert.notEqual(b.status, 0);
+  assert.match(b.out, /fleet: the id `fleet` is reserved/);
+  assert.equal(spawnSync('git', ['rev-parse', '--verify', '-q', 'vendored'], { cwd: w.remote }).status, 1);
+});
+
 test('without CN_PACKS_KEY and CN_PACKS_CERT it refuses and writes nothing', () => {
   const w = world();
   const p = publish(w, build(w).archives, { roots: testChain(scratch()).roots });

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 414,
+  "serial": 415,
   "packs": [
     {
       "id": "android",
@@ -644,12 +644,11 @@
     },
     {
       "id": "task-flow",
-      "version": "1.61008.1",
+      "version": "1.61009.1",
       "channel": "stable",
       "minEngineVersion": "1.61008.2",
       "requires": [
-        "basics",
-        "claudinite-tasks"
+        "basics"
       ],
       "relevanceDetector": null,
       "belongs": "the workflow of filing, deferring, sequencing and proving work through the queue — deferred changes, marked requests and their implementer, migration plans and their chains, legacy tolerances, production verifications"

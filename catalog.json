@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 266,
+  "serial": 267,
   "packs": [
     {
       "id": "android",
@@ -162,6 +162,17 @@
           "prompt": "Is this deployment this repo's OWN dashboard, or the fleet overview across many repos? A fleet deployment also names an \"owner\", whose repos are enumerated in the browser as the viewer, and optionally an \"exclude\" list."
         }
       ]
+    },
+    {
+      "id": "claudinite-fleet-sheepdog",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "relevanceDetector": null,
+      "belongs": "fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs"
     },
     {
       "id": "claudinite-fleet-sheepdog",

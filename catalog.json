@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 396,
+  "serial": 397,
   "packs": [
     {
       "id": "android",
@@ -575,9 +575,9 @@
     },
     {
       "id": "product-wiki",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": null,
       "belongs": "agent-maintained market, user and competitor research wikis — cited pages, growth logs, the reviewed product-requirements sink",

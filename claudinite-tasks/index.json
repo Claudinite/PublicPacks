@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "claudinite-tasks",
-  "serial": 21,
+  "serial": 22,
   "versions": [
     {
       "version": "60928.2",
@@ -119,7 +119,7 @@
       "size": 86147,
       "minEngineVersion": "1.61008.2",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-09T05:25:42Z",
       "sourceCommit": "7cf6c0b1ebb793f9aa4fc57d21e4cc9c80313993"

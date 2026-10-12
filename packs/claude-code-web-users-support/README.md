@@ -8,8 +8,9 @@ the repo at session start from a configured store repo wherever this pack is dec
 [`environment-setup-command.sh`](environment-setup-command.sh), the generic body a project pastes
 into its web environment's **Setup script** field so the image already holds the engine the repo
 pins, and SessionStart downloads nothing. The setup script starts in the checkout's parent
-directory, so the body looks for the checkout holding `.claudinite/launch` and runs
-`sh .claudinite/launch env install` there, and it never fails. The body is the same for every
+directory, so the body runs every checkout's generated env setup script,
+`.claudinite/cache/env-setup.GENERATED.sh`, which fetches the pinned engine and runs the packs'
+env setup, and it never fails. The body is the same for every
 project, and it is the same line `cn init` and the move quote in their HANDOVER block, so the
 issue asking for the paste carries it whether or not the repo declares this pack.
 

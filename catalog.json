@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 406,
+  "serial": 407,
   "packs": [
     {
       "id": "android",
@@ -609,23 +609,8 @@
     },
     {
       "id": "python",
-      "version": "61002.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "pyproject.toml (at the repo root or one directory down)",
-        "paths": {
-          "source": "^([^/]+/)?pyproject\\.toml$",
-          "flags": ""
-        }
-      },
-      "belongs": "packaging and import conventions for a Python project — pyproject extras, lazy optional heavy deps, stdlib-only core"
-    },
-    {
-      "id": "python",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

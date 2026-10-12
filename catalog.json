@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 378,
+  "serial": 379,
   "packs": [
     {
       "id": "android",
@@ -454,36 +454,8 @@
     },
     {
       "id": "jwt",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a JWT library (jsonwebtoken, jose, PyJWT and kin) declared in a near-root package.json, requirements*.txt or pyproject.toml",
-        "paths": {
-          "source": "^([^/]+/)?(package\\.json|requirements[^/]*\\.txt|pyproject\\.toml)$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "(^|[\"'])(jsonwebtoken|express-jwt|jwks-rsa|node-jose|jose|python-jose|pyjwt)(?=[\"'\\s]*[:=<>~!;\\[]|[\"']|\\s*$)",
-            "flags": "im"
-          }
-        ],
-        "search": [
-          "jsonwebtoken",
-          "jose",
-          "jwt",
-          "jwks",
-          "pyjwt"
-        ]
-      },
-      "belongs": "minting and validating JSON Web Tokens: algorithm pinning, claim validation, key strength and secrecy, expiry, JWE"
-    },
-    {
-      "id": "jwt",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

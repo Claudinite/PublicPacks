@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 224,
+  "serial": 225,
   "packs": [
     {
       "id": "android",
@@ -16,6 +16,15 @@
         }
       },
       "belongs": "gradle/AGP builds, AndroidManifest, permissions, signing configs, product flavors and emulator workflows for an Android app module"
+    },
+    {
+      "id": "app-store-release",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "shipping to the Apple App Store: App Store Connect, provisioning, App Attest, TestFlight, review guidelines, release cadence"
     },
     {
       "id": "app-store-release",

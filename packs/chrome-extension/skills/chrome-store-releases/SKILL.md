@@ -122,9 +122,10 @@ called by the publish reusable — a repo never dispatches it directly.
   variables → Actions → Variables). Store secrets travel via `secrets: inherit`.
 - Every unattended workflow (all of the above; not PR CI) reports failures through the
   `report-failure` composite action baked into the reusable workflows — a red run must reach a
-  human, never sit unseen in the Actions list. Each failure opens a **fresh** failure
-  issue, and any earlier open failure issues for the **same** workflow are closed as duplicates of
-  it, so the newest failure is always the single open bug to triage. Repos no longer carry a
+  human, never sit unseen in the Actions list. Where the repo has GitHub issues on, each failure
+  opens a **fresh** failure issue, and any earlier open failure issues for the **same** workflow are closed as duplicates of
+  it, so the newest failure is always the single open bug to triage; with them off, the red run
+  stands alone. Repos no longer carry a
   `report-failure.yml`; a repo's own non-standard unattended workflows use the vendored action
   directly (`uses: ./.github/actions/report-failure`).
 - Daily auto-release semantics: it asks the **release list**, not a file diff — has the version

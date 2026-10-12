@@ -63,3 +63,10 @@
 - **Reason:** the owner dropped `workflow-failure` from the approved labels.
 - **Actor:** @missingbulb (owner), approving a closed list of labels canon packs may write.
 - **Model:** Claude Opus 5.5 (1M context)
+
+## 2026-10-12 · reworded · the failure issue only where GitHub issues are on
+- **Reason:** a repo may keep its issues as files; the action reads `has_issues` and opens nothing
+  when they are off, so it never files to the wrong tracker (the Engine's `docs/repo-issues.md`).
+- **Rejected:** retiring the action, since it is how an unattended release failure reaches a person.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5.5 (1M context)

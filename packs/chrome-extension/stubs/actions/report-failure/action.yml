@@ -3,7 +3,8 @@ description: >-
   Failure reporter for UNATTENDED workflows — ones with no human actively
   watching the run, so a red entry in the Actions list alerts nobody. It
   converges such a failure to a human-visible state by opening a FRESH bug for
-  a human to triage, in the repository the run belongs to.
+  a human to triage, in the repository the run belongs to. In a repository
+  with GitHub issues turned off it opens nothing, and the red run stands.
 
   One issue per failure, not one standing issue appended to: each failure opens
   its own dated issue, and any EARLIER open failure issues for the SAME workflow
@@ -54,6 +55,13 @@ runs:
         RUN_URL:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
       run: |
         set -euo pipefail
+
+        # A repo with GitHub issues turned off keeps its issues elsewhere, and
+        # nothing here knows where: the red run is the report there.
+        if [ "$(gh api "repos/$REPO" --jq .has_issues)" != true ]; then
+          echo "GitHub issues are off in $REPO, so no failure issue is opened; the red run is the report."
+          exit 0
+        fi
 
         # Every failure issue for a workflow shares this exact prefix; the dated
         # run suffix keeps each one distinct and lets a later run find the

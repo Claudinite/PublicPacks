@@ -1,7 +1,22 @@
 {
   "v": 1,
-  "serial": 220,
+  "serial": 221,
   "packs": [
+    {
+      "id": "android",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "android/app/src/main/AndroidManifest.xml",
+        "paths": {
+          "source": "android/app/src/main/AndroidManifest\\.xml$",
+          "flags": ""
+        }
+      },
+      "belongs": "gradle/AGP builds, AndroidManifest, permissions, signing configs, product flavors and emulator workflows for an Android app module"
+    },
     {
       "id": "android",
       "version": "1.61005.1",

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 264,
+  "serial": 265,
   "packs": [
     {
       "id": "android",
@@ -148,7 +148,7 @@
     },
     {
       "id": "claudinite-dashboard",
-      "version": "1.61004.1",
+      "version": "1.61005.1",
       "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [

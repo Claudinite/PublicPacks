@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 360,
+  "serial": 361,
   "packs": [
     {
       "id": "android",
@@ -386,34 +386,8 @@
     },
     {
       "id": "headless-browser",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a browser-automation driver (playwright, puppeteer, pyppeteer) declared in a near-root package.json, requirements*.txt or pyproject.toml",
-        "paths": {
-          "source": "^([^/]+/)?(package\\.json|requirements[^/]*\\.txt|pyproject\\.toml)$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "(^|[\"'])(@playwright/test|playwright(-core)?|puppeteer(-core)?|pyppeteer)(?=[\"'\\s]*[:=<>~!;\\[]|[\"']|\\s*$)",
-            "flags": "m"
-          }
-        ],
-        "search": [
-          "playwright",
-          "puppeteer",
-          "pyppeteer"
-        ]
-      },
-      "belongs": "driving a real browser from code — resolving and pinning the build, faking the page world, capture mechanics"
-    },
-    {
-      "id": "headless-browser",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 249,
+  "serial": 250,
   "packs": [
     {
       "id": "android",
@@ -127,6 +127,15 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "the inert probe workflow the canon delivers to its canary to prove workflow materialization works end to end"
+    },
+    {
+      "id": "claudinite-canon-curation",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "curating a canon's packs/ shelf — promoting member lessons, sweeping members for unhomed technologies, authoring and policing its packs"
     },
     {
       "id": "claudinite-canon-curation",

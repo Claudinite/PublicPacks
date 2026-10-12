@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 418,
+  "serial": 419,
   "packs": [
     {
       "id": "android",
@@ -672,6 +672,35 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "acquiring data from a site you do not own: finding its data surface, fetching defensively, caching raw payloads"
+    },
+    {
+      "id": "web-speech",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "a browser speech API (SpeechRecognition / speechSynthesis / chrome.tts) referenced in JS/TS source",
+        "paths": {
+          "source": "\\.(mjs|cjs|js|jsx|ts|tsx)$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "\\b(webkitSpeechRecognition|SpeechRecognition|SpeechRecognitionPhrase|speechSynthesis|SpeechSynthesisUtterance|chrome\\.tts)\\b",
+            "flags": ""
+          }
+        ],
+        "search": [
+          "SpeechRecognition",
+          "webkitSpeechRecognition",
+          "SpeechRecognitionPhrase",
+          "speechSynthesis",
+          "SpeechSynthesisUtterance",
+          "tts"
+        ]
+      },
+      "belongs": "browser voice I/O gotchas — SpeechRecognition results and errors, speechSynthesis and chrome.tts, mic permission and lifecycle"
     },
     {
       "id": "web-speech",

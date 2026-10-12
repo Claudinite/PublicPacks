@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "claudinite-growth",
-  "serial": 24,
+  "serial": 25,
   "versions": [
     {
       "version": "60930.1",
@@ -63,7 +63,7 @@
       "requires": [
         "claudinite-lifecycle"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-02T23:04:48Z",
       "sourceCommit": "2f0347620881494f3959f545eb618ea19d965c0f"

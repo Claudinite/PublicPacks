@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 407,
+  "serial": 408,
   "packs": [
     {
       "id": "android",
@@ -621,6 +621,15 @@
         }
       },
       "belongs": "packaging and import conventions for a Python project — pyproject extras, lazy optional heavy deps, stdlib-only core"
+    },
+    {
+      "id": "research-project",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "methodology for iterating an algorithm over sample inputs against annotated ground truth — scoring, phases, session continuity"
     },
     {
       "id": "research-project",

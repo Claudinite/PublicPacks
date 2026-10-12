@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 334,
+  "serial": 335,
   "packs": [
     {
       "id": "android",
@@ -308,9 +308,9 @@
     },
     {
       "id": "firebase",
-      "version": "61002.1",
+      "version": "1.61004.1",
       "channel": "stable",
-      "minEngineVersion": "61001.1.0",
+      "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {
         "about": "firebase.json (at the repo root or one directory down)",

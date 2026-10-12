@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 320,
+  "serial": 321,
   "packs": [
     {
       "id": "android",
@@ -247,6 +247,32 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "scheduled work — the work-item queue, the executor, the task contract and its signals, run records, code-work, delivery"
+    },
+    {
+      "id": "cloudflare-site",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "claudinite-tasks"
+      ],
+      "relevanceDetector": {
+        "about": "a near-root wrangler.json/.jsonc declaring assets.directory",
+        "paths": {
+          "source": "^([^/]+/)?wrangler\\.jsonc?$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "\"assets\"\\s*:\\s*\\{[^}]*\"directory\"\\s*:\\s*\"[^\"\\s]",
+            "flags": ""
+          }
+        ],
+        "search": [
+          "assets"
+        ]
+      },
+      "belongs": "serving a static site from Cloudflare: the published tree, custom domains, the nightly release that uploads it"
     },
     {
       "id": "cloudflare-site",

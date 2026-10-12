@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 329,
+  "serial": 330,
   "packs": [
     {
       "id": "android",
@@ -286,6 +286,25 @@
         }
       },
       "belongs": "the Cloudflare Workers platform: Wrangler, D1, R2, Vectorize, Workflows, Workers AI and Containers"
+    },
+    {
+      "id": "executable-requirements",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "running a numbered spec as tests: dev/requirements layout, requirement ids, kinds, coverage and gallery gates, determinism rules",
+      "questions": [
+        {
+          "id": "ui_testing",
+          "prompt": "How are the executable UI requirements exercised — what is the UI-testing mechanism (browser/E2E such as Playwright, DOM-level golden rendering, a headless harness), or is there none yet? Most requirements should be verifiable by a short test that drives to a state and makes a VISUAL assertion (a committed golden the owner checks by sight), so this fixes how a requirement becomes that assertion."
+        },
+        {
+          "id": "requirements_source",
+          "prompt": "Where do the requirements come from — an existing requirements/spec document, the issue tracker, or authored fresh? Name the path or source so the spec is seeded from it rather than reinvented."
+        }
+      ]
     },
     {
       "id": "executable-requirements",

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 335,
+  "serial": 336,
   "packs": [
     {
       "id": "android",
@@ -308,23 +308,8 @@
     },
     {
       "id": "firebase",
-      "version": "1.61004.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "firebase.json (at the repo root or one directory down)",
-        "paths": {
-          "source": "^([^/]+/)?firebase\\.json$",
-          "flags": ""
-        }
-      },
-      "belongs": "building on Firebase: Firestore rules, callable Cloud Function patterns, FCM, emulator testing, deploy layout, dev/prod release split"
-    },
-    {
-      "id": "firebase",
       "version": "1.61005.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 411,
+  "serial": 412,
   "packs": [
     {
       "id": "android",
@@ -633,9 +633,9 @@
     },
     {
       "id": "spec-driven-product",
-      "version": "60928.1",
+      "version": "61003.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [
         "executable-requirements"
       ],

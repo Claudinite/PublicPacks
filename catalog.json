@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 385,
+  "serial": 386,
   "packs": [
     {
       "id": "android",
@@ -508,23 +508,8 @@
     },
     {
       "id": "macos",
-      "version": "1.61004.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "Package.swift (at the repo root or one directory down)",
-        "paths": {
-          "source": "^([^/]+/)?Package\\.swift$",
-          "flags": ""
-        }
-      },
-      "belongs": "native macOS apps: app-bundle assembly, TCC usage strings, Hardened Runtime entitlements, Developer ID signing, notarization and DMG distribution"
-    },
-    {
-      "id": "macos",
       "version": "1.61005.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

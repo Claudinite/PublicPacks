@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 410,
+  "serial": 411,
   "packs": [
     {
       "id": "android",
@@ -630,6 +630,17 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "methodology for iterating an algorithm over sample inputs against annotated ground truth — scoring, phases, session continuity"
+    },
+    {
+      "id": "spec-driven-product",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "executable-requirements"
+      ],
+      "relevanceDetector": null,
+      "belongs": "playbook for shipping a small end-user product from an executable spec — leaf claims, owner-owned expecteds, green-main releases"
     },
     {
       "id": "spec-driven-product",

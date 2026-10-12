@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 389,
+  "serial": 390,
   "packs": [
     {
       "id": "android",
@@ -535,6 +535,34 @@
         }
       },
       "belongs": "conventions for a Node/npm project — module resolution, ESM vs CJS, dependency justification, jsdom test divergences"
+    },
+    {
+      "id": "numpy-image-processing",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "numpy and scipy named together in a near-root Python dependency manifest (requirements*.txt or pyproject.toml)",
+        "paths": {
+          "source": "^([^/]+/)?(requirements[^/]*\\.txt|pyproject\\.toml)$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "\\bnumpy\\b",
+            "flags": "i"
+          },
+          {
+            "source": "\\bscipy\\b",
+            "flags": "i"
+          }
+        ],
+        "search": [
+          "scipy"
+        ]
+      },
+      "belongs": "numeric image analysis in Python — deriving a mask/skeleton/threshold from a NumPy image array with SciPy ndimage and scikit-image"
     },
     {
       "id": "numpy-image-processing",

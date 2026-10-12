@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 347,
+  "serial": 348,
   "packs": [
     {
       "id": "android",
@@ -338,7 +338,7 @@
     },
     {
       "id": "git-github",
-      "version": "1.61007.1",
+      "version": "1.61008.1",
       "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],

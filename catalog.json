@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 226,
+  "serial": 227,
   "packs": [
     {
       "id": "android",
@@ -19,17 +19,8 @@
     },
     {
       "id": "app-store-release",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "shipping to the Apple App Store: App Store Connect, provisioning, App Attest, TestFlight, review guidelines, release cadence"
-    },
-    {
-      "id": "app-store-release",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,

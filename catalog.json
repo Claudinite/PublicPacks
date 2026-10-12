@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 424,
+  "serial": 425,
   "packs": [
     {
       "id": "android",
@@ -43,20 +43,8 @@
     },
     {
       "id": "basics",
-      "version": "1.61008.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [
-        "claudinite-lifecycle",
-        "git-github"
-      ],
-      "relevanceDetector": null,
-      "belongs": "cross-project working discipline, issue-branch-PR lifecycle, repo hygiene, doc/reference integrity and the general engineering, testing and debugging skills"
-    },
-    {
-      "id": "basics",
       "version": "1.61009.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [
         "claudinite-lifecycle",

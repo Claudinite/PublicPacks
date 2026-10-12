@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 336,
+  "serial": 337,
   "packs": [
     {
       "id": "android",
@@ -320,6 +320,21 @@
         }
       },
       "belongs": "building on Firebase: Firestore rules, callable Cloud Function patterns, FCM, emulator testing, deploy layout, dev/prod release split"
+    },
+    {
+      "id": "flutter",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "pubspec.yaml (at the repo root or one directory down)",
+        "paths": {
+          "source": "^([^/]+/)?pubspec\\.yaml$",
+          "flags": ""
+        }
+      },
+      "belongs": "widget-tree architecture, ports and fakes, widget-test and golden mechanics, pub and analyze toolchain habits for Flutter"
     },
     {
       "id": "flutter",

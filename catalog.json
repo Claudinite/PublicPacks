@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 340,
+  "serial": 341,
   "packs": [
     {
       "id": "android",
@@ -335,6 +335,15 @@
         }
       },
       "belongs": "widget-tree architecture, ports and fakes, widget-test and golden mechanics, pub and analyze toolchain habits for Flutter"
+    },
+    {
+      "id": "git-github",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "git and GitHub procedure and platform: commit layering, branch and merge mechanics, workflow YAML, triggers, secrets, scheduling"
     },
     {
       "id": "git-github",

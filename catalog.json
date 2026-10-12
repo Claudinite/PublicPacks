@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 228,
+  "serial": 229,
   "packs": [
     {
       "id": "android",
@@ -28,9 +28,9 @@
     },
     {
       "id": "aws-sam",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": {
         "about": "a SAM template (template.yaml/.yml) at the repo root",

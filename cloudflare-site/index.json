@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "cloudflare-site",
-  "serial": 10,
+  "serial": 11,
   "versions": [
     {
       "version": "60928.1",
@@ -63,7 +63,7 @@
       "requires": [
         "claudinite-tasks"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-05T14:14:02Z",
       "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"

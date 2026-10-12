@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 248,
+  "serial": 249,
   "packs": [
     {
       "id": "android",
@@ -122,7 +122,7 @@
     {
       "id": "claudinite-canary-repo",
       "version": "60928.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "60928.1",
       "requires": [],
       "relevanceDetector": null,

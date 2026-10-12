@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 401,
+  "serial": 402,
   "packs": [
     {
       "id": "android",
@@ -598,9 +598,9 @@
     },
     {
       "id": "public-website",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [
         "html"
       ],

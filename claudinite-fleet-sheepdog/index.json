@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "claudinite-fleet-sheepdog",
-  "serial": 20,
+  "serial": 21,
   "versions": [
     {
       "version": "60928.1",
@@ -115,7 +115,7 @@
       "requires": [
         "claudinite-tasks"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-08T13:26:25Z",
       "sourceCommit": "40abd85bab8707c7a4ed37dcc0ba9e51ad7d752a"

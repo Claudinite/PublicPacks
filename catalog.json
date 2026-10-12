@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 310,
+  "serial": 311,
   "packs": [
     {
       "id": "android",
@@ -241,9 +241,9 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "60928.2",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": null,
       "belongs": "scheduled work — the work-item queue, the executor, the task contract and its signals, run records, code-work, delivery"

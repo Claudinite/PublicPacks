@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "github-pages",
-  "serial": 11,
+  "serial": 12,
   "versions": [
     {
       "version": "60928.1",
@@ -74,7 +74,7 @@
       "size": 21230,
       "minEngineVersion": "1.61001.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-09T06:00:10Z",
       "sourceCommit": "a9ec10c9fbaf9704d320da317de550bdffe2de53"

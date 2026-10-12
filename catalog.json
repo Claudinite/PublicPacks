@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 375,
+  "serial": 376,
   "packs": [
     {
       "id": "android",
@@ -439,23 +439,8 @@
     },
     {
       "id": "ios",
-      "version": "1.61004.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "ios/Runner/Info.plist",
-        "paths": {
-          "source": "ios/Runner/Info\\.plist$",
-          "flags": ""
-        }
-      },
-      "belongs": "app-target conventions for iOS — Xcode project, Info.plist usage strings, entitlements, code signing"
-    },
-    {
-      "id": "ios",
       "version": "1.61005.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

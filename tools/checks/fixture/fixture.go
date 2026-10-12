@@ -40,8 +40,8 @@ type Case struct {
 	Transcript []string
 	// Tag runs `cn check --tag` instead of the pack's own checks.
 	Tag string
-	// Format is the member's settings file: "yaml", "toml" or "json",
-	// which an empty Format means.
+	// Format is the member's settings file: "yaml", "toml" or "json";
+	// an empty Format means "yaml", the one the engine reads.
 	Format string
 	// Expect is each of the pack's findings as "<class> <id> <path>[:<line>]",
 	// in any order; none means the case is silent.
@@ -151,7 +151,7 @@ func check(t *testing.T, cn, pack string, c Case) []string {
 	}
 	format := c.Format
 	if format == "" {
-		format = "json"
+		format = "yaml"
 	}
 	text, err := renderSettings(settings, format)
 	if err != nil {

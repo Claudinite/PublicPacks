@@ -70,11 +70,11 @@ func TestLayout(t *testing.T) {
 		{Name: "no product-wiki at all", Member: map[string]string{"src/a.js": "x\n"}, Expect: []string{
 			"finding product-wiki-layout product-wiki/README.md",
 			"finding product-wiki-layout product-wiki/product-requirements/README.md",
-			"finding product-wiki-isolation .claudinite/settings.json",
+			"finding product-wiki-isolation .claudinite/settings.yaml",
 		}},
 		{Name: "the sink alone missing", Member: map[string]string{"product-wiki/README.md": "# product\n"}, Expect: []string{
 			"finding product-wiki-layout product-wiki/product-requirements/README.md",
-			"finding product-wiki-isolation .claudinite/settings.json",
+			"finding product-wiki-isolation .claudinite/settings.yaml",
 		}},
 		{Name: "a scaffold not yet staged", Untracked: scaffold(nil)},
 	})

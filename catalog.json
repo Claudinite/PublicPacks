@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 419,
+  "serial": 420,
   "packs": [
     {
       "id": "android",
@@ -675,9 +675,9 @@
     },
     {
       "id": "web-speech",
-      "version": "60928.1",
+      "version": "61003.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": {
         "about": "a browser speech API (SpeechRecognition / speechSynthesis / chrome.tts) referenced in JS/TS source",

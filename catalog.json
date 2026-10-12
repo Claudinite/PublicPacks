@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 379,
+  "serial": 380,
   "packs": [
     {
       "id": "android",
@@ -479,6 +479,32 @@
         ]
       },
       "belongs": "minting and validating JSON Web Tokens: algorithm pinning, claim validation, key strength and secrecy, expiry, JWE"
+    },
+    {
+      "id": "leaflet",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "a Leaflet reference (CDN asset, or an L.map/L.tileLayer/L.markerClusterGroup call) in HTML/JS source",
+        "paths": {
+          "source": "\\.(html?|mjs|cjs|jsx?|tsx?)$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "\\b[lL][eE][aA][fF][lL][eE][tT](\\.[jJ][sS]|\\.[cC][sS][sS]|@[\\d.]|[-/][dD][iI][sS][tT])|\\bL\\.(map|tileLayer|markerClusterGroup)\\s*\\(",
+            "flags": ""
+          }
+        ],
+        "search": [
+          "leaflet",
+          "tileLayer",
+          "markerClusterGroup"
+        ]
+      },
+      "belongs": "map rendering with the Leaflet library — map init options, tile layers, markers and divIcons, CDN plugin pinning"
     },
     {
       "id": "leaflet",

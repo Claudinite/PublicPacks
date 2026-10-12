@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "leaflet",
-  "serial": 3,
+  "serial": 4,
   "versions": [
     {
       "version": "60928.1",
@@ -9,7 +9,7 @@
       "size": 7176,
       "minEngineVersion": "60928.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-01T14:32:10Z",
       "sourceCommit": "27612838c695d2d6704966572cd86d34485e4751"

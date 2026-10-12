@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 341,
+  "serial": 342,
   "packs": [
     {
       "id": "android",
@@ -338,9 +338,9 @@
     },
     {
       "id": "git-github",
-      "version": "60928.1",
+      "version": "61003.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": null,
       "belongs": "git and GitHub procedure and platform: commit layering, branch and merge mechanics, workflow YAML, triggers, secrets, scheduling"

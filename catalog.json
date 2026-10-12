@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 321,
+  "serial": 322,
   "packs": [
     {
       "id": "android",
@@ -250,9 +250,9 @@
     },
     {
       "id": "cloudflare-site",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [
         "claudinite-tasks"
       ],

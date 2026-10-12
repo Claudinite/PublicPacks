@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 237,
+  "serial": 238,
   "packs": [
     {
       "id": "android",
@@ -64,6 +64,30 @@
       ],
       "relevanceDetector": null,
       "belongs": "cross-project working discipline, issue-branch-PR lifecycle, repo hygiene, doc/reference integrity and the general engineering, testing and debugging skills"
+    },
+    {
+      "id": "chrome-extension",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "an MV3 manifest.json (at the repo root or one directory down) declaring \"manifest_version\": 3",
+        "paths": {
+          "source": "^([^/]+/)?manifest\\.json$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "\"manifest_version\"\\s*:\\s*3\\b",
+            "flags": ""
+          }
+        ],
+        "search": [
+          "manifest_version"
+        ]
+      },
+      "belongs": "writing and shipping a Chrome extension: MV3 service-worker, permission, content-script and auth gotchas, plus Web Store release, versioning and privacy"
     },
     {
       "id": "chrome-extension",

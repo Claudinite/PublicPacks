@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 392,
+  "serial": 393,
   "packs": [
     {
       "id": "android",
@@ -563,6 +563,15 @@
         ]
       },
       "belongs": "numeric image analysis in Python — deriving a mask/skeleton/threshold from a NumPy image array with SciPy ndimage and scikit-image"
+    },
+    {
+      "id": "play-store-release",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "shipping an Android app to Google Play — Play Console, signing, integrity, staged rollout"
     },
     {
       "id": "play-store-release",

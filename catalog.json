@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 372,
+  "serial": 373,
   "packs": [
     {
       "id": "android",
@@ -436,6 +436,21 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "hand-authored HTML markup gotchas — element nesting, injected content placement, live browser verification of a page"
+    },
+    {
+      "id": "ios",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "ios/Runner/Info.plist",
+        "paths": {
+          "source": "ios/Runner/Info\\.plist$",
+          "flags": ""
+        }
+      },
+      "belongs": "app-target conventions for iOS — Xcode project, Info.plist usage strings, entitlements, code signing"
     },
     {
       "id": "ios",

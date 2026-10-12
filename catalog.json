@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 390,
+  "serial": 391,
   "packs": [
     {
       "id": "android",
@@ -538,9 +538,9 @@
     },
     {
       "id": "numpy-image-processing",
-      "version": "60928.1",
+      "version": "61003.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": {
         "about": "numpy and scipy named together in a near-root Python dependency manifest (requirements*.txt or pyproject.toml)",

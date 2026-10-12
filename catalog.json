@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 309,
+  "serial": 310,
   "packs": [
     {
       "id": "android",
@@ -238,6 +238,15 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "the browser dashboard over one repo's Claudinite scheduler state and the site that publishes it"
+    },
+    {
+      "id": "claudinite-tasks",
+      "version": "60928.2",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "scheduled work — the work-item queue, the executor, the task contract and its signals, run records, code-work, delivery"
     },
     {
       "id": "claudinite-tasks",

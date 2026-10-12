@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 326,
+  "serial": 327,
   "packs": [
     {
       "id": "android",
@@ -271,6 +271,21 @@
         ]
       },
       "belongs": "serving a static site from Cloudflare: the published tree, custom domains, the nightly release that uploads it"
+    },
+    {
+      "id": "cloudflare-workers",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "a wrangler.toml/.json/.jsonc config (at the repo root or one directory down)",
+        "paths": {
+          "source": "^([^/]+/)?wrangler\\.(toml|json|jsonc)$",
+          "flags": ""
+        }
+      },
+      "belongs": "the Cloudflare Workers platform: Wrangler, D1, R2, Vectorize, Workflows, Workers AI and Containers"
     },
     {
       "id": "cloudflare-workers",

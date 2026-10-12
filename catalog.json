@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 358,
+  "serial": 359,
   "packs": [
     {
       "id": "android",
@@ -383,6 +383,32 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "server-side Google Sign-In ID token validation: audience pinning, issuer and email_verified checks, JWT authorizer/OIDC verifier config"
+    },
+    {
+      "id": "headless-browser",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "a browser-automation driver (playwright, puppeteer, pyppeteer) declared in a near-root package.json, requirements*.txt or pyproject.toml",
+        "paths": {
+          "source": "^([^/]+/)?(package\\.json|requirements[^/]*\\.txt|pyproject\\.toml)$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "(^|[\"'])(@playwright/test|playwright(-core)?|puppeteer(-core)?|pyppeteer)(?=[\"'\\s]*[:=<>~!;\\[]|[\"']|\\s*$)",
+            "flags": "m"
+          }
+        ],
+        "search": [
+          "playwright",
+          "puppeteer",
+          "pyppeteer"
+        ]
+      },
+      "belongs": "driving a real browser from code — resolving and pinning the build, faking the page world, capture mechanics"
     },
     {
       "id": "headless-browser",

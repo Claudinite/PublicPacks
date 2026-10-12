@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 382,
+  "serial": 383,
   "packs": [
     {
       "id": "android",
@@ -505,6 +505,21 @@
         ]
       },
       "belongs": "map rendering with the Leaflet library — map init options, tile layers, markers and divIcons, CDN plugin pinning"
+    },
+    {
+      "id": "macos",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "Package.swift (at the repo root or one directory down)",
+        "paths": {
+          "source": "^([^/]+/)?Package\\.swift$",
+          "flags": ""
+        }
+      },
+      "belongs": "native macOS apps: app-bundle assembly, TCC usage strings, Hardened Runtime entitlements, Developer ID signing, notarization and DMG distribution"
     },
     {
       "id": "macos",

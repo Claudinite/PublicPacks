@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 229,
+  "serial": 230,
   "packs": [
     {
       "id": "android",
@@ -28,23 +28,8 @@
     },
     {
       "id": "aws-sam",
-      "version": "61002.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a SAM template (template.yaml/.yml) at the repo root",
-        "paths": {
-          "source": "^template\\.ya?ml$",
-          "flags": ""
-        }
-      },
-      "belongs": "serverless AWS stacks: SAM template shape, Lambda handler paths, esbuild bundling, API Gateway and CloudFront gotchas"
-    },
-    {
-      "id": "aws-sam",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

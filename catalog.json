@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 356,
+  "serial": 357,
   "packs": [
     {
       "id": "android",
@@ -377,9 +377,9 @@
     },
     {
       "id": "google-identity",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": null,
       "belongs": "server-side Google Sign-In ID token validation: audience pinning, issuer and email_verified checks, JWT authorizer/OIDC verifier config"

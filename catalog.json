@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 265,
+  "serial": 266,
   "packs": [
     {
       "id": "android",
@@ -148,25 +148,8 @@
     },
     {
       "id": "claudinite-dashboard",
-      "version": "1.61005.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [
-        "claudinite-tasks"
-      ],
-      "relevanceDetector": null,
-      "belongs": "the browser dashboard over Claudinite scheduler state and the site that publishes it",
-      "questions": [
-        {
-          "id": "mode",
-          "prompt": "Is this deployment this repo's OWN dashboard, or the fleet overview across many repos? A fleet deployment also names an \"owner\", whose repos are enumerated in the browser as the viewer, and optionally an \"exclude\" list."
-        }
-      ]
-    },
-    {
-      "id": "claudinite-dashboard",
       "version": "1.61007.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [
         "claudinite-tasks"

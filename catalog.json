@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 361,
+  "serial": 362,
   "packs": [
     {
       "id": "android",
@@ -409,6 +409,15 @@
         ]
       },
       "belongs": "driving a real browser from code — resolving and pinning the build, faking the page world, capture mechanics"
+    },
+    {
+      "id": "hello",
+      "version": "1.0",
+      "channel": "stable",
+      "minEngineVersion": "61001.1.0",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "nothing but the pack chassis probe: proving that a declared pack's rules, skills and Go checks reach a member"
     },
     {
       "id": "hello",

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 366,
+  "serial": 367,
   "packs": [
     {
       "id": "android",
@@ -418,6 +418,15 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "nothing but the pack chassis probe: proving that a declared pack's rules, skills and Go checks reach a member"
+    },
+    {
+      "id": "host-page",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "driving a web app you do not own — its DOM, synthetic input, change watching, injected UI"
     },
     {
       "id": "host-page",

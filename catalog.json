@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 417,
+  "serial": 418,
   "packs": [
     {
       "id": "android",
@@ -666,17 +666,8 @@
     },
     {
       "id": "web-scraping",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "acquiring data from a site you do not own: finding its data surface, fetching defensively, caching raw payloads"
-    },
-    {
-      "id": "web-scraping",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,

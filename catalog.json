@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 412,
+  "serial": 413,
   "packs": [
     {
       "id": "android",
@@ -633,19 +633,8 @@
     },
     {
       "id": "spec-driven-product",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [
-        "executable-requirements"
-      ],
-      "relevanceDetector": null,
-      "belongs": "playbook for shipping a small end-user product from an executable spec — leaf claims, owner-owned expecteds, green-main releases"
-    },
-    {
-      "id": "spec-driven-product",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [
         "executable-requirements"

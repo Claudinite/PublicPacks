@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 369,
+  "serial": 370,
   "packs": [
     {
       "id": "android",
@@ -427,6 +427,15 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "driving a web app you do not own — its DOM, synthetic input, change watching, injected UI"
+    },
+    {
+      "id": "html",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "hand-authored HTML markup gotchas — element nesting, injected content placement, live browser verification of a page"
     },
     {
       "id": "html",

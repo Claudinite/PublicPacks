@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 395,
+  "serial": 396,
   "packs": [
     {
       "id": "android",
@@ -572,6 +572,29 @@
       "requires": [],
       "relevanceDetector": null,
       "belongs": "shipping an Android app to Google Play — Play Console, signing, integrity, staged rollout"
+    },
+    {
+      "id": "product-wiki",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "agent-maintained market, user and competitor research wikis — cited pages, growth logs, the reviewed product-requirements sink",
+      "questions": [
+        {
+          "id": "product",
+          "prompt": "What is the product — what does it do, and what is the core value it delivers? If the repo already carries a product brief or spec, read it and confirm rather than asking cold."
+        },
+        {
+          "id": "users",
+          "prompt": "Who are the users or customers — the segments whose needs the research must track?"
+        },
+        {
+          "id": "market",
+          "prompt": "What market or category is this in, and who are the main competitors or alternatives? This is what the competitor research is scoped against."
+        }
+      ]
     },
     {
       "id": "product-wiki",

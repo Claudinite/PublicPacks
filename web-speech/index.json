@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "web-speech",
-  "serial": 5,
+  "serial": 6,
   "versions": [
     {
       "version": "60928.1",
@@ -31,7 +31,7 @@
       "size": 12812,
       "minEngineVersion": "1.61001.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-04T05:56:12Z",
       "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"

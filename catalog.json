@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 420,
+  "serial": 421,
   "packs": [
     {
       "id": "android",
@@ -675,37 +675,8 @@
     },
     {
       "id": "web-speech",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a browser speech API (SpeechRecognition / speechSynthesis / chrome.tts) referenced in JS/TS source",
-        "paths": {
-          "source": "\\.(mjs|cjs|js|jsx|ts|tsx)$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "\\b(webkitSpeechRecognition|SpeechRecognition|SpeechRecognitionPhrase|speechSynthesis|SpeechSynthesisUtterance|chrome\\.tts)\\b",
-            "flags": ""
-          }
-        ],
-        "search": [
-          "SpeechRecognition",
-          "webkitSpeechRecognition",
-          "SpeechRecognitionPhrase",
-          "speechSynthesis",
-          "SpeechSynthesisUtterance",
-          "tts"
-        ]
-      },
-      "belongs": "browser voice I/O gotchas — SpeechRecognition results and errors, speechSynthesis and chrome.tts, mic permission and lifecycle"
-    },
-    {
-      "id": "web-speech",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

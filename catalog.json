@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 294,
+  "serial": 295,
   "packs": [
     {
       "id": "android",
@@ -202,6 +202,15 @@
       ],
       "relevanceDetector": null,
       "belongs": "authoring Claudinite content here — lesson extraction, dedup, revalidation, conversation logs, skill-usage folding, the task contract"
+    },
+    {
+      "id": "claudinite-lifecycle",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "using Claudinite itself — the vendored mount, the pack declaration, bootstrapping, adopting packs, the self-refresh update"
     },
     {
       "id": "claudinite-lifecycle",

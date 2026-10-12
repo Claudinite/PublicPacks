@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 387,
+  "serial": 388,
   "packs": [
     {
       "id": "android",
@@ -523,9 +523,9 @@
     },
     {
       "id": "node",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": {
         "about": "package.json (at the repo root or one directory down)",

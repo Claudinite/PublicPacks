@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 311,
+  "serial": 312,
   "packs": [
     {
       "id": "android",
@@ -241,7 +241,7 @@
     },
     {
       "id": "claudinite-tasks",
-      "version": "61002.1",
+      "version": "61002.3",
       "channel": "stable",
       "minEngineVersion": "61001.1.0",
       "requires": [],

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 400,
+  "serial": 401,
   "packs": [
     {
       "id": "android",
@@ -595,6 +595,17 @@
           "prompt": "What market or category is this in, and who are the main competitors or alternatives? This is what the competitor research is scoped against."
         }
       ]
+    },
+    {
+      "id": "public-website",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [
+        "html"
+      ],
+      "relevanceDetector": null,
+      "belongs": "being a public website whatever serves it: the version scheme and page stamp, client-side caching and data freshness"
     },
     {
       "id": "public-website",

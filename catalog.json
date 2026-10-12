@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 231,
+  "serial": 232,
   "packs": [
     {
       "id": "android",
@@ -43,7 +43,7 @@
     },
     {
       "id": "basics",
-      "version": "61002.1",
+      "version": "61002.2",
       "channel": "stable",
       "minEngineVersion": "61001.1.0",
       "requires": [

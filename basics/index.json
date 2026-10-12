@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "basics",
-  "serial": 16,
+  "serial": 17,
   "versions": [
     {
       "version": "60928.1",
@@ -110,7 +110,7 @@
         "claudinite-lifecycle",
         "git-github"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-09T05:25:42Z",
       "sourceCommit": "7cf6c0b1ebb793f9aa4fc57d21e4cc9c80313993"

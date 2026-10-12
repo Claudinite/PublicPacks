@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 415,
+  "serial": 416,
   "packs": [
     {
       "id": "android",
@@ -663,6 +663,15 @@
       ],
       "relevanceDetector": null,
       "belongs": "the workflow of filing, deferring, sequencing and proving work through the queue — deferred changes, marked requests and their implementer, migration plans and their chains, legacy tolerances, production verifications"
+    },
+    {
+      "id": "web-scraping",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "acquiring data from a site you do not own: finding its data surface, fetching defensively, caching raw payloads"
     },
     {
       "id": "web-scraping",

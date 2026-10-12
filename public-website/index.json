@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "public-website",
-  "serial": 7,
+  "serial": 8,
   "versions": [
     {
       "version": "60928.1",
@@ -50,7 +50,7 @@
       "requires": [
         "html"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-05T14:14:02Z",
       "sourceCommit": "201260890b1ba31c520a0d993cb333f4b79b6680"

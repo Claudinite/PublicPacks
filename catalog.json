@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 403,
+  "serial": 404,
   "packs": [
     {
       "id": "android",
@@ -598,19 +598,8 @@
     },
     {
       "id": "public-website",
-      "version": "1.61004.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [
-        "html"
-      ],
-      "relevanceDetector": null,
-      "belongs": "being a public website whatever serves it: the version scheme and page stamp, client-side caching and data freshness"
-    },
-    {
-      "id": "public-website",
       "version": "1.61005.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [
         "html"

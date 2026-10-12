@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 376,
+  "serial": 377,
   "packs": [
     {
       "id": "android",
@@ -451,6 +451,34 @@
         }
       },
       "belongs": "app-target conventions for iOS — Xcode project, Info.plist usage strings, entitlements, code signing"
+    },
+    {
+      "id": "jwt",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "a JWT library (jsonwebtoken, jose, PyJWT and kin) declared in a near-root package.json, requirements*.txt or pyproject.toml",
+        "paths": {
+          "source": "^([^/]+/)?(package\\.json|requirements[^/]*\\.txt|pyproject\\.toml)$",
+          "flags": ""
+        },
+        "text": [
+          {
+            "source": "(^|[\"'])(jsonwebtoken|express-jwt|jwks-rsa|node-jose|jose|python-jose|pyjwt)(?=[\"'\\s]*[:=<>~!;\\[]|[\"']|\\s*$)",
+            "flags": "im"
+          }
+        ],
+        "search": [
+          "jsonwebtoken",
+          "jose",
+          "jwt",
+          "jwks",
+          "pyjwt"
+        ]
+      },
+      "belongs": "minting and validating JSON Web Tokens: algorithm pinning, claim validation, key strength and secrecy, expiry, JWE"
     },
     {
       "id": "jwt",

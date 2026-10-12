@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "github-pages",
-  "serial": 8,
+  "serial": 9,
   "versions": [
     {
       "version": "60928.1",
@@ -37,7 +37,7 @@
       "requires": [
         "claudinite-tasks"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-03T14:45:23Z",
       "sourceCommit": "e47e739df11a62929d1a9832ccf3cc7bf618c94a"

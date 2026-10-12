@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 328,
+  "serial": 329,
   "packs": [
     {
       "id": "android",
@@ -274,23 +274,8 @@
     },
     {
       "id": "cloudflare-workers",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a wrangler.toml/.json/.jsonc config (at the repo root or one directory down)",
-        "paths": {
-          "source": "^([^/]+/)?wrangler\\.(toml|json|jsonc)$",
-          "flags": ""
-        }
-      },
-      "belongs": "the Cloudflare Workers platform: Wrangler, D1, R2, Vectorize, Workflows, Workers AI and Containers"
-    },
-    {
-      "id": "cloudflare-workers",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

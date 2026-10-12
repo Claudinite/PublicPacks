@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 332,
+  "serial": 333,
   "packs": [
     {
       "id": "android",
@@ -305,6 +305,21 @@
           "prompt": "Where do the requirements come from — an existing requirements/spec document, the issue tracker, or authored fresh? Name the path or source so the spec is seeded from it rather than reinvented."
         }
       ]
+    },
+    {
+      "id": "firebase",
+      "version": "60928.1",
+      "channel": "stable",
+      "minEngineVersion": "60928.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "firebase.json (at the repo root or one directory down)",
+        "paths": {
+          "source": "^([^/]+/)?firebase\\.json$",
+          "flags": ""
+        }
+      },
+      "belongs": "building on Firebase: Firestore rules, callable Cloud Function patterns, FCM, emulator testing, deploy layout, dev/prod release split"
     },
     {
       "id": "firebase",

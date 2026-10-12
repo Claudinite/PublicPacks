@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 381,
+  "serial": 382,
   "packs": [
     {
       "id": "android",
@@ -482,34 +482,8 @@
     },
     {
       "id": "leaflet",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a Leaflet reference (CDN asset, or an L.map/L.tileLayer/L.markerClusterGroup call) in HTML/JS source",
-        "paths": {
-          "source": "\\.(html?|mjs|cjs|jsx?|tsx?)$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "\\b[lL][eE][aA][fF][lL][eE][tT](\\.[jJ][sS]|\\.[cC][sS][sS]|@[\\d.]|[-/][dD][iI][sS][tT])|\\bL\\.(map|tileLayer|markerClusterGroup)\\s*\\(",
-            "flags": ""
-          }
-        ],
-        "search": [
-          "leaflet",
-          "tileLayer",
-          "markerClusterGroup"
-        ]
-      },
-      "belongs": "map rendering with the Leaflet library — map init options, tile layers, markers and divIcons, CDN plugin pinning"
-    },
-    {
-      "id": "leaflet",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

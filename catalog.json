@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 238,
+  "serial": 239,
   "packs": [
     {
       "id": "android",
@@ -67,9 +67,9 @@
     },
     {
       "id": "chrome-extension",
-      "version": "60928.1",
+      "version": "61002.1",
       "channel": "stable",
-      "minEngineVersion": "60928.1",
+      "minEngineVersion": "61001.1.0",
       "requires": [],
       "relevanceDetector": {
         "about": "an MV3 manifest.json (at the repo root or one directory down) declaring \"manifest_version\": 3",

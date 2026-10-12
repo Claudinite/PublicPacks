@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 300,
+  "serial": 301,
   "packs": [
     {
       "id": "android",
@@ -205,7 +205,7 @@
     },
     {
       "id": "claudinite-lifecycle",
-      "version": "61003.1",
+      "version": "61003.2",
       "channel": "stable",
       "minEngineVersion": "61001.1.0",
       "requires": [],

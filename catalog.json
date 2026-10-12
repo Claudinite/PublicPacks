@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 272,
+  "serial": 273,
   "packs": [
     {
       "id": "android",
@@ -165,9 +165,9 @@
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "61003.3",
+      "version": "1.61004.1",
       "channel": "stable",
-      "minEngineVersion": "61001.1.0",
+      "minEngineVersion": "1.61001.1",
       "requires": [
         "claudinite-tasks"
       ],

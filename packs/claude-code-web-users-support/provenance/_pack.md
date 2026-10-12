@@ -184,3 +184,13 @@
 - **Mechanism:** the `adoptionHandover` entry, deleted; environment-setup-command.sh stays as the
   paste body the web-session-halt rule points at. Engine counterpart: ClaudiniteEngine #165.
   claude-code-web-users-support 1.61009.2.
+
+## 2026-10-12 · scope-changed · the setup script runs the generated env setup script
+- **Reason:** the body ran `sh .claudinite/launch env install`, and cn has had no `env install`
+  since it began generating `.claudinite/cache/env-setup.GENERATED.sh`, so the body pre-warmed
+  nothing, and `.claudinite/launch` is being renamed `setup-cn.sh`. The body now runs each
+  checkout's generated script, the same line cn quotes in its HANDOVER block.
+- **Actor:** @missingbulb (owner), asking that the pack carry the current line.
+- **Model:** Claude Opus 5.5
+- **Mechanism:** environment-setup-command.sh. Engine counterparts: ClaudiniteEngine #221 and
+  #227. claude-code-web-users-support 1.61012.1.

@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 258,
+  "serial": 259,
   "packs": [
     {
       "id": "android",
@@ -130,7 +130,7 @@
     },
     {
       "id": "claudinite-canon-curation",
-      "version": "1.61008.1",
+      "version": "1.61008.2",
       "channel": "stable",
       "minEngineVersion": "1.61003.1",
       "requires": [],

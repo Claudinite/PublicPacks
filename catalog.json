@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 391,
+  "serial": 392,
   "packs": [
     {
       "id": "android",
@@ -538,36 +538,8 @@
     },
     {
       "id": "numpy-image-processing",
-      "version": "61003.1",
-      "channel": "stable",
-      "minEngineVersion": "61001.1.0",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "numpy and scipy named together in a near-root Python dependency manifest (requirements*.txt or pyproject.toml)",
-        "paths": {
-          "source": "^([^/]+/)?(requirements[^/]*\\.txt|pyproject\\.toml)$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "\\bnumpy\\b",
-            "flags": "i"
-          },
-          {
-            "source": "\\bscipy\\b",
-            "flags": "i"
-          }
-        ],
-        "search": [
-          "scipy"
-        ]
-      },
-      "belongs": "numeric image analysis in Python — deriving a mask/skeleton/threshold from a NumPy image array with SciPy ndimage and scikit-image"
-    },
-    {
-      "id": "numpy-image-processing",
       "version": "1.61004.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

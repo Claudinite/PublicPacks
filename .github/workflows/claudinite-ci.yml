@@ -2,9 +2,11 @@
 # the change from main's own engine: it checks out main, sets up and keeps
 # the engine main pins outside the tree, and only then checks out the
 # change, so nothing the change holds runs before main's pin guard has
-# passed it. On any other PR that guard refuses a moved pin or setup
-# script; on an update PR it verifies the new pin and reports the move,
-# and the job then runs the new engine's own check world over this repo. The update job
+# passed it. A main that pins no engine yet has no guard to keep, so the
+# PR that adopts Claudinite is judged by the engine it pins. On any
+# other PR that guard refuses a moved pin or setup script; on an update
+# PR it verifies the new pin and reports the move, and the job then runs
+# the new engine's own check world over this repo. The update job
 # dispatches this workflow on its PR's branch, since GitHub starts no
 # pull_request run for a PR the job token opened; land then merges that PR
 # once check is green. check caches the coded checks binary under its own
@@ -66,8 +68,11 @@ jobs:
           echo "author=$author" >> "$GITHUB_OUTPUT"
           echo "base=$base" >> "$GITHUB_OUTPUT"
       - name: download the engine main pins
+        id: main-pins
+        if: hashFiles('.claudinite/setup-cn.sh') != ''
         run: sh .claudinite/setup-cn.sh
       - name: keep main's engine outside the tree
+        if: steps.main-pins.outcome == 'success'
         run: install "$(readlink -f .claudinite/bin/cn)" "$RUNNER_TEMP/cn-base"
       - name: move the tree to the change
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -75,6 +80,12 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
           persist-credentials: false
+      - name: download the engine the adoption pins
+        if: steps.main-pins.outcome == 'skipped'
+        run: sh .claudinite/setup-cn.sh
+      - name: judge the adoption by the engine it pins
+        if: steps.main-pins.outcome == 'skipped'
+        run: install "$(readlink -f .claudinite/bin/cn)" "$RUNNER_TEMP/cn-base"
       - name: name the checks build
         id: checks
         continue-on-error: true

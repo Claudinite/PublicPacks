@@ -1,0 +1,7 @@
+{
+  "version": "1",
+  "ruleRoutingGuidance": {
+    "belongs": "authoring the canon packs on this shelf: their rules, skills, checks, tasks, provenance and releases",
+    "excludes": "the engine's own code, which is ClaudiniteEngine's"
+  }
+}

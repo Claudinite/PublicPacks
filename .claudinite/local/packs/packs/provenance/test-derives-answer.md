@@ -1,0 +1,34 @@
+## 2026-08-20 · born · Claudinite growth: extract lessons (#1083)
+- **Source:** the growth-extract run over the window in #1035 - twenty-six commits, twenty-eight
+  merged pull requests and thirty-eight conversation captures; the run's own breakdown is on #370.
+- **Reason:** a history-walking test passes vacuously exactly when the real answer needs history it
+  does not have (#1013).
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude, per the commit trailer.
+- **Mechanism:** a RULES.md rule, triggered on "A test that derives its answer by walking git
+  history".
+- **Landed:** #1083 (Refs #1035).
+
+## 2026-08-24 · reworded · Cut the local pack's RULES.md to one trigger and directive per rule (#1315)
+- **Reason:** this file carried 63% of the repo's session rule tokens and was growing ~900 tokens a
+  day. Two passes: the per-rule incident archaeology comes out, then a rule carrying two situations
+  is split before it is cut. 8,435 to 5,359 words, at a mean of 35 words a rule; reasoning
+  is out and a measurement survives only where the number is the argument.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5, per the commit trailer.
+- **Landed:** #1315 (Closes #1312).
+
+## 2026-09-23 · scope-changed · Claudinite growth: extract lessons (#2271)
+- **Source:** #2244 fixed exactly this in `packDeclaredAt`, which is a tool and not a test.
+- **Reason:** the rule named only tests, so every history-reading tool here sat outside it.
+- **Actor:** the growth-extract run over the 2026-09-22 window.
+- **Model:** Claude Opus 5.
+- **Mechanism:** the same RULES.md rule, its trigger widened from "A test that derives its answer"
+  to "Deriving an answer"; `history-search-on-shallow-clone` checks the code half.
+
+## 2026-10-13 · moved · from missingbulb/Claudinite's local pack to ClaudinitePacks's
+- **Reason:** the Node repo is frozen; the rule was rewritten for cn's paths and
+  verbs where it named Node machinery.
+- **Actor:** @missingbulb (owner), who asked for the move.
+- **Model:** Claude.
+- **Mechanism:** a RULES.md rule.

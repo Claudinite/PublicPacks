@@ -1,0 +1,30 @@
+engine:
+  channel: "staging"
+  version: "1.61012.4"
+  manifest: "sha512-2f9MgozF4ZRrUpbj/0m22Num1nMgk7IOJ4eLgBQaonimr8KmGxuE5wEMQlJW5hRULfjMCPhZIv0n+UidzsVbYg=="
+packs:
+  channel: "canary"
+  declared:
+    - "basics"
+    - "git-github"
+    - "node"
+    - "claudinite-lifecycle"
+    - id: "packs"
+      source: "local"
+checks:
+  accept:
+    - rule: claudinite-isolation
+      path: packs/
+      reason: "the shelf's packs are Claudinite packs: their prose, checks and tasks name .claudinite/ paths by design"
+    - rule: claudinite-isolation
+      path: tools/
+      reason: "the release, vendoring and test tools build and read member trees"
+    - rule: no-scheduled-fleet-executor
+      path: .github/workflows/promote-packs.yml
+      reason: "the daily pack promotion is the canon's release machinery, not fleet work"
+    - rule: runnable-doc-commands
+      path: packs/claudinite-growth/
+      reason: "stale copy of a pack the engine now carries; the copy is being removed from this shelf"
+    - rule: runnable-doc-commands
+      path: packs/claudinite-lifecycle/
+      reason: "stale copy of a pack the engine now carries; the copy is being removed from this shelf"

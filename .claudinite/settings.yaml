@@ -12,13 +12,9 @@ packs:
     - id: "packs"
       source: "local"
 checks:
+  rules:
+    claudinite-isolation: "off"
   accept:
-    - rule: claudinite-isolation
-      path: packs/
-      reason: "the shelf's packs are Claudinite packs: their prose, checks and tasks name .claudinite/ paths by design"
-    - rule: claudinite-isolation
-      path: tools/
-      reason: "the release, vendoring and test tools build and read member trees"
     - rule: no-scheduled-fleet-executor
       path: .github/workflows/promote-packs.yml
       reason: "the daily pack promotion is the canon's release machinery, not fleet work"

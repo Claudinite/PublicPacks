@@ -67,3 +67,8 @@
 - **Reason:** the owner dropped `workflow-failure` from the approved labels.
 - **Actor:** @missingbulb (owner), approving a closed list of labels canon packs may write.
 - **Model:** Claude Opus 5.5 (1M context)
+
+## 2026-10-13 · reworded · the fix no longer names the retired report-failure action
+- **Reason:** chrome-extension retired the action; a `failure()` job is what the check reads.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5.5 (1M context)

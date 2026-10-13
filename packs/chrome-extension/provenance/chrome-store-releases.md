@@ -64,9 +64,9 @@
 - **Actor:** @missingbulb (owner), approving a closed list of labels canon packs may write.
 - **Model:** Claude Opus 5.5 (1M context)
 
-## 2026-10-12 · reworded · the failure issue only where GitHub issues are on
-- **Reason:** a repo may keep its issues as files; the action reads `has_issues` and opens nothing
-  when they are off, so it never files to the wrong tracker (the Engine's `docs/repo-issues.md`).
-- **Rejected:** retiring the action, since it is how an unattended release failure reaches a person.
+## 2026-10-13 · reworded · the pipeline opens no failure issues
+- **Reason:** the owner retired the `report-failure` action. A repo may keep its issues as files,
+  and nothing in the pipeline can know where (the Engine's `docs/repo-issues.md`).
+- **Rejected:** keeping the action only where the repo has GitHub issues on.
 - **Actor:** @missingbulb (owner).
 - **Model:** Claude Opus 5.5 (1M context)

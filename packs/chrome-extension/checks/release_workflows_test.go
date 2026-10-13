@@ -45,7 +45,6 @@ func conformant() map[string]string {
 		".github/workflows/deploy-privacy-page.yml":             wf("Deploy privacy policy to GitHub Pages (reusable)"),
 		".github/actions/read-release-config/action.yml":        act("Read release config"),
 		".github/actions/bump-extension-patch/action.yml":       act("Bump extension version"),
-		".github/actions/report-failure/action.yml":             act("Report workflow failure"),
 		".github/release.config":                                "manifest_path=extension/manifest.json\npackage_json_path=package.json\nsetup_command=npm ci\ntest_command=npm test\nship_paths=extension\n",
 	}
 }
@@ -79,8 +78,8 @@ func TestReleaseWorkflows(t *testing.T) {
 		t.Errorf("sentences: %s", s)
 	}
 
-	fs = run(t, releaseWorkflows, with(conformant(), nil, ".github/workflows/deploy-privacy-page.yml", ".github/actions/report-failure/action.yml"), nil)
-	expect(t, "a missing reusable and composite action", fs, ".github/actions/report-failure/action.yml .github/workflows/deploy-privacy-page.yml")
+	fs = run(t, releaseWorkflows, with(conformant(), nil, ".github/workflows/deploy-privacy-page.yml", ".github/actions/read-release-config/action.yml"), nil)
+	expect(t, "a missing reusable and composite action", fs, ".github/actions/read-release-config/action.yml .github/workflows/deploy-privacy-page.yml")
 
 	fs = run(t, releaseWorkflows, with(conformant(), map[string]string{orchestratorPath: strings.Replace(orchestrator, `- cron: "30 0 * * *"`, `- cron: "0 3 * * *"`, 1)}), nil)
 	expect(t, "a stale cron", fs, orchestratorPath)
@@ -111,8 +110,8 @@ func TestReleaseWorkflows(t *testing.T) {
 	).Replace(orchestrator)
 	files := map[string]string{orchestratorPath: legacy, ".github/release.config": conformant()[".github/release.config"]}
 	fs = run(t, releaseWorkflows, files, nil)
-	if len(fs) != 3+5+3 {
-		t.Errorf("the pre-vendoring shape: %d findings, want 11\n%s", len(fs), said(fs))
+	if len(fs) != 3+5+2 {
+		t.Errorf("the pre-vendoring shape: %d findings, want 10\n%s", len(fs), said(fs))
 	}
 
 	fs = run(t, releaseWorkflows, with(conformant(), map[string]string{orchestratorPath: strings.Replace(orchestrator, "name: Release to Chrome Store", "name: Release", 1)}), nil)

@@ -56,3 +56,9 @@
 - **Actor:** @missingbulb (owner), approving a closed list of labels canon packs may write.
 - **Model:** Claude Opus 5.5 (1M context)
 - **Mechanism:** the stub's `gh` calls; `tools/test/labels.test.mjs` holds packs to the list.
+
+## 2026-10-13 · scope-changed · report-failure is no longer a vendored action
+- **Reason:** the owner retired the action; the stubs no longer carry it.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5.5 (1M context)
+- **Mechanism:** the check's list of vendored composite actions.

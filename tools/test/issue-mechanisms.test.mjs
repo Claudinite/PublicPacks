@@ -20,7 +20,6 @@ const allowed = [
   [/^packs\/[^/]+\/tasks\//, 'a task is the tasks mechanism, whose work items are GitHub issues'],
   [/^packs\/task-flow\/skills\/do-later\//, 'files a task work item'],
   [/^packs\/git-github\//, "its subject is GitHub's own tools: how they behave, never which tracker a repo keeps"],
-  [/^packs\/chrome-extension\/stubs\/actions\/report-failure\//, 'files a failure issue only where the repo has GitHub issues on'],
 ];
 
 const skipped = (f) => /\/provenance\/|(^|\/)test\/|\.test\.mjs$|_test\.go$/.test(f);

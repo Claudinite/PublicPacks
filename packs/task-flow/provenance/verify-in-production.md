@@ -54,3 +54,9 @@
 - **Model:** Claude Opus 5.5 (1M context)
 - **Mechanism:** the skill folder and its test, unchanged triggers; links to basics' skills now
   cross into that pack, which task-flow requires.
+
+## 2026-10-12 · reworded · the sub-issue step names no tool
+- **Reason:** pack prose never says how an issue is filed, since a repo may keep its issues as
+  files (the Engine's `docs/repo-issues.md`).
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude Opus 5.5 (1M context)

@@ -61,7 +61,6 @@ func conformant() map[string]string {
 		".github/workflows/deploy-privacy-page.yml":             wf("Deploy privacy policy to GitHub Pages (reusable)"),
 		".github/actions/read-release-config/action.yml":        act("Read release config"),
 		".github/actions/bump-extension-patch/action.yml":       act("Bump extension version"),
-		".github/actions/report-failure/action.yml":             act("Report workflow failure"),
 		".github/release.config":                                releaseConfig,
 		privacyPath:                                             "We use storage to save settings locally, and connect to https://e.com/* to fetch data.\n",
 		"README.md":                                             "# x\n\n## Install\n\nx\n\n## Releasing\n\nx\n",

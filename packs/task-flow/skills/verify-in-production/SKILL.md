@@ -155,9 +155,7 @@ already closed and there is nothing left to wait on but the release itself.
 
 - **`Original-issue:`** is where a failure lands — the issue the change was done under, which
   the run reopens if the verification fails. Make the verification that issue's **sub-issue**
-  too (`mcp__github__sub_issue_write`, method `add`, `issue_number` the original,
-  `sub_issue_id` the **id** the create call returned, not its number), so the change it proves
-  shows what is still unproven about it — [RULES.md](../../RULES.md)' *Filing an issue that
+  too, so the change it proves shows what is still unproven about it — [RULES.md](../../RULES.md)' *Filing an issue that
   belongs under another*, applied where there is no PR left to carry the link.
 - **`In-production-when:`** names a thing to *read*, never a duration to wait.
   "`missingbulb/Shepherd`'s `.claudinite-settings.json` stamps `packVersions.basics` at 60906.12 or

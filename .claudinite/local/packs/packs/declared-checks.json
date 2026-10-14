@@ -1,0 +1,43 @@
+[
+  {
+    "id": "test-suite-command-form",
+    "on_fail": "advise",
+    "scope": "action",
+    "failureMessage": "a bash glob without globstar runs green over a subset - packs/*/test/*.test.mjs reaches 9 of 43 files and says nothing; node --test <dir> at least fails outright with Cannot find module",
+    "fix": "node --test $(git ls-files '*.test.mjs')",
+    "guardToolCalls": [
+      {
+        "tool": "Bash",
+        "inputField": "command",
+        "match": "/\\bnode\\s+--test\\s+[^\\s;&|]*\\*/",
+        "unlessMatches": "/git ls-files/",
+        "what": "the suite run through a glob: \"{match}\""
+      },
+      {
+        "tool": "Bash",
+        "inputField": "command",
+        "match": "/\\bnode\\s+--test\\s*($|[;&|>])/",
+        "what": "node --test with no files named"
+      }
+    ]
+  },
+  {
+    "id": "print-then-exit",
+    "on_fail": "block",
+    "since": "2026-09-22",
+    "scope": "work",
+    "failureMessage": "a pipe write is asynchronous and process.exit() drops what is still queued, so a caller capturing the output reads a truncated answer under a clean status",
+    "excludeFileClasses": [
+      "testFiles"
+    ],
+    "forbidAddedLinesMatching": [
+      {
+        "inFilesMatching": "/\\.(m|c)?js$/",
+        "match": "/console\\.(log|error|warn)\\(.*process\\.exit\\(/",
+        "unlessLineMatches": "/^\\s*(\\/\\/|\\/\\*|\\*)/",
+        "what": "\"{match}\" prints and then exits hard on one line",
+        "fix": "set process.exitCode and let the process end, adding a `return` where the exit was also ending the flow - or exit from the write's own callback"
+      }
+    ]
+  }
+]

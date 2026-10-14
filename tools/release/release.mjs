@@ -46,7 +46,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { DOMAINS, keyId, parsePrivateKey, readRoots, SignError } from '../sign/sign.mjs';
 import { BRANCH, fetchVendored, git, openBranch, packIds, ReleaseError, showFile } from './branch.mjs';
-import { CATALOG, CATALOG_SIG, CatalogError, signCatalog, validateDetector, verifyCatalog, writeCatalog } from './catalog.mjs';
+import { CATALOG, CATALOG_SIG, CatalogError, RESERVED_IDS, signCatalog, validateDetector, verifyCatalog, writeCatalog } from './catalog.mjs';
 import { addVersion, assertSerialAdvances, IndexError, newIndex, packFields, readIndex, serialize, signIndex, verifyIndex } from './index.mjs';
 import { githubReader, rewriteBranch, soak, withoutBlockers } from './promote.mjs';
 import { branchObjects, missingCredentials, R2Error, runUpload } from './upload.mjs';
@@ -75,8 +75,6 @@ function parseArgs(args, known) {
   return opts;
 }
 
-const RESERVED_ID = 'fleet';
-
 // Every pack directory under packsDir with its pack.json fields, validated before anything is built.
 function readPacks(packsDir) {
   const ids = readdirSync(packsDir).filter((n) => lstatSync(join(packsDir, n)).isDirectory()).sort();
@@ -84,7 +82,7 @@ function readPacks(packsDir) {
   const errors = [];
   for (const id of ids) {
     try {
-      if (id === RESERVED_ID) throw new ReleaseError(`${id}: the id \`${RESERVED_ID}\` is reserved for the engine's embedded fleet pack; a fleet's own packs live in its manager, never on the shelf`);
+      if (RESERVED_IDS.includes(id)) throw new ReleaseError(`${id}: the id \`${id}\` is reserved for a pack the engine provides itself`);
       const file = join(packsDir, id, 'pack.json');
       if (!existsSync(file)) throw new ReleaseError(`${id}: no pack.json`);
       let json;

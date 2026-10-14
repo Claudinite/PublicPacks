@@ -18,18 +18,6 @@ checks:
     - rule: no-scheduled-fleet-executor
       path: .github/workflows/promote-packs.yml
       reason: "the daily pack promotion is the canon's release machinery, not fleet work"
-    - rule: runnable-doc-commands
-      path: packs/claudinite-growth/
-      reason: "stale copy of a pack the engine now carries; the copy is being removed from this shelf"
-    - rule: runnable-doc-commands
-      path: packs/claudinite-lifecycle/
-      reason: "stale copy of a pack the engine now carries; the copy is being removed from this shelf"
-    - rule: provenance-integrity
-      path: packs/claudinite-growth/
-      reason: "stale copy of a pack the engine now carries; the copy is being removed from this shelf"
-    - rule: provenance-integrity
-      path: packs/claudinite-lifecycle/
-      reason: "stale copy of a pack the engine now carries; the copy is being removed from this shelf"
     - rule: provenance-integrity
       path: packs/basics/provenance/ci-performance.md
       reason: "an entry kind outside the vocabulary, written before the check reached the shelf (#94)"

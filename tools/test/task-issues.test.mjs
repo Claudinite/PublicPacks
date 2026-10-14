@@ -22,6 +22,6 @@ test('the scan recognises an issue being opened', () => {
 test('no pack task opens an issue', () => {
   const files = execFileSync('git', ['ls-files', 'packs/*/tasks/**'], { cwd: root, encoding: 'utf8' })
     .split('\n').filter((f) => /\.(m?js|sh|ya?ml)$/.test(f) && !/(^|\/)test\/|\.test\.mjs$/.test(f));
-  assert.ok(files.length > 20, `only ${files.length} task files found - the scan's scope is wrong`);
+  assert.ok(files.length > 10, `only ${files.length} task files found - the scan's scope is wrong`);
   assert.deepEqual(files.filter((f) => opensIssue(readFileSync(new URL(f, root), 'utf8'))), []);
 });

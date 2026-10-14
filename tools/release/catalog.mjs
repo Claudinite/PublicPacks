@@ -13,6 +13,11 @@ export const CATALOG = 'catalog.json';
 export const CATALOG_SIG = 'catalog.sig.json';
 const CHANNELS = ['stable', 'canary'];
 
+// Ids the engine itself provides: no shelf pack may take one, and the catalog offers none of their
+// versions published before the engine took them over, though each index still counts toward the
+// serial so it never moves backwards.
+export const RESERVED_IDS = ['fleet', 'claudinite-growth', 'claudinite-lifecycle'];
+
 const DETECTOR_KEYS = ['about', 'paths', 'text', 'search'];
 const MAX_SEARCH_TERMS = 6;
 
@@ -84,6 +89,7 @@ export function renderCatalog(tree) {
   for (const id of ids) {
     const ix = readIndex(readFileSync(join(tree, id, 'index.json')));
     catalog.serial += ix.serial;
+    if (RESERVED_IDS.includes(id)) continue;
     for (const channel of CHANNELS) {
       const newest = ix.versions.filter((e) => e.channel === channel && !e.revoked).sort((a, b) => compareVersions(b.version, a.version))[0];
       if (newest) catalog.packs.push(entry(tree, id, newest));

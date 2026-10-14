@@ -43,10 +43,12 @@ the vendored set drops (`test/`, `docs/`,
 `provenance/` at the pack root, and `checks/*_test.go`) needs no bump. The publish job's own
 refusal is the backstop after the merge.
 
-No pack on the shelf may be named `fleet`: that id is the engine's embedded fleet pack, and this
-shelf is not a fleet manager, so a fleet's own packs live in its manager's `packs/` folder. `plan`,
-`build` and `publish` all refuse a `packs/fleet/` directory with
-``fleet: the id `fleet` is reserved``.
+No pack on the shelf may take an id the engine provides itself: `fleet`, its embedded fleet pack
+(this shelf is not a fleet manager, so a fleet's own packs live in its manager's `packs/` folder),
+and `claudinite-growth` and `claudinite-lifecycle`, which the engine carries. `plan`, `build` and
+`publish` all refuse such a directory with ``<id>: the id `<id>` is reserved``, and the catalog
+offers none of the versions the shelf published under those ids before the engine took them over.
+Their indexes and archives stay on `vendored` and still count toward the catalog's serial.
 
 The same job runs `tools/directory/render.mjs --check --remote origin`, which fails when
 `packs/directory.GENERATED.md` differs from a fresh render of the pack manifests and the

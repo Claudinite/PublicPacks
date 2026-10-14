@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parsePrivateKey, readRoots } from '../sign/sign.mjs';
-import { CATALOG, CATALOG_SIG, CatalogError, renderCatalog, signCatalog, validateDetector, verifyCatalog, writeCatalog } from './catalog.mjs';
+import { CATALOG, CATALOG_SIG, CatalogError, RESERVED_IDS, renderCatalog, signCatalog, validateDetector, verifyCatalog, writeCatalog } from './catalog.mjs';
 import { put, scratch, testChain } from './test-fixture.mjs';
 
 const entry = (version, channel, extra = {}) => ({
@@ -42,6 +42,17 @@ test('the catalog offers each pack\'s newest stable and canary version that is n
   assert.equal(stable.questions, undefined, 'no questions, no key');
   assert.equal(two.relevanceDetector, null);
   assert.equal(two.belongs, undefined);
+});
+
+test('the catalog offers no version of a reserved id, and still counts its index in the serial', () => {
+  const t = tree();
+  for (const id of RESERVED_IDS) {
+    put(t, `${id}/index.json`, JSON.stringify({ v: 1, pack: id, serial: 2, versions: [entry('61001.1', 'stable')] }));
+    put(t, `${id}/61001.1/pack.json`, JSON.stringify({ version: '61001.1', minEngineVersion: '1.61001.1' }));
+  }
+  const c = JSON.parse(renderCatalog(t).toString('utf8'));
+  assert.equal(c.serial, 7 + 2 * RESERVED_IDS.length);
+  assert.deepEqual(c.packs.map((p) => p.id), ['acme-pack', 'acme-pack', 'acme-pack-two']);
 });
 
 test('a <major>.<day>.<n> version is newer than every two-part version an index published before it', () => {

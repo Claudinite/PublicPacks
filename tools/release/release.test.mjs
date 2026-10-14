@@ -5,7 +5,7 @@ import { readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { gunzipSync, gzipSync } from 'node:zlib';
 import { readRoots } from '../sign/sign.mjs';
-import { verifyCatalog } from './catalog.mjs';
+import { RESERVED_IDS, verifyCatalog } from './catalog.mjs';
 import { packFields, readIndex, verifyIndex } from './index.mjs';
 import {
   build, commitAll, editVendored, git, packJson, publish, put, REPO_ROOT, run, scratch, sha256, show, testChain, vendoredLog, world,
@@ -136,14 +136,16 @@ test('a pack.json without minEngineVersion fails the build naming the pack', () 
   assert.equal(spawnSync('git', ['rev-parse', '--verify', '-q', 'vendored'], { cwd: w.remote }).status, 1);
 });
 
-test('a pack directory named fleet fails the build: the id is the engine\'s embedded fleet pack', () => {
-  const w = world();
-  put(w.src, 'packs/fleet/pack.json', packJson('1.60101.1'));
-  commitAll(w.src, 'add fleet');
-  const b = build(w);
-  assert.notEqual(b.status, 0);
-  assert.match(b.out, /fleet: the id `fleet` is reserved/);
-  assert.equal(spawnSync('git', ['rev-parse', '--verify', '-q', 'vendored'], { cwd: w.remote }).status, 1);
+test('a pack directory named for a reserved id fails the build: the engine provides that pack itself', () => {
+  for (const id of RESERVED_IDS) {
+    const w = world();
+    put(w.src, `packs/${id}/pack.json`, packJson('1.60101.1'));
+    commitAll(w.src, `add ${id}`);
+    const b = build(w);
+    assert.notEqual(b.status, 0);
+    assert.match(b.out, new RegExp(`${id}: the id \`${id}\` is reserved`));
+    assert.equal(spawnSync('git', ['rev-parse', '--verify', '-q', 'vendored'], { cwd: w.remote }).status, 1);
+  }
 });
 
 test('without CN_PACKS_KEY and CN_PACKS_CERT it refuses and writes nothing', () => {

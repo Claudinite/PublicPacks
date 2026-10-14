@@ -1,7 +1,7 @@
 engine:
   channel: "staging"
-  version: "1.61013.2"
-  manifest: "sha512-Tb+shTgyAjeKLZn7FmzveZ6wliSye3SLoMfQuDdDfuO/HH9JMdtoZU5Vq9zHFmOG1ALmYoiAVl47Jyf3CWZYRw=="
+  version: "1.61014.2"
+  manifest: "sha512-95gKLETpfQVkZj/gXVx0+sorJuMdvnuPkKyh/k9bymYsoJ41noIrsb9u40hqUzilGWvnz1NPlqPBXdFbFXu0Ag=="
 packs:
   channel: "canary"
   declared:
@@ -45,3 +45,8 @@ checks:
     - rule: provenance-integrity
       path: packs/public-website/pack.json
       reason: "the pack file's last entry retired a part, not the pack (#94)"
+tasks:
+  merge:
+    "engine/update": "merge-safe-changes"
+  frequency:
+    "engine/update": "weekly"

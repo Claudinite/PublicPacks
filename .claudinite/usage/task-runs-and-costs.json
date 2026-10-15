@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generated": "2026-10-14T20:44:04.426Z",
-  "foldedThrough": null,
-  "runsFoldedThrough": "2026-10-14T20:41:13Z",
-  "queueFoldedThrough": null,
+  "generated": "2026-10-15T09:55:21.636Z",
+  "foldedThrough": "2026-10-14",
+  "runsFoldedThrough": "2026-10-15T09:54:20Z",
+  "queueFoldedThrough": "2026-10-14T20:46:57Z",
   "minuteRate": null,
   "fields": {
     "hour": ["runs","jobs","minutesBilled","spend","apiCalls","list","ask","repair","drain","pick","claim","code-work","hand-off","converge"],
@@ -16,10 +16,14 @@
     "latency": ["tickToItemMinutes","itemToPickMinutes","pickToHandOffMinutes","handOffToConvergeMinutes"]
   },
   "hours": {
-    "2026-10-14T20": {"totals":[1,3,2,null,180,1660,36624,7012,8778,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"38634159794":[180,1660,36624,7012,8778,null,null,null,null,null]}}
+    "2026-10-14T20": {"totals":[2,5,7,null,472,1660,36624,7012,8778,4211,22515,65454,20119,16723],"workflows":{"executor":[1,2,5,null],"scheduler":[1,3,2,null]},"runCosts":{"38634159794":[180,1660,36624,7012,8778,null,null,null,null,null],"38634321771":[292,null,null,null,null,4211,22515,65454,20119,16723]}},
+    "2026-10-15T09": {"totals":[1,3,2,null,49,2200,3453,5409,8107,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"38716383501":[49,2200,3453,5409,8107,null,null,null,null,null]}}
   },
   "days": {
-    "2026-10-14": {"totals":[1,3,2,null,180,1660,36624,7012,8778,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"38634159794":[180,1660,36624,7012,8778,null,null,null,null,null]}}
+    "2026-10-14": {"totals":[2,5,7,null,472,1660,36624,7012,8778,4211,22515,65454,20119,16723],"workflows":{"executor":[1,2,5,null],"scheduler":[1,3,2,null]},"runCosts":{"38634159794":[180,1660,36624,7012,8778,null,null,null,null,null],"38634321771":[292,null,null,null,null,4211,22515,65454,20119,16723]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[1,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null]}},
+    "2026-10-15": {"totals":[1,3,2,null,49,2200,3453,5409,8107,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"38716383501":[49,2200,3453,5409,8107,null,null,null,null,null]}}
   },
-  "weeks": {}
+  "weeks": {
+    "2026-W42": {"totals":[1,2,5,7,null,472,1660,36624,7012,8778,4211,22515,65454,20119,16723],"workflows":{"executor":[1,2,5,null],"scheduler":[1,3,2,null]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[1,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null]}}
+  }
 }

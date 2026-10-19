@@ -19,3 +19,9 @@
 - **Model:** Claude Opus 5.5 (1M context)
 - **Reason:** GitHub leaves `plan` out of the profile for a token without the Plan permission, so
   the run now parks naming that permission (Administration read for an organization).
+
+## 2026-10-19 · reworded · a run-out date already past reads as past
+- **Source:** Shepherd #1085: the first live forecast found missingbulb over since 2026-10-08, which
+  the issue would have called "running out around" a day already gone.
+- **Actor:** Claude, after the first live run on Shepherd.
+- **Model:** Claude Opus 5.5 (1M context)

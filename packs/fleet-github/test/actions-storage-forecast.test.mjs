@@ -135,6 +135,10 @@ test('a forecast over the allowance opens the one titled issue with the forecast
   assert.deepEqual(j.writes.map((w) => [w.method, w.path, w.body.state]), [['PATCH', '/repos/acme/manager/issues/41', 'open']]);
   assert.match(j.writes[0].body.body, /3\.00 GB\*\* this month, against the \*\*2\.00 GB\*\*/);
   assert.match(j.writes[0].body.body, /`acme\/member` — 1\.74 GB/);
+  assert.match(j.writes[0].body.body, /, running out around \*\*2026-10-21\*\*/);
+  const past = job();
+  await worker(bag, past.gh, fleet({ usage: usageHeld(5) }).gh, NOW);
+  assert.match(past.writes[0].body.body, /, and already ran out around \*\*2026-10-13\*\*/);
 });
 
 test('an open issue is rewritten while over, and closed once the forecast is back under', async () => {

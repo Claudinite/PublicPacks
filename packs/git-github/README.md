@@ -11,12 +11,6 @@ No prose of its own: the lifecycle check (`task-lifecycle`) stays in
 `basics`. Every repo gets this pack through `basics`'s `requires` closure (materialized into
 declarations at `--init` and the update's backfill), never by direct seeding.
 
-## Task
-
-`repo-health`, weekly: reads what the repository keeps in Actions storage and cache, and keeps
-one issue open, naming probable causes, while something there is off. Its
-[README](tasks/repo-health/README.md) lists the readings and their bars.
-
 ## Checks
 
 The workflow-YAML and Actions-runner behaviours a repo cannot get wrong. Each rides a check whose

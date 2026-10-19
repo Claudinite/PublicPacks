@@ -1,0 +1,16 @@
+{
+  "id": "actions-storage-forecast",
+  "description": "Forecasts whether the account owning this fleet will exhaust its included Actions storage before the month ends, from its plan's published allowance and its billing usage report, and keeps one issue open with the forecast and the repositories driving it while it would.",
+  "trigger": "schedule",
+  "preconditions": [
+    "schedule:at-most-daily",
+    "last-run-not-parked"
+  ],
+  "expected_outcome": "no_code_changes",
+  "code_worker_mjs": "worker.mjs",
+  "code_work_timeout": 300,
+  "code_work_required_secrets": [
+    "FLEET_GITHUB_TOKEN"
+  ],
+  "agent_model": "none"
+}

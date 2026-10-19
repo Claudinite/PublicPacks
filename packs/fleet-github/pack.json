@@ -1,0 +1,14 @@
+{
+  "version": "1.61019.1",
+  "minEngineVersion": "1.61008.2",
+  "githubActions": [
+    "createComment",
+    "findOrCreateTracker",
+    "listIssues"
+  ],
+  "ruleRoutingGuidance": {
+    "belongs": "the GitHub account a fleet bills to, read across all its repositories: plan allowances, billing usage, account-wide limits",
+    "excludes": "one repository's workflows and Actions behaviour — git-github; the fleet's own membership, updates and pack directory — the engine's fleet pack"
+  },
+  "pitch": "GitHub bills Actions to the account, not to a repository, so a fleet can run out of its included storage while every repository looks fine on its own. Declared on a fleet manager, this pack's daily task reads the account's plan and billing usage report, forecasts the month's storage to its last day, and keeps one issue open with a chart and the repositories driving it whenever the allowance would run out."
+}

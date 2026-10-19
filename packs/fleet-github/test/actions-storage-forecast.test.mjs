@@ -8,7 +8,7 @@ import { installSdk } from '../../../tools/test/sdk-stand-in.mjs';
 
 let openIssues = [];
 const sdk = installSdk({
-  params: { pack: 'github-fleet', task: 'actions-storage-forecast' },
+  params: { pack: 'fleet-github', task: 'actions-storage-forecast' },
   answers: {
     'github.listIssues': () => openIssues,
     'github.createComment': () => ({ id: 1 }),

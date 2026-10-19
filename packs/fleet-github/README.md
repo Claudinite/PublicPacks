@@ -1,4 +1,4 @@
-# github-fleet — the GitHub account a fleet bills to
+# fleet-github — the GitHub account a fleet bills to
 
 For a fleet manager: the account-wide view a single repository cannot have. GitHub bills Actions
 to the account that owns the repositories, so whether the fleet is about to exhaust what its plan

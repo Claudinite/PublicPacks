@@ -1,4 +1,4 @@
-## 2026-10-19 · born · the github-fleet pack: the account a fleet bills to
+## 2026-10-19 · born · the fleet-github pack: the account a fleet bills to
 - **Source:** Engine's Actions storage filled the account's monthly allowance (ClaudiniteEngine
   #372). GitHub bills it per account, so per-repository readings were proxies for it.
 - **Actor:** @missingbulb (owner), asking for a pack Shepherd declares that watches the account

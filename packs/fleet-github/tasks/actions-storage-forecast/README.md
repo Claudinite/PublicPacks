@@ -28,5 +28,6 @@ run for a person, naming what is missing, and the next run waits on that park.
 ## What the token needs
 
 `FLEET_GITHUB_TOKEN` must belong to the account (a user's plan is visible only to that user) and
-carry the **Plan** read permission (a fine-grained token's user permission), or billing read on
-the organization.
+carry the **Plan** read permission (a fine-grained token's account permission), which covers both
+the plan and the usage report; for an organization, the organization's **Administration** read.
+Without it GitHub leaves the plan out of the profile and the run parks naming the permission.

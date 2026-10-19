@@ -166,13 +166,16 @@ async function readPlan(fleetGh, account) {
   const profile = await readJson(fleetGh, `/users/${account}`, 'the account');
   if (profile.type === 'Organization') {
     const org = await readJson(fleetGh, `/orgs/${account}`, 'the organization plan');
-    return { kind: 'org', plan: org.plan?.name ?? null };
+    if (!org.plan) fail('action', `FLEET_GITHUB_TOKEN cannot see ${account}'s plan: grant it the organization's "Administration" permission (read)`);
+    return { kind: 'org', plan: org.plan.name };
   }
   const me = await readJson(fleetGh, '/user', 'the token owner');
   if (String(me.login).toLowerCase() !== account.toLowerCase()) {
     fail('action', `FLEET_GITHUB_TOKEN belongs to ${me.login}, not ${account}; only ${account} can read its plan`);
   }
-  return { kind: 'user', plan: me.plan?.name ?? null };
+  // GitHub leaves `plan` out of the profile for a token without the permission.
+  if (!me.plan) fail('action', `FLEET_GITHUB_TOKEN cannot see ${account}'s plan: grant it the account permission "Plan" (read)`);
+  return { kind: 'user', plan: me.plan.name };
 }
 
 async function readUsage(fleetGh, kind, account, nowMs) {

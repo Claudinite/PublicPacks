@@ -108,7 +108,7 @@ function fleet({ plan = 'pro', login = 'acme', usage = [], usageStatus = 200 } =
   const gh = async (path) => {
     read.push(path);
     if (path === '/users/acme') return { status: 200, json: { login: 'acme', type: 'User' } };
-    if (path === '/user') return { status: 200, json: { login, plan: { name: plan } } };
+    if (path === '/user') return { status: 200, json: plan === null ? { login } : { login, plan: { name: plan } } };
     if (path.startsWith('/users/acme/settings/billing/usage')) return { status: usageStatus, json: { usageItems: usage } };
     return { status: 404, json: null };
   };
@@ -162,6 +162,7 @@ test('no warning without both numbers: an unreadable limit or usage parks the ru
     [fleet({ usageStatus: 403, usage: usageHeld(5) }), /billing usage report.*403/],
     [fleet({ login: 'someone-else', usage: usageHeld(5) }), /belongs to someone-else/],
     [fleet({ plan: 'acme-plan', usage: usageHeld(5) }), /"acme-plan"/],
+    [fleet({ plan: null, usage: usageHeld(5) }), /cannot see acme's plan: .*"Plan" \(read\)/],
   ];
   for (const [f, message] of cases) {
     const j = job();

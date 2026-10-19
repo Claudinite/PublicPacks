@@ -11,3 +11,11 @@
   daily and a week's lag spent most of a month here.
 - **Rejected:** summing the repositories' stored artifacts, which misses what already accrued and
   was deleted; projecting minutes, which nobody asked for yet.
+
+## 2026-10-19 · hardened · a hidden plan names the missing permission
+- **Source:** Shepherd #1083: the first live run read `/user` with no `plan` field and reported the
+  plan as null, as if it were an unknown plan.
+- **Actor:** Claude, after the first live run on Shepherd.
+- **Model:** Claude Opus 5.5 (1M context)
+- **Reason:** GitHub leaves `plan` out of the profile for a token without the Plan permission, so
+  the run now parks naming that permission (Administration read for an organization).

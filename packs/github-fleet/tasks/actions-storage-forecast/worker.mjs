@@ -14,12 +14,13 @@
 import { github, log, fail } from '@claudinite/sdk';
 import { makeGh } from './github-api.mjs';
 
-// Included artifact storage by plan, in GB, shared by Actions artifacts and Packages:
-// https://docs.github.com/en/billing/concepts/product-billing/github-actions
-// (the plan table under "Free use of GitHub Actions"). Keyed by the API's `plan.name`.
+// Included artifact storage by plan, in GB, shared by Actions artifacts and Packages,
+// keyed by the API's `plan.name`. GitHub's Actions billing page lists Pro at 1 GB, but
+// its plans page (https://docs.github.com/en/get-started/learning-about-github/githubs-plans)
+// and a Pro account's own usage alert both give 2 GB, so Pro takes 2.
 export const INCLUDED_STORAGE_GB = Object.freeze({
   free: 0.5,
-  pro: 1,
+  pro: 2,
   team: 2,
   enterprise: 50,
 });

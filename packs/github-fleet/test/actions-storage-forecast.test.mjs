@@ -130,29 +130,29 @@ test('a forecast over the allowance opens the one titled issue with the forecast
   openIssues = [];
   sdk.calls.length = 0;
   const j = job();
-  await worker(bag, j.gh, fleet({ usage: usageHeld(1.5) }).gh, NOW);
+  await worker(bag, j.gh, fleet({ usage: usageHeld(3) }).gh, NOW);
   assert.deepEqual(sdk.calls.filter((c) => c.method === 'github.findOrCreateTracker').map((c) => c.args.title), [ISSUE_TITLE]);
   assert.deepEqual(j.writes.map((w) => [w.method, w.path, w.body.state]), [['PATCH', '/repos/acme/manager/issues/41', 'open']]);
-  assert.match(j.writes[0].body.body, /1\.50 GB\*\* this month, against the \*\*1\.00 GB\*\*/);
-  assert.match(j.writes[0].body.body, /`acme\/member` — 0\.87 GB/);
+  assert.match(j.writes[0].body.body, /3\.00 GB\*\* this month, against the \*\*2\.00 GB\*\*/);
+  assert.match(j.writes[0].body.body, /`acme\/member` — 1\.74 GB/);
 });
 
 test('an open issue is rewritten while over, and closed once the forecast is back under', async () => {
   openIssues = [{ number: 7, title: ISSUE_TITLE, state: 'open', labels: [], body: '' }];
   sdk.calls.length = 0;
   const over = job();
-  await worker(bag, over.gh, fleet({ usage: usageHeld(1.5) }).gh, NOW);
+  await worker(bag, over.gh, fleet({ usage: usageHeld(3) }).gh, NOW);
   assert.deepEqual(over.writes.map((w) => [w.path, w.body.state]), [['/repos/acme/manager/issues/7', 'open']]);
   assert.equal(sdk.calls.some((c) => c.method === 'github.findOrCreateTracker'), false);
 
   const under = job();
-  await worker(bag, under.gh, fleet({ usage: usageHeld(0.5) }).gh, NOW);
+  await worker(bag, under.gh, fleet({ usage: usageHeld(1) }).gh, NOW);
   assert.deepEqual(under.writes.map((w) => w.body.state), ['closed']);
   assert.equal(comments().length, 1);
 
   openIssues = [];
   const quiet = job();
-  await worker(bag, quiet.gh, fleet({ usage: usageHeld(0.5) }).gh, NOW);
+  await worker(bag, quiet.gh, fleet({ usage: usageHeld(1) }).gh, NOW);
   assert.deepEqual(quiet.writes, []);
 });
 

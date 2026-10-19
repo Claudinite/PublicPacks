@@ -234,9 +234,12 @@ export async function worker({ root, repo }, gh = makeGh(), nowMs = Date.now()) 
 
   const body = issueBody(findings, { repo, nowIso });
   if (!open) {
-    const { status, json } = await gh(`/repos/${repo}/issues`, { method: 'POST', body: { title: ISSUE_TITLE, body } });
-    if (status !== 201) throw new Error(`filing the health issue returned ${status}`);
-    log(`filed #${json.number}`);
+    // The tracker lookup finds this title in any state, so a repo holds one health
+    // issue for good: reopened each time something goes off, never a second one.
+    const { number } = await github.findOrCreateTracker({ title: ISSUE_TITLE });
+    const { status } = await gh(`/repos/${repo}/issues/${number}`, { method: 'PATCH', body: { state: 'open', body } });
+    if (status !== 200) throw new Error(`opening #${number} returned ${status}`);
+    log(`opened #${number}`);
     return;
   }
   const { status } = await gh(`/repos/${repo}/issues/${open.number}`, { method: 'PATCH', body: { body } });

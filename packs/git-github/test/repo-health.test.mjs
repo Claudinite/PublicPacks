@@ -15,6 +15,7 @@ const sdk = installSdk({
   answers: {
     'github.listIssues': () => openIssues,
     'github.createComment': () => ({ id: 1 }),
+    'github.findOrCreateTracker': () => ({ number: 41, created: false, duplicates: 0 }),
   },
 });
 const {
@@ -155,14 +156,14 @@ const leaky = checkout(workflow(`      - uses: actions/upload-artifact@v4
 const clean = checkout(workflow('      - run: echo'));
 const comments = () => sdk.calls.filter((c) => c.method === 'github.createComment');
 
-test('something off with no open issue files one, carrying the finding and its line', async () => {
+test('something off with no open issue opens the one titled issue, carrying the finding and its line', async () => {
   openIssues = [];
   sdk.calls.length = 0;
   const { gh, writes } = fakeGh();
   await worker({ root: leaky, repo: 'acme/member' }, gh, NOW);
+  assert.deepEqual(sdk.calls.filter((c) => c.method === 'github.findOrCreateTracker').map((c) => c.args.title), [ISSUE_TITLE]);
   assert.equal(writes.length, 1);
-  assert.equal(writes[0].method, 'POST');
-  assert.equal(writes[0].body.title, ISSUE_TITLE);
+  assert.deepEqual([writes[0].method, writes[0].path, writes[0].body.state], ['PATCH', '/repos/acme/member/issues/41', 'open']);
   assert.match(writes[0].body.body, /\.github\/workflows\/acme\.yml:7/);
   assert.deepEqual(readKinds(writes[0].body.body), ['artifact-retention']);
   assert.equal(comments().length, 0);

@@ -3,6 +3,7 @@
   "minEngineVersion": "1.61001.1",
   "githubActions": [
     "createComment",
+    "findOrCreateTracker",
     "listIssues"
   ],
   "ruleRoutingGuidance": {

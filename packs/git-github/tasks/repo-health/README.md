@@ -19,7 +19,8 @@ private one. CI duration over time is the basics pack's `ci-performance` task, n
 
 ## The issue
 
-- Something off and no open issue: one is filed.
+- Something off and no open issue: the issue is opened, reopening the one this task opened
+  before when there is one, so a repository never holds a second.
 - Something off and the issue open: its body is rewritten to this week's readings, and a comment
   is added only for a finding the issue did not already carry, so a steady problem notifies once.
 - Nothing off and the issue open: a comment, and the issue closes.

@@ -1,0 +1,18 @@
+{
+  "v": 1,
+  "pack": "fleet-github",
+  "serial": 1,
+  "versions": [
+    {
+      "version": "1.61019.1",
+      "sha256": "95d37be15fb867f90da96d9c493d1fe82bfaafcf59a43a00eed290a5ac03dd37",
+      "size": 7019,
+      "minEngineVersion": "1.61008.2",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-19T11:51:03Z",
+      "sourceCommit": "30671850551860f3f071ca6c01b6825898ff334e"
+    }
+  ]
+}

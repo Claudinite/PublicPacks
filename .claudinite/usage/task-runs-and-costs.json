@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generated": "2026-10-18T09:39:03.562Z",
-  "foldedThrough": "2026-10-17",
-  "runsFoldedThrough": "2026-10-18T09:37:38Z",
-  "queueFoldedThrough": "2026-10-17T09:22:29Z",
+  "generated": "2026-10-19T10:47:12.803Z",
+  "foldedThrough": "2026-10-18",
+  "runsFoldedThrough": "2026-10-19T10:46:20Z",
+  "queueFoldedThrough": "2026-10-18T09:40:31Z",
   "minuteRate": null,
   "fields": {
     "hour": ["runs","jobs","minutesBilled","spend","apiCalls","list","ask","repair","drain","pick","claim","code-work","hand-off","converge"],
@@ -16,21 +16,22 @@
     "latency": ["tickToItemMinutes","itemToPickMinutes","pickToHandOffMinutes","handOffToConvergeMinutes"]
   },
   "hours": {
-    "2026-10-15T20": {"totals":[1,3,1,null,11,1785,2785,0,482,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]},"runCosts":{"38801127257":[11,1785,2785,0,482,null,null,null,null,null]}},
-    "2026-10-16T09": {"totals":[2,5,4,null,123,2155,3154,0,7938,366,3126,9237,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[1,3,2,null]},"runCosts":{"38883034656":[42,2155,3154,0,7938,null,null,null,null,null],"38883089473":[81,null,null,null,null,366,3126,9237,null,null]}},
     "2026-10-16T19": {"totals":[1,3,1,null,12,1658,5033,0,402,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]},"runCosts":{"38958724749":[12,1658,5033,0,402,null,null,null,null,null]}},
     "2026-10-17T09": {"totals":[2,5,4,null,123,1779,3238,0,8743,557,2729,8904,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[1,3,2,null]},"runCosts":{"39020769789":[43,1779,3238,0,8743,null,null,null,null,null],"39020798450":[80,null,null,null,null,557,2729,8904,null,null]}},
     "2026-10-17T19": {"totals":[1,3,1,null,13,1896,3163,0,478,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]},"runCosts":{"39062258472":[13,1896,3163,0,478,null,null,null,null,null]}},
-    "2026-10-18T09": {"totals":[1,3,2,null,59,1975,7226,0,10028,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"39116074411":[59,1975,7226,0,10028,null,null,null,null,null]}}
+    "2026-10-18T09": {"totals":[2,5,5,null,214,1975,7226,0,10028,2198,11836,37396,11127,7840],"workflows":{"executor":[1,2,3,null],"scheduler":[1,3,2,null]},"runCosts":{"39116074411":[59,1975,7226,0,10028,null,null,null,null,null],"39116114286":[155,null,null,null,null,2198,11836,37396,11127,7840]}},
+    "2026-10-18T19": {"totals":[1,3,1,null,16,1844,5287,0,442,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]},"runCosts":{"39158715533":[16,1844,5287,0,442,null,null,null,null,null]}},
+    "2026-10-19T10": {"totals":[1,3,2,null,47,1977,4270,0,7101,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"39239833457":[47,1977,4270,0,7101,null,null,null,null,null]}}
   },
   "days": {
     "2026-10-14": {"totals":[2,5,7,null,472,1660,36624,7012,8778,4211,22515,65454,20119,16723],"workflows":{"executor":[1,2,5,null],"scheduler":[1,3,2,null]},"runCosts":{"38634159794":[180,1660,36624,7012,8778,null,null,null,null,null],"38634321771":[292,null,null,null,null,4211,22515,65454,20119,16723]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[1,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null]}},
     "2026-10-15": {"totals":[3,8,5,null,143,3985,6238,5409,8589,567,3186,10128,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[2,6,3,null]},"runCosts":{"38716383501":[49,2200,3453,5409,8107,null,null,null,null,null],"38716455842":[83,null,null,null,null,567,3186,10128,null,null],"38801127257":[11,1785,2785,0,482,null,null,null,null,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"107":[null,0,null,null]}},
     "2026-10-16": {"totals":[3,8,5,null,135,3813,8187,0,8340,366,3126,9237,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[2,6,3,null]},"runCosts":{"38883034656":[42,2155,3154,0,7938,null,null,null,null,null],"38883089473":[81,null,null,null,null,366,3126,9237,null,null],"38958724749":[12,1658,5033,0,402,null,null,null,null,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"109":[null,0,null,null]}},
     "2026-10-17": {"totals":[3,8,5,null,136,3675,6401,0,9221,557,2729,8904,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[2,6,3,null]},"runCosts":{"39020769789":[43,1779,3238,0,8743,null,null,null,null,null],"39020798450":[80,null,null,null,null,557,2729,8904,null,null],"39062258472":[13,1896,3163,0,478,null,null,null,null,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"111":[null,1,null,null]}},
-    "2026-10-18": {"totals":[1,3,2,null,59,1975,7226,0,10028,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"39116074411":[59,1975,7226,0,10028,null,null,null,null,null]}}
+    "2026-10-18": {"totals":[3,8,6,null,230,3819,12513,0,10470,2198,11836,37396,11127,7840],"workflows":{"executor":[1,2,3,null],"scheduler":[2,6,3,null]},"runCosts":{"39116074411":[59,1975,7226,0,10028,null,null,null,null,null],"39116114286":[155,null,null,null,null,2198,11836,37396,11127,7840],"39158715533":[16,1844,5287,0,442,null,null,null,null,null]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[1,null,null,null]},"latency":{"115":[null,2,null,null],"116":[null,1,null,null]}},
+    "2026-10-19": {"totals":[1,3,2,null,47,1977,4270,0,7101,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"39239833457":[47,1977,4270,0,7101,null,null,null,null,null]}}
   },
   "weeks": {
-    "2026-W42": {"totals":[4,11,29,22,null,886,13133,57450,12421,34928,5701,31556,93723,20119,16723],"workflows":{"executor":[4,8,11,null],"scheduler":[7,21,11,null]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[4,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null],"107":[null,0,null,null],"109":[null,0,null,null],"111":[null,1,null,null]}}
+    "2026-W42": {"totals":[5,14,37,28,null,1116,16952,69963,12421,45398,7899,43392,131119,31246,24563],"workflows":{"executor":[5,10,14,null],"scheduler":[9,27,14,null]},"queue":{"engine/update":[2,null,null,null],"engine/usage-fold":[5,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null],"107":[null,0,null,null],"109":[null,0,null,null],"111":[null,1,null,null],"115":[null,2,null,null],"116":[null,1,null,null]}}
   }
 }

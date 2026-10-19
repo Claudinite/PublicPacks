@@ -18,6 +18,9 @@ checks:
     - rule: no-scheduled-fleet-executor
       path: .github/workflows/promote-packs.yml
       reason: "the daily pack promotion is the canon's release machinery, not fleet work"
+    - rule: flat-declarations-current
+      path: .claudinite/cache/tasks.GENERATED.json
+      reason: "a canon task added under packs/ reaches the flat file only once its pack version is vendored; the check reads packs/ anyway (ClaudiniteEngine #376). Drop this once the fix reaches the pin"
     - rule: provenance-integrity
       path: packs/basics/provenance/ci-performance.md
       reason: "an entry kind outside the vocabulary, written before the check reached the shelf (#94)"

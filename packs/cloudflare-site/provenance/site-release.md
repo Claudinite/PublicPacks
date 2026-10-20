@@ -61,3 +61,15 @@
   file list counts as a change, so an engine that does not list files still releases.
 - **Actor:** @missingbulb (owner), who asked that a documentation update not cause a release.
 - **Model:** Opus 5.5
+
+## 2026-10-20 · policy-changed · A release counts only commits that touch a deployed path
+- **Reason:** the documentation exclusion named what does not ship, so any other file outside the
+  deploy (a wiki page, a workflow) still released identical bytes. The owner asked for the gate to
+  name what does ship instead.
+- **Mechanism:** `unreleased-commits` reads the repo's wrangler config from the scheduler's checkout
+  and counts a commit only when one of its files is under `deployedPaths`: the config, the
+  published tree, the folder holding `main`, and the package manifests. A commit with no file list,
+  or a repo whose config cannot be read there, still counts, so the release parks on the config
+  problem by name. Supersedes the documentation exclusion of the same day.
+- **Actor:** @missingbulb (owner).
+- **Model:** Opus 5.5

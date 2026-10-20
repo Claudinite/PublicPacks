@@ -1,5 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { terms, RELEASE_TASK_ID } from '../../../tasks/site-release/preconditions.mjs';
 
 const gate = terms['unreleased-commits'];
@@ -65,30 +68,75 @@ test("the gate's task id is the one the directories give the queue", () => {
   assert.equal(RELEASE_TASK_ID, 'cloudflare-site/site-release');
 });
 
-// A commit that changes only documentation ships nothing the site serves: Markdown is
-// held out of the upload, and `docs/` is outside it.
+// A commit counts only when it touches what the deploy ships, as the repo's own
+// wrangler config declares it.
 const touching = (sha, ...files) => ({ sha, task: null, files });
 
-test('a docs-only commit above the last release is nothing to release', () => {
-  const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md', 'site/README.md'), touching('ddd4444', 'docs/diagram.svg'), release('bbb2222')));
+function inRepo(files, fn) {
+  const dir = mkdtempSync(join(tmpdir(), 'site-release-'));
+  const was = process.env.GITHUB_WORKSPACE;
+  for (const [path, text] of Object.entries(files)) {
+    mkdirSync(join(dir, path, '..'), { recursive: true });
+    writeFileSync(join(dir, path), text);
+  }
+  // The scheduler's job names its checkout; a term's own folder is somewhere inside it.
+  process.env.GITHUB_WORKSPACE = dir;
+  try { return fn(); } finally {
+    if (was === undefined) delete process.env.GITHUB_WORKSPACE; else process.env.GITHUB_WORKSPACE = was;
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+const site = { 'wrangler.json': JSON.stringify({ main: 'server/index.js', assets: { directory: './site' } }) };
+
+test('a commit outside every deployed path is nothing to release', () => inRepo(site, () => {
+  const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md', 'README.md'), touching('ddd4444', 'product-wiki/x.md', '.github/workflows/ci.yml'), release('bbb2222')));
   assert.equal(verdict.holds, false);
-  assert.match(verdict.reason, /only documentation/);
-});
+  assert.match(verdict.reason, /nothing the deploy ships/);
+}));
 
-test('a commit that also touches what the site serves still releases', () => {
-  const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md'), touching('eee5555', 'README.md', 'site/index.html'), release('bbb2222')));
-  assert.equal(verdict.holds, true);
-  assert.match(verdict.context[0], /eee5555/);
-  assert.doesNotMatch(verdict.context[0], /aaa1111/);
-});
+test('a commit touching a deployed path releases, and only it is named', () => inRepo(site, () => {
+  for (const shipped of ['site/index.html', 'server/router.js', 'wrangler.json', 'package.json', 'package-lock.json']) {
+    const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md'), touching('eee5555', 'README.md', shipped), release('bbb2222')));
+    assert.equal(verdict.holds, true, shipped);
+    assert.match(verdict.context[0], /eee5555/);
+    assert.doesNotMatch(verdict.context[0], /aaa1111/);
+  }
+}));
 
-// A commit whose files the collector could not list is not known to be documentation.
-test('a commit with no file list counts as a change', () => {
+test('a path that only shares a prefix with a deployed folder is not deployed', () => inRepo(site, () => {
+  assert.equal(gate.holds(commits(touching('aaa1111', 'site-notes.txt', 'serverless/x.js'), release('bbb2222'))).holds, false);
+}));
+
+// What cannot be judged counts: an unlisted commit, or a repo whose config the gate
+// cannot read, goes to the release, which parks naming the config problem itself.
+test('a commit with no file list counts as a change', () => inRepo(site, () => {
   assert.equal(gate.holds(commits(touching('aaa1111'), release('bbb2222'))).holds, true);
   assert.equal(gate.holds(commits(work('aaa1111'), release('bbb2222'))).holds, true);
+}));
+
+test('without a readable wrangler config every commit counts', () => {
+  inRepo({}, () => assert.equal(gate.holds(commits(touching('aaa1111', 'docs/plan.md'), release('bbb2222'))).holds, true));
+  inRepo({ 'wrangler.json': '{ not json' }, () => assert.equal(gate.holds(commits(touching('aaa1111', 'docs/plan.md'), release('bbb2222'))).holds, true));
 });
 
-test('a path that only mentions docs or md is not documentation', () => {
-  assert.equal(gate.holds(commits(touching('aaa1111', 'site/docs.html'), release('bbb2222'))).holds, true);
-  assert.equal(gate.holds(commits(touching('aaa1111', 'server/mdx.js'), release('bbb2222'))).holds, true);
+test('without a job workspace the repo is the checkout around the task folder', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'site-release-'));
+  const was = [process.cwd(), process.env.GITHUB_WORKSPACE];
+  mkdirSync(join(dir, '.git'));
+  mkdirSync(join(dir, 'tasks/site-release'), { recursive: true });
+  writeFileSync(join(dir, 'wrangler.json'), site['wrangler.json']);
+  delete process.env.GITHUB_WORKSPACE;
+  process.chdir(join(dir, 'tasks/site-release'));
+  try {
+    assert.equal(gate.holds(commits(touching('aaa1111', 'docs/plan.md'), release('bbb2222'))).holds, false);
+  } finally {
+    process.chdir(was[0]);
+    if (was[1] !== undefined) process.env.GITHUB_WORKSPACE = was[1];
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
+
+test('the config is read one directory down too', () => inRepo({ 'web/wrangler.jsonc': '// c\n{ "main": "src/w.mjs", "assets": { "directory": "public" } }' }, () => {
+  assert.equal(gate.holds(commits(touching('aaa1111', 'web/public/a.html'), release('bbb2222'))).holds, true);
+  assert.equal(gate.holds(commits(touching('aaa1111', 'public/a.html'), release('bbb2222'))).holds, false);
+}));

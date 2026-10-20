@@ -12,6 +12,10 @@
 // `[skip ci]` used to be, stated as a fact about the branch rather than as a flag on
 // a commit message — nothing can accidentally re-arm a release by rewording a commit.
 
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { WRANGLER_CONFIGS, deployedPaths, parseWranglerConfig, wranglerConfigPath } from '../../lib.mjs';
+
 // Which commits are the release's own, read structurally off the `Claudinite-Task:`
 // trailer every task-authored commit carries. The worker stamps it from the queue's
 // own `CLAUDINITE_PACK`/`CLAUDINITE_TASK`; the test holds this literal against the
@@ -26,14 +30,39 @@ export function unreleasedCommits(list = []) {
   return (mark === -1 ? list : list.slice(0, mark)).filter((c) => c?.task !== RELEASE_TASK_ID);
 }
 
-// A commit whose every file is Markdown or under `docs/` changes nothing a release
-// ships: documentation inside the assets tree is held out of the upload, and `docs/`
-// sits outside it. A commit with no file list is not known to be documentation.
-const DOCUMENTATION = /(^|\/)[^/]*\.md$|^docs\//i;
+// Only a commit touching what the deploy ships needs releasing; the repo's own
+// wrangler config says what that is. A term runs in its task's folder, so the repo
+// is the job's workspace, or failing that the checkout holding that folder.
+// A commit with no file list, or a repo whose config cannot be read here, counts:
+// the release is where a missing or broken config is parked by name.
+export function readDeployedPaths(root = repoRoot()) {
+  if (!root) return null;
+  const candidates = [...WRANGLER_CONFIGS];
+  try {
+    for (const entry of readdirSync(root, { withFileTypes: true })) {
+      if (entry.isDirectory()) candidates.push(...WRANGLER_CONFIGS.map((name) => `${entry.name}/${name}`));
+    }
+  } catch {
+    return null;
+  }
+  const configPath = wranglerConfigPath(candidates.filter((p) => existsSync(join(root, p))));
+  if (!configPath) return null;
+  const config = parseWranglerConfig(readFileSync(join(root, configPath), 'utf8'));
+  return config ? deployedPaths(config, configPath) : null;
+}
 
-export function documentationOnly(commit) {
+function repoRoot() {
+  if (process.env.GITHUB_WORKSPACE) return process.env.GITHUB_WORKSPACE;
+  for (let dir = process.cwd(); ; dir = dirname(dir)) {
+    if (existsSync(join(dir, '.git'))) return dir;
+    if (dirname(dir) === dir) return null;
+  }
+}
+
+export function shipsSomething(commit, paths) {
   const files = commit?.files;
-  return Array.isArray(files) && files.length > 0 && files.every((f) => DOCUMENTATION.test(f));
+  if (!paths || !Array.isArray(files) || !files.length) return true;
+  return files.some((f) => paths.some((p) => (p.endsWith('/') ? f.startsWith(p) : f === p)));
 }
 
 export const terms = {
@@ -42,9 +71,10 @@ export const terms = {
     holds(signals) {
       const list = signals?.commits?.list ?? [];
       const above = unreleasedCommits(list);
-      const unreleased = above.filter((c) => !documentationOnly(c));
+      const paths = above.length ? readDeployedPaths() : null;
+      const unreleased = above.filter((c) => shipsSomething(c, paths));
       if (above.length && !unreleased.length) {
-        return { holds: false, reason: `the ${above.length} commit(s) since the last release changed only documentation` };
+        return { holds: false, reason: `the ${above.length} commit(s) since the last release changed nothing the deploy ships (${paths.join(', ')})` };
       }
       if (!unreleased.length) {
         return {

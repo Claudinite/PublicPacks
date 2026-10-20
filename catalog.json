@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 436,
+  "serial": 437,
   "packs": [
     {
       "id": "android",
@@ -79,23 +79,8 @@
     },
     {
       "id": "claude-code-web-users-support",
-      "version": "1.61011.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61003.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "what a project offers people working from Claude Code on the web, where the session knows who they are",
-      "questions": [
-        {
-          "id": "store",
-          "prompt": "Where do this project's people keep the pack that travels with them - the repository holding one `<login>/` directory per person, named by GitHub login? Give an `owner/name` (a fleet usually has one repo for this), or say \"n/a - none\" if this project has no such store."
-        }
-      ]
-    },
-    {
-      "id": "claude-code-web-users-support",
       "version": "1.61012.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61003.1",
       "requires": [],
       "relevanceDetector": null,

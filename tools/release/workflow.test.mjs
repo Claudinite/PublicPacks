@@ -224,7 +224,7 @@ test('promote-packs: the promote job runs the stages Soak, No blocker and Promot
 test('promote-packs: the promote job writes in the release environment; upload follows with only the Cloudflare secrets', () => {
   const { promote, upload } = workflow('promote-packs.yml').jobs;
   assert.equal(promote.environment, 'release');
-  assert.deepEqual(promote.permissions, { contents: 'write' });
+  assert.deepEqual(promote.permissions, { contents: 'write', issues: 'read' });
   assert.equal(upload.needs, 'promote');
   assert.equal(upload.environment, 'release');
   assert.deepEqual(upload.permissions, { contents: 'read' });

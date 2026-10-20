@@ -64,3 +64,31 @@ test('the signal the gate reads is the signal it declares', () => {
 test("the gate's task id is the one the directories give the queue", () => {
   assert.equal(RELEASE_TASK_ID, 'cloudflare-site/site-release');
 });
+
+// A commit that changes only documentation ships nothing the site serves: Markdown is
+// held out of the upload, and `docs/` is outside it.
+const touching = (sha, ...files) => ({ sha, task: null, files });
+
+test('a docs-only commit above the last release is nothing to release', () => {
+  const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md', 'site/README.md'), touching('ddd4444', 'docs/diagram.svg'), release('bbb2222')));
+  assert.equal(verdict.holds, false);
+  assert.match(verdict.reason, /only documentation/);
+});
+
+test('a commit that also touches what the site serves still releases', () => {
+  const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md'), touching('eee5555', 'README.md', 'site/index.html'), release('bbb2222')));
+  assert.equal(verdict.holds, true);
+  assert.match(verdict.context[0], /eee5555/);
+  assert.doesNotMatch(verdict.context[0], /aaa1111/);
+});
+
+// A commit whose files the collector could not list is not known to be documentation.
+test('a commit with no file list counts as a change', () => {
+  assert.equal(gate.holds(commits(touching('aaa1111'), release('bbb2222'))).holds, true);
+  assert.equal(gate.holds(commits(work('aaa1111'), release('bbb2222'))).holds, true);
+});
+
+test('a path that only mentions docs or md is not documentation', () => {
+  assert.equal(gate.holds(commits(touching('aaa1111', 'site/docs.html'), release('bbb2222'))).holds, true);
+  assert.equal(gate.holds(commits(touching('aaa1111', 'server/mdx.js'), release('bbb2222'))).holds, true);
+});

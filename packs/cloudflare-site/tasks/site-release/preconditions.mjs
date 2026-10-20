@@ -26,12 +26,26 @@ export function unreleasedCommits(list = []) {
   return (mark === -1 ? list : list.slice(0, mark)).filter((c) => c?.task !== RELEASE_TASK_ID);
 }
 
+// A commit whose every file is Markdown or under `docs/` changes nothing a release
+// ships: documentation inside the assets tree is held out of the upload, and `docs/`
+// sits outside it. A commit with no file list is not known to be documentation.
+const DOCUMENTATION = /(^|\/)[^/]*\.md$|^docs\//i;
+
+export function documentationOnly(commit) {
+  const files = commit?.files;
+  return Array.isArray(files) && files.length > 0 && files.every((f) => DOCUMENTATION.test(f));
+}
+
 export const terms = {
   'unreleased-commits': {
     signals: ['commits'],
     holds(signals) {
       const list = signals?.commits?.list ?? [];
-      const unreleased = unreleasedCommits(list);
+      const above = unreleasedCommits(list);
+      const unreleased = above.filter((c) => !documentationOnly(c));
+      if (above.length && !unreleased.length) {
+        return { holds: false, reason: `the ${above.length} commit(s) since the last release changed only documentation` };
+      }
       if (!unreleased.length) {
         return {
           holds: false,

@@ -51,3 +51,13 @@
   same work runs, exits the same way and prints the same markers.
 - **Actor:** @missingbulb (owner), who asked why every task re-implements one runner's job.
 - **Model:** Opus 5
+
+## 2026-10-20 · policy-changed · A commit that changes only documentation does not start a release
+- **Reason:** a documentation commit, such as a design record under `docs/`, released the site
+  under a fresh version number with byte-identical pages. Markdown inside the assets tree is held
+  out of the upload by `.assetsignore` and `docs/` sits outside it, so such a commit ships nothing.
+- **Mechanism:** `unreleased-commits` drops every commit above the last release whose files are all
+  Markdown or under `docs/`, read from the `commits` signal's per-commit `files`. A commit with no
+  file list counts as a change, so an engine that does not list files still releases.
+- **Actor:** @missingbulb (owner), who asked that a documentation update not cause a release.
+- **Model:** Opus 5.5

@@ -1,10 +1,10 @@
 {
   "version": 4,
-  "generated": "2026-10-19T10:47:12.803Z",
-  "foldedThrough": "2026-10-18",
-  "runsFoldedThrough": "2026-10-19T10:46:20Z",
-  "queueFoldedThrough": "2026-10-18T09:40:31Z",
-  "prsFoldedThrough": "2026-10-18T09:39:49Z",
+  "generated": "2026-10-20T10:05:05.860Z",
+  "foldedThrough": "2026-10-19",
+  "runsFoldedThrough": "2026-10-20T10:04:12Z",
+  "queueFoldedThrough": "2026-10-19T10:48:04Z",
+  "prsFoldedThrough": "2026-10-19T11:50:26Z",
   "fields": {
     "day": ["captures","merges","sessions","userMessages","userCommands","tokensIn","tokensOut","tokenSessions","commits","linesAdded","linesRemoved","releases","humanSeconds","agentSeconds"],
     "week": ["days","captures","merges","sessionDays","userMessages","userCommands","tokensIn","tokensOut","tokenSessions","commits","linesAdded","linesRemoved","releases","humanSeconds","agentSeconds"],
@@ -29,15 +29,14 @@
     "humanSeconds": 600
   },
   "hours": {
-    "2026-10-16T19": {"totals":[1,0,0,0]},
-    "2026-10-17T09": {"totals":[1,1,0,0]},
     "2026-10-17T19": {"totals":[1,0,0,0]},
     "2026-10-18T09": {"totals":[1,1,0,0]},
     "2026-10-18T19": {"totals":[1,0,0,0]},
-    "2026-10-19T10": {"totals":[1,0,0,0]}
+    "2026-10-19T10": {"totals":[1,1,0,0]},
+    "2026-10-19T21": {"totals":[1,1,0,0]},
+    "2026-10-20T10": {"totals":[1,0,0,0]}
   },
   "days": {
-    "2026-09-20": {"totals":[0,0,0,0,0,null,null,null,28,8229,5288,0,null,null]},
     "2026-09-21": {"totals":[0,0,0,0,0,null,null,null,36,6227,1580,0,null,null]},
     "2026-09-22": {"totals":[0,0,0,0,0,null,null,null,41,15498,3802,0,null,null]},
     "2026-09-23": {"totals":[0,0,0,0,0,null,null,null,8,2561,1528,0,null,null]},
@@ -66,13 +65,15 @@
     "2026-10-16": {"totals":[0,0,0,0,0,null,null,null,1,21,16,0,null,null],"queue":{"engine/usage-fold":[1,0,0,0]},"prs":{"110":[0,null,null]},"parks":{"engine/usage-fold":[0,0,0,0]}},
     "2026-10-17": {"totals":[0,0,0,0,0,null,null,null,1,21,16,0,null,null],"queue":{"engine/usage-fold":[1,0,0,0]},"prs":{"112":[0,null,null]},"parks":{"engine/usage-fold":[0,0,0,0]}},
     "2026-10-18": {"totals":[0,0,0,0,0,null,null,null,1,21,20,0,null,null],"queue":{"engine/update":[1,0,0,0],"engine/usage-fold":[1,0,0,0]},"prs":{"117":[0,null,null]},"parks":{"engine/update":[0,0,0,0],"engine/usage-fold":[0,0,0,0]}},
-    "2026-10-19": {"totals":[0,0,0,0,0,null,null,null,0,0,0,0,null,null]}
+    "2026-10-19": {"totals":[0,0,0,0,0,null,null,null,2,573,20,0,null,null],"queue":{"engine/usage-fold":[1,0,0,0]},"prs":{"119":[2.1,null,null],"121":[0,null,null]},"parks":{"engine/usage-fold":[0,0,0,0]}},
+    "2026-10-20": {"totals":[0,0,0,0,0,null,null,null,0,0,0,0,null,null]}
   },
   "weeks": {
     "2026-W38": {"totals":[6,0,0,0,0,0,null,null,null,86,22057,13025,0,null,null]},
     "2026-W39": {"totals":[7,0,0,0,0,0,null,null,null,130,32971,9894,0,null,null]},
     "2026-W40": {"totals":[7,0,0,0,0,0,null,null,null,128,31919,69216,0,null,null],"prs":{"11":[0.5,null,null],"13":[20.3,null,null],"14":[17.1,null,null],"15":[13.7,null,null],"16":[11.8,null,null],"17":[9.6,null,null],"18":[3.9,null,null],"20":[1.3,null,null],"21":[2.5,null,null],"22":[0,null,null],"23":[1.2,null,null],"24":[0.6,null,null],"25":[0.5,null,null],"26":[0.6,null,null],"27":[0.7,null,null],"28":[1.5,null,null],"29":[1.4,null,null],"32":[2,null,null],"34":[4.3,null,null],"35":[1.7,null,null],"37":[0.7,null,null],"39":[7.1,null,null]}},
     "2026-W41": {"totals":[7,0,0,0,0,0,null,null,null,44,6650,50851,0,null,null],"prs":{"40":[0.1,null,null],"41":[0.6,69.6,null],"42":[0.1,null,null],"43":[0.5,null,null],"44":[0.2,null,null],"46":[0.6,null,null],"48":[0,0.2,null],"49":[0.7,null,null],"50":[23.3,null,null],"51":[0,null,null],"52":[20.9,null,null],"53":[20.9,null,null],"54":[0.2,null,null],"55":[16,null,null],"57":[0.4,null,null],"58":[13.7,null,null],"59":[0.2,null,null],"60":[0.3,null,null],"61":[0,null,null],"62":[0.3,null,null],"64":[0,null,null],"65":[0,null,null],"66":[0.1,null,null],"67":[0.4,null,null],"68":[0.2,null,null],"70":[3.3,null,null],"71":[0.3,null,null],"72":[5.1,null,null],"73":[0.1,null,null],"74":[0.4,null,null],"75":[1.1,null,null],"76":[0.2,null,null]}},
-    "2026-W42": {"totals":[7,0,0,0,0,0,null,null,null,16,7150,12327,0,null,null],"queue":{"engine/update":[2,0,0,0],"engine/usage-fold":[5,0,0,0]},"prs":{"77":[0,null,null],"78":[0.3,null,null],"79":[14.1,null,null],"93":[28.6,null,null],"104":[0,null,null],"105":[7.9,null,null],"106":[0,null,null],"108":[0,null,null],"110":[0,null,null],"112":[0,null,null],"117":[0,null,null]},"parks":{"engine/update":[0,0,0,0],"engine/usage-fold":[0,0,0,0]}}
+    "2026-W42": {"totals":[7,0,0,0,0,0,null,null,null,16,7150,12327,0,null,null],"queue":{"engine/update":[2,0,0,0],"engine/usage-fold":[5,0,0,0]},"prs":{"77":[0,null,null],"78":[0.3,null,null],"79":[14.1,null,null],"93":[28.6,null,null],"104":[0,null,null],"105":[7.9,null,null],"106":[0,null,null],"108":[0,null,null],"110":[0,null,null],"112":[0,null,null],"117":[0,null,null]},"parks":{"engine/update":[0,0,0,0],"engine/usage-fold":[0,0,0,0]}},
+    "2026-W43": {"totals":[1,0,0,0,0,0,null,null,null,2,573,20,0,null,null],"queue":{"engine/usage-fold":[1,0,0,0]},"prs":{"119":[2.1,null,null],"121":[0,null,null]},"parks":{"engine/usage-fold":[0,0,0,0]}}
   }
 }

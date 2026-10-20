@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 438,
+  "serial": 439,
   "packs": [
     {
       "id": "android",
@@ -129,17 +129,8 @@
     },
     {
       "id": "claudinite-fleet-sheepdog",
-      "version": "1.61009.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "fleet-enforcer duties for the repo watching every other repo — coverage, freshness, standardized packs"
-    },
-    {
-      "id": "claudinite-fleet-sheepdog",
       "version": "1.61009.2",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,

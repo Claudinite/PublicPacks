@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "claudinite-fleet-sheepdog",
-  "serial": 23,
+  "serial": 24,
   "versions": [
     {
       "version": "60928.1",
@@ -150,7 +150,7 @@
       "size": 21378,
       "minEngineVersion": "1.61001.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-09T18:16:13Z",
       "sourceCommit": "54f5962f4d674c23cb3d63256e767649e31e1113"

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { claimedHostnames, parseWranglerConfig, publishedDir, stripJsonComments, wranglerConfigPath } from '../lib.mjs';
+import { claimedHostnames, deployedPaths, parseWranglerConfig, publishedDir, stripJsonComments, wranglerConfigPath } from '../lib.mjs';
 
 test('the config is found at the root and one directory down, never deeper', () => {
   assert.equal(wranglerConfigPath(['wrangler.json', 'site/index.html']), 'wrangler.json');
@@ -51,4 +51,16 @@ test('only the custom-domain routes are claimed hostnames', () => {
   };
   assert.deepEqual(claimedHostnames(config), ['example.com', 'www.example.com']);
   assert.deepEqual(claimedHostnames({}), []);
+});
+
+test('the deployed paths are the config, the published tree, the Worker folder and the manifests', () => {
+  assert.deepEqual(deployedPaths({ main: 'server/index.js', assets: { directory: './site' } }, 'wrangler.json'),
+    ['wrangler.json', 'site/', 'server/', 'package.json', 'package-lock.json']);
+  assert.deepEqual(deployedPaths({ main: './src/worker.mjs', assets: { directory: 'public/' } }, 'web/wrangler.jsonc'),
+    ['web/wrangler.jsonc', 'web/public/', 'web/src/', 'web/package.json', 'web/package-lock.json']);
+  // A Worker entry beside the config is one file, not the whole directory.
+  assert.deepEqual(deployedPaths({ main: 'index.js', assets: { directory: 'site' } }, 'wrangler.json'),
+    ['wrangler.json', 'site/', 'index.js', 'package.json', 'package-lock.json']);
+  assert.deepEqual(deployedPaths({ assets: { directory: 'site' } }, 'wrangler.json'),
+    ['wrangler.json', 'site/', 'package.json', 'package-lock.json']);
 });

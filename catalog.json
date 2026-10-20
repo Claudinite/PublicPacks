@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 437,
+  "serial": 438,
   "packs": [
     {
       "id": "android",
@@ -103,17 +103,8 @@
     },
     {
       "id": "claudinite-canon-curation",
-      "version": "1.61008.3",
-      "channel": "stable",
-      "minEngineVersion": "1.61003.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "curating a canon's packs/ shelf — promoting member lessons, sweeping members for unhomed technologies, authoring and policing its packs"
-    },
-    {
-      "id": "claudinite-canon-curation",
       "version": "1.61009.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61003.1",
       "requires": [],
       "relevanceDetector": null,

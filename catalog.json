@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 448,
+  "serial": 449,
   "packs": [
     {
       "id": "android",
@@ -550,19 +550,8 @@
     },
     {
       "id": "task-flow",
-      "version": "1.61011.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61008.2",
-      "requires": [
-        "basics"
-      ],
-      "relevanceDetector": null,
-      "belongs": "the workflow of filing, deferring, sequencing and proving work through the queue — deferred changes, marked requests and their implementer, migration plans and their chains, legacy tolerances, production verifications"
-    },
-    {
-      "id": "task-flow",
       "version": "1.61012.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61008.2",
       "requires": [
         "basics"

@@ -294,6 +294,7 @@ test('blockers.json names the repository and label the blocker read takes', asyn
   assert.deepEqual(Object.keys(config).sort(), ['label', 'repo']);
   assert.match(config.repo, /^[\w.-]+\/[\w.-]+$/);
   assert.equal(config.label, 'release-blocker');
+  assert.match(config.repo, /\/ClaudinitePacks$/, 'blockers live where the promote job\'s own token can read them');
   const reader = fakeReader();
   await withoutBlockers({ candidates: [], config, reader });
   assert.deepEqual(reader.calls, [`issues ${config.repo} ${config.label}`]);

@@ -204,11 +204,11 @@ fails the run; the next run re-derives from the new tip.
     canary channel, so they run every new pack version through those 72 hours first; a younger
     one is declined with the instant it will have soaked.
   - **No blocker** (`release.mjs no-blocker`) drops every candidate an open issue labelled
-    `release-blocker` names, in the repository `tools/release/blockers.json` names
-    (missingbulb/ClaudiniteEngine), when its title or body names `<id> <version>` as a whole token
-    and its author is the repository's owner, a member or a collaborator; an issue by anyone else
-    is ignored. The read fails on a non-2xx answer, so a repository the token cannot read is an
-    error, never "no blockers".
+    `release-blocker` names, in the repository `tools/release/blockers.json` names (this
+    repository, whose own job token can read it), when its title or body names `<id> <version>`
+    as a whole token and its author is the repository's owner, a member or a collaborator; an
+    issue by anyone else is ignored. The read fails on a non-2xx answer, so a repository the token
+    cannot read is an error, never "no blockers".
   - **Promote** (`release.mjs promote --candidates`) promotes what is left, one commit
     `Promote <id> <version>` each, skipping an entry a dispatch promoted or revoked since the
     branch was read.
@@ -223,9 +223,9 @@ fails the run; the next run re-derives from the new tip.
   takes the daily path.
 
 Anyone who sees a pack version misbehave on our repos opens a `release-blocker` issue naming it
-there before its soak ends; closing the issue lets the next daily run promote it. A version found
-bad after promotion is revoked by dispatch. The job summary records each gate's candidates and
-declines, and every promotion or revocation.
+in this repository before its soak ends; closing the issue lets the next daily run promote it. A
+version found bad after promotion is revoked by dispatch. The job summary records each gate's
+candidates and declines, and every promotion or revocation.
 
 ## What a canon task may write
 

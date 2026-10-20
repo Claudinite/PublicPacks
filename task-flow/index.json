@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "task-flow",
-  "serial": 8,
+  "serial": 9,
   "versions": [
     {
       "version": "1.61008.1",
@@ -51,7 +51,7 @@
       "requires": [
         "basics"
       ],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-11T22:02:02Z",
       "sourceCommit": "dd42415cf0c35d8be4b46f1cd794e918e7376845"

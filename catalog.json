@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 443,
+  "serial": 444,
   "packs": [
     {
       "id": "android",
@@ -138,17 +138,8 @@
     },
     {
       "id": "claudinite-single-repo-dashboard",
-      "version": "1.61009.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "the browser dashboard over one repo's Claudinite scheduler state and the site that publishes it"
-    },
-    {
-      "id": "claudinite-single-repo-dashboard",
       "version": "1.61009.2",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,

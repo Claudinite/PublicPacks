@@ -123,7 +123,7 @@ export const ISSUE_TITLE = '[claudinite] Actions storage will run out this month
 export function issueBody(f, { account, plan, repos, hoursInMonth, nowIso }) {
   const axis = Array.from({ length: f.daysInMonth }, (_, i) => i + 1).join(', ');
   return [
-    `\`${account}\`'s Actions storage (artifacts and Packages) is forecast to reach **${gb(f.projectedGB)}** this month, against the **${gb(f.includedGB)}** its \`${plan}\` plan includes${f.exhaustedOn ? `, running out around **${f.exhaustedOn}**` : ''}.`,
+    `\`${account}\`'s Actions storage (artifacts and Packages) is forecast to reach **${gb(f.projectedGB)}** this month, against the **${gb(f.includedGB)}** its \`${plan}\` plan includes${!f.exhaustedOn ? '' : f.exhaustedOn < nowIso.slice(0, 10) ? `, and already ran out around **${f.exhaustedOn}**` : `, running out around **${f.exhaustedOn}**`}.`,
     `Read by the \`actions-storage-forecast\` task — last ${nowIso}. It rewrites this body each day while the forecast is over, and closes the issue once it is not.`,
     '',
     `Storage bills by the hour, so what accrued stays on the bill even after the artifacts are deleted: **${gb(f.accruedGB)}** has accrued over the month's first ${f.actualDays} days. The rest is the last ${TREND_DAYS} days' trend carried forward (latest day ${(f.lastDayGBh / 24).toFixed(2)} GB held, changing ${(f.slopeGBhPerDay / 24).toFixed(3)} GB a day).`,
@@ -166,13 +166,16 @@ async function readPlan(fleetGh, account) {
   const profile = await readJson(fleetGh, `/users/${account}`, 'the account');
   if (profile.type === 'Organization') {
     const org = await readJson(fleetGh, `/orgs/${account}`, 'the organization plan');
-    return { kind: 'org', plan: org.plan?.name ?? null };
+    if (!org.plan) fail('action', `FLEET_GITHUB_TOKEN cannot see ${account}'s plan: grant it the organization's "Administration" permission (read)`);
+    return { kind: 'org', plan: org.plan.name };
   }
   const me = await readJson(fleetGh, '/user', 'the token owner');
   if (String(me.login).toLowerCase() !== account.toLowerCase()) {
     fail('action', `FLEET_GITHUB_TOKEN belongs to ${me.login}, not ${account}; only ${account} can read its plan`);
   }
-  return { kind: 'user', plan: me.plan?.name ?? null };
+  // GitHub leaves `plan` out of the profile for a token without the permission.
+  if (!me.plan) fail('action', `FLEET_GITHUB_TOKEN cannot see ${account}'s plan: grant it the account permission "Plan" (read)`);
+  return { kind: 'user', plan: me.plan.name };
 }
 
 async function readUsage(fleetGh, kind, account, nowMs) {

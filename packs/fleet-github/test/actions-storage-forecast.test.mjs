@@ -108,7 +108,7 @@ function fleet({ plan = 'pro', login = 'acme', usage = [], usageStatus = 200 } =
   const gh = async (path) => {
     read.push(path);
     if (path === '/users/acme') return { status: 200, json: { login: 'acme', type: 'User' } };
-    if (path === '/user') return { status: 200, json: { login, plan: { name: plan } } };
+    if (path === '/user') return { status: 200, json: plan === null ? { login } : { login, plan: { name: plan } } };
     if (path.startsWith('/users/acme/settings/billing/usage')) return { status: usageStatus, json: { usageItems: usage } };
     return { status: 404, json: null };
   };
@@ -135,6 +135,10 @@ test('a forecast over the allowance opens the one titled issue with the forecast
   assert.deepEqual(j.writes.map((w) => [w.method, w.path, w.body.state]), [['PATCH', '/repos/acme/manager/issues/41', 'open']]);
   assert.match(j.writes[0].body.body, /3\.00 GB\*\* this month, against the \*\*2\.00 GB\*\*/);
   assert.match(j.writes[0].body.body, /`acme\/member` — 1\.74 GB/);
+  assert.match(j.writes[0].body.body, /, running out around \*\*2026-10-21\*\*/);
+  const past = job();
+  await worker(bag, past.gh, fleet({ usage: usageHeld(5) }).gh, NOW);
+  assert.match(past.writes[0].body.body, /, and already ran out around \*\*2026-10-13\*\*/);
 });
 
 test('an open issue is rewritten while over, and closed once the forecast is back under', async () => {
@@ -162,6 +166,7 @@ test('no warning without both numbers: an unreadable limit or usage parks the ru
     [fleet({ usageStatus: 403, usage: usageHeld(5) }), /billing usage report.*403/],
     [fleet({ login: 'someone-else', usage: usageHeld(5) }), /belongs to someone-else/],
     [fleet({ plan: 'acme-plan', usage: usageHeld(5) }), /"acme-plan"/],
+    [fleet({ plan: null, usage: usageHeld(5) }), /cannot see acme's plan: .*"Plan" \(read\)/],
   ];
   for (const [f, message] of cases) {
     const j = job();

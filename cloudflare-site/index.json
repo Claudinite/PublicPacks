@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "cloudflare-site",
-  "serial": 13,
+  "serial": 14,
   "versions": [
     {
       "version": "60928.1",
@@ -89,6 +89,17 @@
       "revoked": false,
       "publishedAt": "2026-10-20T15:25:38Z",
       "sourceCommit": "f7f9cb29c407a38da658602208ddb8873ad17d4f"
+    },
+    {
+      "version": "1.61020.2",
+      "sha256": "d962bca79e02b5efa31c236823e25170fa129935dc3ffd3999568652d1efa15f",
+      "size": 20803,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-20T15:41:30Z",
+      "sourceCommit": "1e2f271be76c550a0075457478b565f27f518094"
     }
   ]
 }

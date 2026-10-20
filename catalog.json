@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 433,
+  "serial": 434,
   "packs": [
     {
       "id": "android",
@@ -55,32 +55,8 @@
     },
     {
       "id": "chrome-extension",
-      "version": "1.61009.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "an MV3 manifest.json (at the repo root or one directory down) declaring \"manifest_version\": 3",
-        "paths": {
-          "source": "^([^/]+/)?manifest\\.json$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "\"manifest_version\"\\s*:\\s*3\\b",
-            "flags": ""
-          }
-        ],
-        "search": [
-          "manifest_version"
-        ]
-      },
-      "belongs": "writing and shipping a Chrome extension: MV3 service-worker, permission, content-script and auth gotchas, plus Web Store release, versioning and privacy"
-    },
-    {
-      "id": "chrome-extension",
       "version": "1.61013.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

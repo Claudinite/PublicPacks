@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 451,
+  "serial": 452,
   "packs": [
     {
       "id": "android",
@@ -253,7 +253,7 @@
     },
     {
       "id": "fleet-github",
-      "version": "1.61019.1",
+      "version": "1.61019.2",
       "channel": "canary",
       "minEngineVersion": "1.61008.2",
       "requires": [],

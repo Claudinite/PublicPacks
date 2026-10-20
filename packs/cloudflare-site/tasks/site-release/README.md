@@ -50,7 +50,8 @@ the queue instead of from YAML.
 
 **`unreleased-commits`** ([`preconditions.mjs`](preconditions.mjs)) is the task's own
 term because no built-in asks a release's question. The file says why the two nearest
-built-ins are both wrong here.
+built-ins are both wrong here. A commit whose every file is Markdown or under `docs/` does
+not count: it changes nothing the release uploads.
 
 **`on_interrupt: needs-human`** because a release is a one-shot external effect: a
 reclaimed claim must not re-run it, spend a second version number and re-upload.

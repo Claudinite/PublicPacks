@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 452,
+  "serial": 453,
   "packs": [
     {
       "id": "android",
@@ -264,6 +264,21 @@
       "id": "flutter",
       "version": "1.61005.1",
       "channel": "stable",
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "pubspec.yaml (at the repo root or one directory down)",
+        "paths": {
+          "source": "^([^/]+/)?pubspec\\.yaml$",
+          "flags": ""
+        }
+      },
+      "belongs": "widget-tree architecture, ports and fakes, widget-test and golden mechanics, pub and analyze toolchain habits for Flutter"
+    },
+    {
+      "id": "flutter",
+      "version": "1.61021.1",
+      "channel": "canary",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

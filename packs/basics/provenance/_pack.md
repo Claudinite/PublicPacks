@@ -141,3 +141,11 @@
   `verify-in-production`, leave for task-flow with their provenance; `production-retrospective`
   stays and names them without linking, since basics cannot require a pack that requires it.
   basics 1.61008.1.
+
+## 2026-10-21 · policy-changed · reference-integrity judges only the files a change touches
+- **Reason:** sweeping the whole tree turned every pull request and every main red over links
+  the change never touched, as soon as an engine shipped the check to a repo carrying old
+  ones.
+- **Actor:** @missingbulb (owner), removing claudinite-ci.yml fleet-wide.
+- **Model:** Claude Opus 5.5 (1M context)
+- **Mechanism:** the check's gate, recorded on its own provenance file. basics 1.61021.1.

@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generated": "2026-10-20T10:05:05.860Z",
-  "foldedThrough": "2026-10-19",
-  "runsFoldedThrough": "2026-10-20T10:04:12Z",
-  "queueFoldedThrough": "2026-10-19T10:48:04Z",
+  "generated": "2026-10-21T06:42:32.723Z",
+  "foldedThrough": "2026-10-20",
+  "runsFoldedThrough": "2026-10-21T06:41:10Z",
+  "queueFoldedThrough": "2026-10-20T10:06:03Z",
   "minuteRate": null,
   "fields": {
     "hour": ["runs","jobs","minutesBilled","spend","apiCalls","list","ask","repair","drain","pick","claim","code-work","hand-off","converge"],
@@ -16,12 +16,15 @@
     "latency": ["tickToItemMinutes","itemToPickMinutes","pickToHandOffMinutes","handOffToConvergeMinutes"]
   },
   "hours": {
-    "2026-10-17T19": {"totals":[1,3,1,null,13,1896,3163,0,478,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]},"runCosts":{"39062258472":[13,1896,3163,0,478,null,null,null,null,null]}},
     "2026-10-18T09": {"totals":[2,5,5,null,214,1975,7226,0,10028,2198,11836,37396,11127,7840],"workflows":{"executor":[1,2,3,null],"scheduler":[1,3,2,null]},"runCosts":{"39116074411":[59,1975,7226,0,10028,null,null,null,null,null],"39116114286":[155,null,null,null,null,2198,11836,37396,11127,7840]}},
     "2026-10-18T19": {"totals":[1,3,1,null,16,1844,5287,0,442,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]},"runCosts":{"39158715533":[16,1844,5287,0,442,null,null,null,null,null]}},
     "2026-10-19T10": {"totals":[2,5,4,null,132,1977,4270,0,7101,525,3520,9837,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[1,3,2,null]},"runCosts":{"39239833457":[47,1977,4270,0,7101,null,null,null,null,null],"39239890998":[85,null,null,null,null,525,3520,9837,null,null]}},
     "2026-10-19T21": {"totals":[2,5,3,null,48,2024,4773,0,8475,null,null,null,null,null],"workflows":{"executor":[1,2,1,null],"scheduler":[1,3,2,null]},"runCosts":{"39328190482":[48,2024,4773,0,8475,null,null,null,null,null]}},
-    "2026-10-20T10": {"totals":[1,3,2,null,48,1923,5116,0,8370,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"39405269885":[48,1923,5116,0,8370,null,null,null,null,null]}}
+    "2026-10-20T10": {"totals":[2,5,4,null,135,1923,5116,0,8370,512,3649,9528,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[1,3,2,null]},"runCosts":{"39405269885":[48,1923,5116,0,8370,null,null,null,null,null],"39405327453":[87,null,null,null,null,512,3649,9528,null,null]}},
+    "2026-10-20T16": {"totals":[2,5,13,null,81,1862,5935,0,18077,null,null,null,null,null],"workflows":{"executor":[1,2,11,null],"scheduler":[1,3,2,null]},"runCosts":{"39457410987":[81,1862,5935,0,18077,null,null,null,null,null]}},
+    "2026-10-20T19": {"totals":[2,5,3,null,36,1977,5788,0,5782,null,null,null,null,null],"workflows":{"executor":[1,2,1,null],"scheduler":[1,3,2,null]},"runCosts":{"39479995443":[36,1977,5788,0,5782,null,null,null,null,null]}},
+    "2026-10-20T20": {"totals":[1,3,1,null,null,null,null,null,null,null,null,null,null,null],"workflows":{"scheduler":[1,3,1,null]}},
+    "2026-10-21T06": {"totals":[1,3,2,null,null,null,null,null,null,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]}}
   },
   "days": {
     "2026-10-14": {"totals":[2,5,7,null,472,1660,36624,7012,8778,4211,22515,65454,20119,16723],"workflows":{"executor":[1,2,5,null],"scheduler":[1,3,2,null]},"runCosts":{"38634159794":[180,1660,36624,7012,8778,null,null,null,null,null],"38634321771":[292,null,null,null,null,4211,22515,65454,20119,16723]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[1,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null]}},
@@ -30,10 +33,11 @@
     "2026-10-17": {"totals":[3,8,5,null,136,3675,6401,0,9221,557,2729,8904,null,null],"workflows":{"executor":[1,2,2,null],"scheduler":[2,6,3,null]},"runCosts":{"39020769789":[43,1779,3238,0,8743,null,null,null,null,null],"39020798450":[80,null,null,null,null,557,2729,8904,null,null],"39062258472":[13,1896,3163,0,478,null,null,null,null,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"111":[null,1,null,null]}},
     "2026-10-18": {"totals":[3,8,6,null,230,3819,12513,0,10470,2198,11836,37396,11127,7840],"workflows":{"executor":[1,2,3,null],"scheduler":[2,6,3,null]},"runCosts":{"39116074411":[59,1975,7226,0,10028,null,null,null,null,null],"39116114286":[155,null,null,null,null,2198,11836,37396,11127,7840],"39158715533":[16,1844,5287,0,442,null,null,null,null,null]},"queue":{"engine/update":[1,null,null,null],"engine/usage-fold":[1,null,null,null]},"latency":{"115":[null,2,null,null],"116":[null,1,null,null]}},
     "2026-10-19": {"totals":[4,10,7,null,180,4001,9043,0,15576,525,3520,9837,null,null],"workflows":{"executor":[2,4,3,null],"scheduler":[2,6,4,null]},"runCosts":{"39239833457":[47,1977,4270,0,7101,null,null,null,null,null],"39239890998":[85,null,null,null,null,525,3520,9837,null,null],"39328190482":[48,2024,4773,0,8475,null,null,null,null,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"120":[null,0,null,null]}},
-    "2026-10-20": {"totals":[1,3,2,null,48,1923,5116,0,8370,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]},"runCosts":{"39405269885":[48,1923,5116,0,8370,null,null,null,null,null]}}
+    "2026-10-20": {"totals":[7,18,21,null,252,5762,16839,0,32229,512,3649,9528,null,null],"workflows":{"executor":[3,6,14,null],"scheduler":[4,12,7,null]},"runCosts":{"39405269885":[48,1923,5116,0,8370,null,null,null,null,null],"39405327453":[87,null,null,null,null,512,3649,9528,null,null],"39457410987":[81,1862,5935,0,18077,null,null,null,null,null],"39479995443":[36,1977,5788,0,5782,null,null,null,null,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"126":[null,0,null,null]}},
+    "2026-10-21": {"totals":[1,3,2,null,null,null,null,null,null,null,null,null,null,null],"workflows":{"scheduler":[1,3,2,null]}}
   },
   "weeks": {
     "2026-W42": {"totals":[5,14,37,28,null,1116,16952,69963,12421,45398,7899,43392,131119,31246,24563],"workflows":{"executor":[5,10,14,null],"scheduler":[9,27,14,null]},"queue":{"engine/update":[2,null,null,null],"engine/usage-fold":[5,null,null,null]},"latency":{"102":[null,4,null,null],"103":[null,2,null,null],"107":[null,0,null,null],"109":[null,0,null,null],"111":[null,1,null,null],"115":[null,2,null,null],"116":[null,1,null,null]}},
-    "2026-W43": {"totals":[1,4,10,7,null,180,4001,9043,0,15576,525,3520,9837,null,null],"workflows":{"executor":[2,4,3,null],"scheduler":[2,6,4,null]},"queue":{"engine/usage-fold":[1,null,null,null]},"latency":{"120":[null,0,null,null]}}
+    "2026-W43": {"totals":[2,11,28,28,null,432,9763,25882,0,47805,1037,7169,19365,null,null],"workflows":{"executor":[5,10,17,null],"scheduler":[6,18,11,null]},"queue":{"engine/usage-fold":[2,null,null,null]},"latency":{"120":[null,0,null,null],"126":[null,0,null,null]}}
   }
 }

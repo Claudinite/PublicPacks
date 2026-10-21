@@ -37,3 +37,13 @@
   beside it through the SDK's fake engine and compared with the Node engine by
   ClaudiniteEngine's parity harness.
 - **Landed:** pending.
+
+## 2026-10-21 · gate-changed · dead links judged only in the Markdown files the change touches
+- **Reason:** members' own CI now runs the work checks on every pull request and on main, so a
+  whole-tree dead-link sweep turned every change red over links it never touched (25 on the
+  engine's main, a few each in ClaudinitePacks and Shepherd). A reference to a path the change
+  deletes is still found anywhere in the tree.
+- **Actor:** @missingbulb (owner), on the claudinite-ci.yml removal (ClaudiniteEngine#400).
+- **Model:** Claude.
+- **Mechanism:** `packs/basics/checks/reference_integrity.go` passes the change's files to
+  `DeadLinks`.

@@ -199,11 +199,13 @@ func TestActionGuards(t *testing.T) {
 	})
 }
 
-// Stop runs the work checks over the whole tree, as the Node engine's work
-// sweep did, so a dangling link the change never touched is found too.
+// The check judges the links in the Markdown files a change touches: a
+// dangling link elsewhere is not that change's to fix.
 func TestReferenceIntegrityScope(t *testing.T) {
 	fixture.Run(t, "basics", []fixture.Case{
 		{Name: "a dangling link the change never touched", Member: map[string]string{"legacy.md": "[dangling](nowhere.md)\n"}, Change: map[string]string{"fresh.md": "[ok](README.md)\n", "README.md": "x\n"},
-			Expect: []string{"finding reference-integrity legacy.md:1"}},
+			Expect: []string{}},
+		{Name: "a dangling link the change writes", Member: map[string]string{"README.md": "x\n"}, Change: map[string]string{"fresh.md": "[dangling](nowhere.md)\n"},
+			Expect: []string{"finding reference-integrity fresh.md:1"}},
 	})
 }

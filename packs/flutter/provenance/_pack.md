@@ -150,3 +150,10 @@
 - **Actor:** @missingbulb (owner), asking that hello, app-store-release and play-store-release be deleted.
 - **Model:** Claude Opus 5.5
 - **Mechanism:** `ruleRoutingGuidance.excludes` in the manifest. flutter 1.61005.1.
+
+## 2026-10-21 · reworded · the README stops linking to engine-era files
+- **Reason:** the links pointed at files that left this repository with the Node engine, and
+  reference-integrity reports them on every change.
+- **Actor:** @missingbulb (owner), asking that the dead links be fixed rather than the check.
+- **Model:** Claude Opus 5.5 (1M context)
+- **Mechanism:** the pack's `README.md`. flutter 1.61021.1.

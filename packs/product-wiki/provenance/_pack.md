@@ -94,3 +94,10 @@
 - **Model:** Claude Opus 5.5
 - **Mechanism:** the manifest's `version`, which the release now requires in this form for a new
   version. product-wiki 1.61004.1.
+
+## 2026-10-21 · reworded · the README stops linking to engine-era files
+- **Reason:** the links pointed at files that left this repository with the Node engine, and
+  reference-integrity reports them on every change.
+- **Actor:** @missingbulb (owner), asking that the dead links be fixed rather than the check.
+- **Model:** Claude Opus 5.5 (1M context)
+- **Mechanism:** the pack's `README.md`. product-wiki 1.61021.1.

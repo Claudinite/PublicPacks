@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 454,
+  "serial": 455,
   "packs": [
     {
       "id": "android",
@@ -250,6 +250,15 @@
         }
       },
       "belongs": "building on Firebase: Firestore rules, callable Cloud Function patterns, FCM, emulator testing, deploy layout, dev/prod release split"
+    },
+    {
+      "id": "fleet-github",
+      "version": "1.61019.1",
+      "channel": "stable",
+      "minEngineVersion": "1.61008.2",
+      "requires": [],
+      "relevanceDetector": null,
+      "belongs": "the GitHub account a fleet bills to, read across all its repositories: plan allowances, billing usage, account-wide limits"
     },
     {
       "id": "fleet-github",

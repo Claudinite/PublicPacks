@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 457,
+  "serial": 458,
   "packs": [
     {
       "id": "android",
@@ -229,17 +229,8 @@
     },
     {
       "id": "fleet-github",
-      "version": "1.61019.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61008.2",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "the GitHub account a fleet bills to, read across all its repositories: plan allowances, billing usage, account-wide limits"
-    },
-    {
-      "id": "fleet-github",
       "version": "1.61019.2",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61008.2",
       "requires": [],
       "relevanceDetector": null,

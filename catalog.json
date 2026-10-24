@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 456,
+  "serial": 457,
   "packs": [
     {
       "id": "android",
@@ -156,32 +156,8 @@
     },
     {
       "id": "cloudflare-site",
-      "version": "1.61020.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": {
-        "about": "a near-root wrangler.json/.jsonc declaring assets.directory",
-        "paths": {
-          "source": "^([^/]+/)?wrangler\\.jsonc?$",
-          "flags": ""
-        },
-        "text": [
-          {
-            "source": "\"assets\"\\s*:\\s*\\{[^}]*\"directory\"\\s*:\\s*\"[^\"\\s]",
-            "flags": ""
-          }
-        ],
-        "search": [
-          "assets"
-        ]
-      },
-      "belongs": "serving a static site from Cloudflare: the published tree, custom domains, the nightly release that uploads it"
-    },
-    {
-      "id": "cloudflare-site",
       "version": "1.61020.2",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

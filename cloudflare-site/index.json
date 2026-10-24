@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "cloudflare-site",
-  "serial": 15,
+  "serial": 16,
   "versions": [
     {
       "version": "60928.1",
@@ -96,7 +96,7 @@
       "size": 20803,
       "minEngineVersion": "1.61001.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-20T15:41:30Z",
       "sourceCommit": "1e2f271be76c550a0075457478b565f27f518094"

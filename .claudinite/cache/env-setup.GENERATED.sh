@@ -4,7 +4,7 @@
 # It pre-warms the pinned engine, then runs each pack's setup and its
 # probe; exit 1 when a pack's environment is not in place afterwards.
 cd "$(dirname "$0")/../.." || exit 1
-sh .claudinite/setup-cn.sh >/dev/null || echo 'cn env: the engine was not pre-warmed; SessionStart fetches it' >&2
+npx --yes --prefer-offline @claudinite/setup@1.0.1 >/dev/null || echo 'cn env: the engine was not pre-warmed; SessionStart fetches it' >&2
 failed=0
 
 echo '=== Node dependencies (npm ci) (pack node) ==='

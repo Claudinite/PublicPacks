@@ -69,3 +69,9 @@
 - **Actor:** @missingbulb (owner), asking that ClaudinitePacks keep only code still needed.
 - **Model:** Claude Opus 5.5
 - **Mechanism:** the `migrations/` directory, deleted. git-github 1.61005.1.
+
+## 2026-10-27 · scope-changed · merge-to-main gains the growth-from-session step
+- **Reason:** the skill's new step 7 changes what the pack ships, so the version moves to 1.61027.1 for the release to publish it; the decision itself is on the skill's provenance file (ClaudiniteEngine#493).
+- **Actor:** @missingbulb (owner), approving the plan in ClaudiniteEngine#478.
+- **Model:** Claude Sonnet 5.5, per the commit trailer.
+- **Mechanism:** the manifest's `version`, git-github 1.61027.1.

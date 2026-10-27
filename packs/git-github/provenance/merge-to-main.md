@@ -39,3 +39,11 @@
   would dangle in a member that declares git-github alone.
 - **Actor:** @missingbulb (owner), deciding the restructure.
 - **Model:** Claude Opus 5.5 (1M context)
+
+## 2026-10-27 · scope-changed · step 7 asks `cn growth from-session --decide` and loads `growth-from-session` on `run`
+- **Reason:** under `growthInSession` no history is stored and `SessionEnd` fires after the model has stopped, so the live session must mine itself while it is still running; the merge is the moment a session already acts on approval, and the `Stop` hook would fire every turn (ClaudiniteEngine#493, plan in ClaudiniteEngine#478).
+- **Mechanism:** a step of the merge-to-main skill, a workflow; whether the learning runs is decided in code by `cn growth from-session --decide` from `growth.mode` and the public key file, so the skill can call it unconditionally.
+- **Actor:** @missingbulb (owner), approving the plan in ClaudiniteEngine#478.
+- **Model:** Claude Sonnet 5.5, per the commit trailer.
+- **Retire when:** growth from a live session stops being a mode of `growth.mode`.
+

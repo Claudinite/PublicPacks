@@ -98,4 +98,4 @@
 - **Model:** Claude Opus 5.5
 - **Mechanism:** the manifest's `env`: setup runs `npm ci` only with a lockfile, else
   `npm install --no-package-lock`; the probe also passes when `package.json` declares no
-  dependencies.
+  dependencies. node 1.61030.1.

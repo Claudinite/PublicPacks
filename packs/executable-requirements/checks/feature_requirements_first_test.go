@@ -43,3 +43,34 @@ func TestFeatureRequirementsFirst(t *testing.T) {
 		t.Errorf("%+v", fs)
 	}
 }
+
+// The feature turn judges only a branch its work went to: one the
+// transcript recorded while it ran, or any branch where it recorded none.
+// What the adoption writes and a local pack carries under .claudinite/ is
+// not the product's code.
+func TestFeatureRequirementsFirstScope(t *testing.T) {
+	spec := map[string]string{"dev/requirements/requirements.md": "# spec\n"}
+	after := "2026-10-01T11:00:00Z"
+	on := func(branches ...string) []checksdk.Turn {
+		ts := feature("feature")
+		ts[0].Branches = branches
+		return ts
+	}
+	code := []checksdk.Commit{commit("a1", after, "code", "src/a.js")}
+	cases := []struct {
+		name    string
+		turns   []checksdk.Turn
+		branch  string
+		commits []checksdk.Commit
+		want    string
+	}{
+		{"the branch the feature turn ran on", on("main", "acme-feature"), "acme-feature", code, "(branch)"},
+		{"a later branch of the same session", on("main", "acme-feature"), "acme-lesson", code, ""},
+		{"a transcript that recorded no branch", on(), "acme-lesson", code, "(branch)"},
+		{"only adoption output and a local pack's check", on(), "acme-feature", []checksdk.Commit{commit("a1", after, "adopt", ".claudinite/cache/claudinite-rules.GENERATED.md", ".claudinite/shared/packs/acme-pack/pack.json", ".claudinite/local/packs/acme-pack/checks/acme_check.go")}, ""},
+		{"code beside a .claudinite file", on(), "acme-feature", []checksdk.Commit{commit("a1", after, "code", ".claudinite/settings.yaml", "src/a.js")}, "(branch)"},
+	}
+	for _, c := range cases {
+		expect(t, c.name, run(t, featureRequirementsFirst, spec, &checksdk.Fake{Turns: c.turns, Branch: c.branch, Commits: c.commits}), c.want)
+	}
+}

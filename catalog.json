@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 462,
+  "serial": 463,
   "packs": [
     {
       "id": "android",
@@ -253,17 +253,8 @@
     },
     {
       "id": "git-github",
-      "version": "1.61013.1",
-      "channel": "stable",
-      "minEngineVersion": "1.61001.1",
-      "requires": [],
-      "relevanceDetector": null,
-      "belongs": "git and GitHub procedure and platform: commit layering, branch and merge mechanics, workflow YAML, triggers, secrets, scheduling"
-    },
-    {
-      "id": "git-github",
       "version": "1.61027.1",
-      "channel": "canary",
+      "channel": "stable",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": null,

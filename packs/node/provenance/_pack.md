@@ -87,3 +87,15 @@
 - **Model:** Claude Opus 5.5
 - **Mechanism:** the manifest's `version`, which the release now requires in this form for a new
   version. node 1.61004.1.
+
+## 2026-10-30 · scope-changed · the environment installs without a lockfile, and needs none for no dependencies
+- **Source:** NoRFinder's engine-update agent session, which never started: its setup ran
+  `npm ci` on a `package.json` with no lockfile and no dependencies, npm refused, and the probe
+  found no `node_modules`, so the whole setup exited 1.
+- **Reason:** `npm ci` needs a lockfile, and a project with no dependencies never gets a
+  `node_modules`, so the old probe failed every session in such a repo.
+- **Actor:** @missingbulb (owner), choosing to fix the broken environment setup.
+- **Model:** Claude Opus 5.5
+- **Mechanism:** the manifest's `env`: setup runs `npm ci` only with a lockfile, else
+  `npm install --no-package-lock`; the probe also passes when `package.json` declares no
+  dependencies.

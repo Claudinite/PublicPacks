@@ -104,3 +104,9 @@
 - **Model:** Claude Opus 5.5
 - **Mechanism:** the manifest's `version`, which the release now requires in this form for a new
   version. executable-requirements 1.61004.1.
+
+## 2026-10-30 · reworded · version 1.61030.1 for feature-requirements-first's narrower scope (#167)
+- **Reason:** the check's shipped file changed, and a published version's content never does.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude, per the commit trailer.
+- **Mechanism:** the manifest's `version`. executable-requirements 1.61030.1.

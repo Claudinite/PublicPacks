@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "serial": 461,
+  "serial": 462,
   "packs": [
     {
       "id": "android",
@@ -440,6 +440,21 @@
       "id": "node",
       "version": "1.61004.1",
       "channel": "stable",
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "relevanceDetector": {
+        "about": "package.json (at the repo root or one directory down)",
+        "paths": {
+          "source": "^([^/]+/)?package\\.json$",
+          "flags": ""
+        }
+      },
+      "belongs": "conventions for a Node/npm project — module resolution, ESM vs CJS, dependency justification, jsdom test divergences"
+    },
+    {
+      "id": "node",
+      "version": "1.61030.1",
+      "channel": "canary",
       "minEngineVersion": "1.61001.1",
       "requires": [],
       "relevanceDetector": {

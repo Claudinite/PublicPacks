@@ -38,3 +38,11 @@
   beside it through the SDK's fake engine and compared with the Node engine by
   ClaudiniteEngine's parity harness.
 - **Landed:** pending.
+
+## 2026-10-30 · scope-changed · the branch the feature turn ran on, and nothing under .claudinite/
+- **Source:** a member session's post-merge lesson PR was judged by that session's earlier feature
+  turn, and adoption output and a local pack's check counted as code.
+- **Actor:** @missingbulb (owner).
+- **Model:** Claude, per the commit trailer.
+- **Mechanism:** the check reads the engine's `Turn.Branches` and skips a branch the turn never
+  ran on; a turn that recorded none, or an engine older than the field, keeps the old scope.

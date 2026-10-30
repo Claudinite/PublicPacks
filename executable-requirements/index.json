@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "executable-requirements",
-  "serial": 6,
+  "serial": 7,
   "versions": [
     {
       "version": "60928.1",
@@ -35,6 +35,17 @@
       "revoked": false,
       "publishedAt": "2026-10-04T05:56:12Z",
       "sourceCommit": "6425ecaa87eeab7e897c64f4ec1d64edfeb60ad0"
+    },
+    {
+      "version": "1.61030.1",
+      "sha256": "40f601491ed5cca44556de995b9d27648ad242798b15d6f05145400ddc59d116",
+      "size": 8431,
+      "minEngineVersion": "1.61001.1",
+      "requires": [],
+      "channel": "canary",
+      "revoked": false,
+      "publishedAt": "2026-10-30T19:42:50Z",
+      "sourceCommit": "b7b9425f0ad7ee793ff1ca27bf80f7cdfd985445"
     }
   ]
 }

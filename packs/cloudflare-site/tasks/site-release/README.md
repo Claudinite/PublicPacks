@@ -53,7 +53,8 @@ term because no built-in asks a release's question. The file says why the two ne
 built-ins are both wrong here. A commit counts only when it touches a path the deploy ships:
 the wrangler config, the published tree, the folder holding the Worker's `main` and
 the package manifests. A commit with no file list, or a repo whose config the gate
-cannot read, always counts.
+cannot read, always counts; so does every commit in a repo whose config has a
+`build.command`, since the build fills the published tree from sources the config does not name.
 
 **`on_interrupt: needs-human`** because a release is a one-shot external effect: a
 reclaimed claim must not re-run it, spend a second version number and re-upload.

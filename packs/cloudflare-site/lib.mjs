@@ -72,8 +72,10 @@ export function publishedDir(config, configPath = 'wrangler.json') {
 // config itself, the published tree, the folder holding the Worker's `main` (the
 // file alone when it sits beside the config), and the package manifests the Worker
 // bundle's dependencies come from. A file the Worker imports from anywhere else is
-// not seen here.
+// not seen here. Null when a build command fills the published tree, from sources the
+// config does not name, so no list covers what ships.
 export function deployedPaths(config, configPath = 'wrangler.json') {
+  if (typeof config?.build?.command === 'string' && config.build.command.trim()) return null;
   const base = configPath.includes('/') ? `${configPath.slice(0, configPath.lastIndexOf('/'))}/` : '';
   const out = [configPath];
   const published = publishedDir(config, configPath);

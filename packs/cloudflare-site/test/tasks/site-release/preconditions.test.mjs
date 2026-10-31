@@ -94,6 +94,13 @@ test('a commit outside every deployed path is nothing to release', () => inRepo(
   assert.match(verdict.reason, /nothing the deploy ships/);
 }));
 
+// The published tree is the build's output, filled from sources nothing declares: every commit counts.
+const built = { 'wrangler.json': JSON.stringify({ build: { command: 'python3 tools/build.py' }, assets: { directory: './out' } }) };
+test('with a build command, a commit anywhere releases', () => inRepo(built, () => {
+  const verdict = gate.holds(commits(touching('aaa1111', 'web/page.js'), release('bbb2222')));
+  assert.equal(verdict.holds, true);
+}));
+
 test('a commit touching a deployed path releases, and only it is named', () => inRepo(site, () => {
   for (const shipped of ['site/index.html', 'server/router.js', 'wrangler.json', 'package.json', 'package-lock.json']) {
     const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md'), touching('eee5555', 'README.md', shipped), release('bbb2222')));

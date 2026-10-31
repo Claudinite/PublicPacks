@@ -64,3 +64,11 @@ test('the deployed paths are the config, the published tree, the Worker folder a
   assert.deepEqual(deployedPaths({ assets: { directory: 'site' } }, 'wrangler.json'),
     ['wrangler.json', 'site/', 'package.json', 'package-lock.json']);
 });
+
+// A build command fills the published tree from sources the config does not name, so no path
+// list covers what ships; an empty command builds nothing.
+test('a config with a build command has no deployed paths to name', () => {
+  assert.equal(deployedPaths({ build: { command: 'python3 build.py' }, assets: { directory: './out' } }, 'wrangler.json'), null);
+  assert.deepEqual(deployedPaths({ build: { command: '  ' }, assets: { directory: 'site' } }, 'wrangler.json'),
+    ['wrangler.json', 'site/', 'package.json', 'package-lock.json']);
+});

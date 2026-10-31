@@ -73,3 +73,15 @@
   problem by name. Supersedes the documentation exclusion of the same day.
 - **Actor:** @missingbulb (owner).
 - **Model:** Opus 5.5
+
+## 2026-10-31 · policy-changed · A config with a build command counts every commit
+- **Source:** missingbulb/NoRFinder, whose forced release declined because its page sources live
+  outside the build-output published tree.
+- **Reason:** a build fills the published tree from sources the config does not name, so the
+  deployed-path list missed every page change.
+- **Actor:** @missingbulb (owner).
+- **Model:** Opus 5.5
+- **Mechanism:** `deployedPaths` returns null for a non-empty `build.command`, which
+  `unreleased-commits` already reads as "counts".
+- **Rejected:** a per-repo list of build inputs: a second declaration to keep in step with the
+  build.

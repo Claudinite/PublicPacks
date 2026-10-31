@@ -123,3 +123,9 @@
 - **Actor:** @missingbulb (owner), asking that ClaudinitePacks keep only code still needed.
 - **Model:** Claude Opus 5.5
 - **Mechanism:** the `migrations/` directory, deleted. cloudflare-site 1.61005.1.
+
+## 2026-10-31 · reworded · version 1.61031.1 for the site release's build inputs (#168)
+- **Reason:** the gate's shipped files changed, and a published version's content never does.
+- **Actor:** @missingbulb (owner).
+- **Model:** Opus 5.5
+- **Mechanism:** the manifest's `version`. cloudflare-site 1.61031.1.

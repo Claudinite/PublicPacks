@@ -8,6 +8,8 @@
 // configuration language to answer two questions buys nothing that moving the
 // config does not, and `publishes-a-site-directory` says so where a repo meets it.
 
+import { posix } from 'node:path';
+
 // The config filenames wrangler resolves, in its own precedence order.
 export const WRANGLER_CONFIGS = ['wrangler.json', 'wrangler.jsonc'];
 
@@ -68,14 +70,15 @@ export function publishedDir(config, configPath = 'wrangler.json') {
   return `${base}${normalized}`;
 }
 
-// What a deploy ships, as repo-relative paths (a trailing `/` is a whole folder): the
-// config itself, the published tree, the folder holding the Worker's `main` (the
-// file alone when it sits beside the config), and the package manifests the Worker
-// bundle's dependencies come from. A file the Worker imports from anywhere else is
-// not seen here. Null when a build command fills the published tree, from sources the
-// config does not name, so no list covers what ships.
+// What a deploy ships, as repo-relative paths (a trailing `/` is a whole folder, and a
+// path without one is a file or a folder): the config itself, the published tree, the
+// folder holding the Worker's `main` (the file alone when it sits beside the config),
+// the package manifests the Worker bundle's dependencies come from, and, when a build
+// command fills the published tree, the build's `watch_dir`. A file the Worker imports
+// from anywhere else is not seen here. Null when a build names no `watch_dir` this can
+// read, or one covering the whole repo: then no list narrower than every file covers
+// what ships.
 export function deployedPaths(config, configPath = 'wrangler.json') {
-  if (typeof config?.build?.command === 'string' && config.build.command.trim()) return null;
   const base = configPath.includes('/') ? `${configPath.slice(0, configPath.lastIndexOf('/'))}/` : '';
   const out = [configPath];
   const published = publishedDir(config, configPath);
@@ -85,6 +88,23 @@ export function deployedPaths(config, configPath = 'wrangler.json') {
     out.push(main.includes('/') ? `${base}${main.slice(0, main.lastIndexOf('/'))}/` : `${base}${main}`);
   }
   out.push(`${base}package.json`, `${base}package-lock.json`);
+  if (typeof config?.build?.command !== 'string' || !config.build.command.trim()) return out;
+  const inputs = buildInputs(config.build.watch_dir, base);
+  return inputs ? [...out, ...inputs] : null;
+}
+
+// `build.watch_dir` resolved from the config's folder, as wrangler resolves it. Null
+// for an entry that is not a path, or one reaching the repo root or past it.
+function buildInputs(watch, base) {
+  const list = typeof watch === 'string' ? [watch] : watch;
+  if (!Array.isArray(list) || !list.length) return null;
+  const out = [];
+  for (const dir of list) {
+    if (typeof dir !== 'string' || !dir.trim()) return null;
+    const resolved = posix.normalize(`${base}${dir}`).replace(/\/+$/, '');
+    if (resolved === '.' || resolved === '..' || resolved.startsWith('../') || resolved.startsWith('/')) return null;
+    out.push(resolved);
+  }
   return out;
 }
 

@@ -94,11 +94,20 @@ test('a commit outside every deployed path is nothing to release', () => inRepo(
   assert.match(verdict.reason, /nothing the deploy ships/);
 }));
 
-// The published tree is the build's output, filled from sources nothing declares: every commit counts.
-const built = { 'wrangler.json': JSON.stringify({ build: { command: 'python3 tools/build.py' }, assets: { directory: './out' } }) };
-test('with a build command, a commit anywhere releases', () => inRepo(built, () => {
-  const verdict = gate.holds(commits(touching('aaa1111', 'web/page.js'), release('bbb2222')));
-  assert.equal(verdict.holds, true);
+// The published tree is the build's output: its watch_dir says what feeds it, and without one every
+// commit counts.
+const built = (watch) => ({ 'wrangler.json': JSON.stringify({ build: { command: 'python3 tools/build.py', watch_dir: watch }, assets: { directory: './out' } }) });
+test('with a build command, a commit under its watch_dir releases and one outside it does not', () => inRepo(built(['web', 'tools/build.py']), () => {
+  for (const input of ['web/page.js', 'tools/build.py']) {
+    assert.equal(gate.holds(commits(touching('aaa1111', input), release('bbb2222'))).holds, true, input);
+  }
+  const verdict = gate.holds(commits(touching('aaa1111', 'docs/plan.md', 'tools/build.pyc'), release('bbb2222')));
+  assert.equal(verdict.holds, false);
+  assert.match(verdict.reason, /web, tools\/build\.py/);
+}));
+
+test('with a build command and no watch_dir, a commit anywhere releases', () => inRepo(built(undefined), () => {
+  assert.equal(gate.holds(commits(touching('aaa1111', 'docs/plan.md'), release('bbb2222'))).holds, true);
 }));
 
 test('a commit touching a deployed path releases, and only it is named', () => inRepo(site, () => {

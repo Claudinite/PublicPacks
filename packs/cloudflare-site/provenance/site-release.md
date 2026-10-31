@@ -74,14 +74,16 @@
 - **Actor:** @missingbulb (owner).
 - **Model:** Opus 5.5
 
-## 2026-10-31 · policy-changed · A config with a build command counts every commit
+## 2026-10-31 · policy-changed · A build's watch_dir is a deployed path
 - **Source:** missingbulb/NoRFinder, whose forced release declined because its page sources live
   outside the build-output published tree.
-- **Reason:** a build fills the published tree from sources the config does not name, so the
-  deployed-path list missed every page change.
+- **Reason:** a build fills the published tree from sources the deployed-path list never named, so
+  every page change read as shipping nothing.
 - **Actor:** @missingbulb (owner).
 - **Model:** Opus 5.5
-- **Mechanism:** `deployedPaths` returns null for a non-empty `build.command`, which
-  `unreleased-commits` already reads as "counts".
-- **Rejected:** a per-repo list of build inputs: a second declaration to keep in step with the
-  build.
+- **Mechanism:** `deployedPaths` adds `build.watch_dir`, which wrangler already reads as the
+  build's inputs, resolved from the config's folder. A build with no usable `watch_dir` returns
+  null, which `unreleased-commits` reads as "counts".
+- **Rejected:** counting every commit in a repo with a build: it undoes the deployed-path
+  narrowing there. Wrangler's own `./src` default for an absent `watch_dir`: a build reading
+  elsewhere would never release. A pack-specific list of build inputs: `watch_dir` already is one.

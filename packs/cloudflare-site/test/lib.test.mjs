@@ -65,10 +65,26 @@ test('the deployed paths are the config, the published tree, the Worker folder a
     ['wrangler.json', 'site/', 'package.json', 'package-lock.json']);
 });
 
-// A build command fills the published tree from sources the config does not name, so no path
-// list covers what ships; an empty command builds nothing.
-test('a config with a build command has no deployed paths to name', () => {
-  assert.equal(deployedPaths({ build: { command: 'python3 build.py' }, assets: { directory: './out' } }, 'wrangler.json'), null);
-  assert.deepEqual(deployedPaths({ build: { command: '  ' }, assets: { directory: 'site' } }, 'wrangler.json'),
-    ['wrangler.json', 'site/', 'package.json', 'package-lock.json']);
+// A build fills the published tree from what its `watch_dir` names, resolved from the config's
+// folder as wrangler resolves it; an entry may be a file or a folder, so it carries no `/`. Without one, or with one that names the
+// whole repo or cannot be read, nothing narrower than every commit covers what ships.
+test('a build command adds its watch_dir to the deployed paths', () => {
+  assert.deepEqual(deployedPaths({ build: { command: 'python3 build.py', watch_dir: ['web', './studies/', 'build.py'] }, assets: { directory: './out' } }, 'wrangler.json'),
+    ['wrangler.json', 'out/', 'package.json', 'package-lock.json', 'web', 'studies', 'build.py']);
+  assert.deepEqual(deployedPaths({ build: { command: 'make', watch_dir: '../shared' }, assets: { directory: 'dist' } }, 'site/wrangler.json'),
+    ['site/wrangler.json', 'site/dist/', 'site/package.json', 'site/package-lock.json', 'shared']);
+});
+
+test('a build command with no usable watch_dir has no deployed paths to name', () => {
+  for (const watch of [undefined, '', ['web', '  '], [], ['web', 7], '.', ['web', './'], '../..']) {
+    assert.equal(deployedPaths({ build: { command: 'python3 build.py', watch_dir: watch }, assets: { directory: './out' } }, 'wrangler.json'), null, String(watch));
+  }
+});
+
+// wrangler reads watch_dir only beside a command, and an empty command builds nothing.
+test('watch_dir without a build command changes nothing', () => {
+  for (const command of [undefined, '  ']) {
+    assert.deepEqual(deployedPaths({ build: { command, watch_dir: 'web' }, assets: { directory: 'site' } }, 'wrangler.json'),
+      ['wrangler.json', 'site/', 'package.json', 'package-lock.json']);
+  }
 });

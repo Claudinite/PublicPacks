@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "node",
-  "serial": 7,
+  "serial": 8,
   "versions": [
     {
       "version": "60928.1",
@@ -42,7 +42,7 @@
       "size": 7636,
       "minEngineVersion": "1.61001.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-10-30T06:45:59Z",
       "sourceCommit": "4e4ef7fb68671b111eb72e3c472bd88d29f655d6"

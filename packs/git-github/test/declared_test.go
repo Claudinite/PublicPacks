@@ -234,40 +234,6 @@ jobs:
 	})
 }
 
-func TestNoScheduledFleetExecutor(t *testing.T) {
-	const executor = `jobs:
-  release:
-    uses: acme/Claudinite/.github/workflows/chrome-extension-release.yml@main
-`
-	const own = `jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo hi
-`
-	const cron = "on:\n  schedule:\n    - cron: '44 3 * * *'\n"
-	scheduler := map[string]string{".github/workflows/claudinite-scheduler.yml": `name: Claudinite scheduler
-on:
-  schedule:
-    - cron: '24 * * * *'
-  workflow_dispatch:
-jobs:
-  schedule:
-    runs-on: ubuntu-latest
-    steps:
-      - run: .claudinite/bin/cn schedule run
-`}
-	id := "finding gha/no-scheduled-fleet-executor " + wf
-	cases := []fixture.Case{
-		{Name: "a scheduled canon reusable", Member: one("name: r\n" + cron + executor), Expect: []string{id}},
-		{Name: "a dispatch-only executor", Member: one("name: r\non:\n  workflow_dispatch:\n" + executor)},
-		{Name: "the member's own cron before the scheduler", Member: one("name: n\n" + cron + own + "  report:\n    if: ${{ failure() }}\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo escalate\n")},
-		{Name: "a stray cron beside the scheduler", Member: with(scheduler, one("name: n\n"+cron+own+"  report:\n    if: ${{ failure() }}\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo escalate\n")), Expect: []string{id}},
-		{Name: "only the scheduler crons", Member: with(scheduler, one("name: p\non:\n  workflow_dispatch:\n"+own))},
-	}
-	fixture.Run(t, "git-github", quiet(cases))
-}
-
 func TestCronMinuteOffTheHour(t *testing.T) {
 	scheduled := func(lines string) string {
 		return "name: Nightly\non:\n  schedule:\n" + lines + "\n  workflow_dispatch:\n\njobs:\n  run:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo hi\n"

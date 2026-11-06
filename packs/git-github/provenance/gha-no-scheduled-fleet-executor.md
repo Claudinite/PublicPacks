@@ -50,3 +50,11 @@
 - **Reason:** owner decision, 2026-09-25: the field names what happens when the check fails, and
   *severity* keeps its impact sense; what this element enforces is unchanged.
 - **Actor:** @missingbulb (owner).
+
+## 2026-11-06 · retired · a repo may keep a cron of its own beside the scheduler
+- **Source:** the owner, on missingbulb/NoRFinder#795: "eliminate that check now".
+- **Reason:** it blocked a member's plain nightly test workflow, forcing a scheduler task whose
+  only job was to dispatch it; `gha/scheduled-failure-escalation` and `gha/cron-minute-off-the-hour`
+  still judge every cron.
+- **Actor:** @missingbulb (owner).
+- **Model:** claude-opus-5-5

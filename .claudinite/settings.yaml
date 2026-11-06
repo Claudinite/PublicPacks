@@ -15,9 +15,6 @@ checks:
   rules:
     claudinite-isolation: "off"
   accept:
-    - rule: no-scheduled-fleet-executor
-      path: .github/workflows/promote-packs.yml
-      reason: "the daily pack promotion is the canon's release machinery, not fleet work"
     - rule: provenance-integrity
       path: packs/basics/provenance/ci-performance.md
       reason: "an entry kind outside the vocabulary, written before the check reached the shelf (#94)"

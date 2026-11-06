@@ -75,3 +75,10 @@
 - **Actor:** @missingbulb (owner), approving the plan in ClaudiniteEngine#478.
 - **Model:** Claude Sonnet 5.5, per the commit trailer.
 - **Mechanism:** the manifest's `version`, git-github 1.61027.1.
+
+## 2026-11-06 · scope-changed · gha/no-scheduled-fleet-executor leaves the pack
+- **Reason:** the check's retirement changes what the pack ships, so the version moves to 1.61106.1
+  for the release to publish it; the decision is on the check's provenance file (#182).
+- **Actor:** @missingbulb (owner).
+- **Model:** claude-opus-5-5
+- **Mechanism:** the manifest's `version`, git-github 1.61106.1.

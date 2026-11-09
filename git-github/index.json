@@ -1,7 +1,7 @@
 {
   "v": 1,
   "pack": "git-github",
-  "serial": 27,
+  "serial": 28,
   "versions": [
     {
       "version": "60928.1",
@@ -152,7 +152,7 @@
       "size": 24273,
       "minEngineVersion": "1.61001.1",
       "requires": [],
-      "channel": "canary",
+      "channel": "stable",
       "revoked": false,
       "publishedAt": "2026-11-06T06:22:11Z",
       "sourceCommit": "24ca025a88234c19034697df57599bc84201beae"
